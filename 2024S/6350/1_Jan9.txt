@@ -42,3 +42,58 @@ Related Fields:
     CS/Math - formalizing and understanding learning mathematically, using ideas from probability and statistics, linear algebra, theory of computation, mathematical optimization
     Philosophy/cognitive psychology/neuroscience/linguistics
     Many many application areas
+
+
+
+Overview of the course:
+
+main question: what is learning
+    different formal answers to this problem and what they give using
+Different models, learning protocols, effectively
+
+Models:
+    decision trees
+    linear classifiers and regressors
+    non-linear classifiers, NNs and kernels (time permitting)
+    ensembles
+Protocols:
+    Supervised (teacher + learner)
+    Unsupervised learning (only unlabeled examples, like data mining)
+    Semi-Supervised (learner has access to labaled and unlabeled examples)
+    Active learning (learner and teacher can interact with each other)
+    Reinforcement learning (learner learns by interacting with the environment)
+
+
+Online algorithms
+    learner can access only one labeled instance at a time
+        perceptron, winnow
+Batch algorithms:
+    learner can access the entire dataset
+        naive bayes, svm, logistic regression, neural networks, decision trees/nearest neighbors, boosting
+Unsupervised/semi-Supervised algorithms
+    expectation maximization
+    k means
+
+
+Representing data
+    what is the best way to represent data for a particular task?
+    the importance of the right features
+    learning such features from data
+    dimensionality reduction(time permitting)
+
+
+Theory of Machine Learning - what does it mean to learn
+    online learning - stop making mistakes or minimize regret in decisions as it continues
+    probably approximately correct (PAC) after many examples, the learner will (with high probability) produce a function that makes small error
+    Bayesian Learning - based on our observations, what is the probability distribution over possible functions that produced the data
+
+
+
+
+
+This course focuses on the underlying concepts and algorithmic ideas in the field of ML
+    A broad theoretical and practical understaning of maching learning paradigms and algorithms
+    ability to implement learning algorithms
+    identify where machine learning can be applied and make the most appropriate decision
+
+    
