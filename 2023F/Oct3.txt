@@ -1,0 +1,28 @@
+
+Organick talk
+
+Joe Presentation:
+
+	question: how do we program with LLMs
+			how to handle stochasticity, right abstrations, most expressive framework
+
+	import uncertain as u
+	fruit = u.categorical([], probs = [])
+	
+	(u.categorical object).map(lambda)
+
+	model.tokenizer.convert_ids_to_tokens
+	model.tokenizer.encode()
+
+	Jason Eisner's Most recent tweet
+
+	
+	Lagrangian Relaxation
+
+	Rina Dector UC Irvine
+
+	MCMC / ppl
+
+	Model Counting / Model Sampling
+
+	*need to learn how to use LoRa

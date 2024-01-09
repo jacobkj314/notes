@@ -1,0 +1,44 @@
+Machine Learning
+
+What is ML?
+
+Badges game
+    ACML 1994
+        converence badges were labeled + or -
+        output of a function depending on only the attendee's name
+            only Haym Hirsh knew the function
+    Attendees were tasked to look at all labels and find the hidden function
+
+    Many possible functions but difficult to tell if it is the intended function
+
+
+1959 first "Machine Learning" written
+    "Some studies in Machine Learning using the Game of Checkers" Arthur Samuel 1959
+    "Programming computers to learn from experience should eventually eliminate the need for much programming effort"
+    "As a result of these experiments one can say with some certainty such learning schemes may eventually be economically feasible as applied to real-life problems"
+    Talks about the difference between rote learning and generalization
+Herbert Simon (1983) - only person to win nobel prize and turing award
+    "Learning denotes changes in the system that are adaptive in the sense that they enable the system to do the task or tasks drawn from the same population more effectively the next time"
+
+Tom Mitchel 1997
+    "A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performace at tasks T, as measured by P, improves with experience E."
+
+
+
+Learning is generalization
+Statistics want to describe data, vs ML wants to predict
+
+
+Machine Learning is ~~the future~~ here today
+    Gives a system the ability to perform a task in a situation which has never been encounterd before
+        new way to think about programming
+        programs that can acquire new capabilities
+    Learning allows programs to interact more robustly with messy data
+    You are already using ML-based applications
+
+
+Related Fields:
+    AI - computers that are as intelligent as humans
+    CS/Math - formalizing and understanding learning mathematically, using ideas from probability and statistics, linear algebra, theory of computation, mathematical optimization
+    Philosophy/cognitive psychology/neuroscience/linguistics
+    Many many application areas

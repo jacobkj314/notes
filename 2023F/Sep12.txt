@@ -1,0 +1,30 @@
+Sep12
+
+Anonymity vote:
+    recuse yourself if you know who the authors are 
+
+    "Peer review is the worst way to publish papers, other than all the other ones" - Vivek
+        Should have higher peer review standards: don't say "compare to this paper on arxiv", say "compare to this peer-reviewed paper" 
+    Ana : this new policy does not change the underlying problems - make available information on when, they did it - are they a reliable reviewer
+
+"Probability distribution ordering for few shot in-context text classification" (Zhichao presentation):
+    In context learning
+    different permutations of the same set of in-context examples can lead to prediction performance ranging from near full fine-tuning to near-random
+        more stable in larger models (Wei etal 23)
+    
+    How to determine which order will work the best?
+
+    Confidence calibration
+
+    Sample 8 training examples
+    sample 24 permutations of those 8 examples
+    Use Direct and PMI measures
+
+    Understanding Dataset Difficulty
+
+
+
+https://www.alignmentforum.org/posts/mLfPHv4QjmeQrsSva/paper-on-measuring-situational-awareness-in-llms
+https://en.wikipedia.org/wiki/Three_Laws_of_Robotics
+https://www.reddit.com/r/mycology/comments/15wdeng/a_small_psa/
+https://shatterzone.substack.com/p/ai-is-coming-for-your-children

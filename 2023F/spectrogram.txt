@@ -1,0 +1,28 @@
+transformers.models.whisper.feature_extraction_whisper.WhisperFeatureExtractor.__call__:
+    batch = transformers.BatchFeature({"input_features": [np.asarray([waveform]).T]}) #simplification 
+    padded_inputs = processor.feature_extractor.pad(
+        batch,
+        padding="max_length" #from default
+        max_length = processor.feature_extractor.n_samples
+        truncation=True
+        pad_to_multiple_of=None #from default
+        return_attention_mask=None #from default
+    )
+    input_features = padded_inputs.get("input_features").transpose(2,0,1)[0][0]
+    input_features = _np_extract_fbank_features(input_features)
+
+
+
+transformers.models.whisper.feature_extraction_whisper.WhisperFeatureExtractor._np_extract_fbank_features:
+    log_spec = transformers.audio_utils.spectrogram(
+        waveform = waveform,
+        window = transformers.audio_utils.window_function(processor.feature_extractor.n_fft == 400, "hann")
+        frame_length = processor.feature_extractor.n_fft == 400
+        hop_length = processor.feature_extractor.hop_length == 160
+        power = 2.0
+        mel_filters = processor.feature_extractor.mel_filters == np.array of size [201, 80]
+        log_mel="log10"
+        )
+    log_spec = log_spec[:, :-1]
+    log_spec = np.maximum(log_spec, log_spec.max() - 8.0)
+    log_spec = log_spec + 4.0 / 4.0

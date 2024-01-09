@@ -1,0 +1,61 @@
+"Natural Categories" Maitrey Presentation
+
+
+e.g. Birds:
+    lays eggs, fly, wings, feathers, beak/bill
+    think of typical category members eg robin sparrow pigeon
+
+Classical Theory of categorization:
+    list of necessary and sufficient condition, 
+    well defined boundaries
+    categorial membership is digital and equal
+
+But, do all natural categories follow this theory?
+    {Kiwi, Ostrich, Penguin} \in Birds, but not \in fly
+    -> Graded membership
+    "some birds are "birdier' than other birds"
+
+    "Prototypical" birds are birdiest
+
+PROTOTYPE theory    
+    members are defined by familiar resemblance to prototypical members
+    prototypical members have characteristic features, rather than defining properties
+
+Characteristics of a prototype category:
+    CANNOT BE DEFINED BY A SINGLE SET OF CRITERIA "WE HAVE ARGUED THAT MANY WORDS  . . . have their meanings not a list of necessary and sufficient conditions that a thing or event must satisfy . . . . . "
+    Semantic structure is in the form of a radial set of clustered and overlapping meanings
+        prototypical members are found in the maximally overlapping area
+    Exhibit degrees of category membership
+    Have blurred edges
+
+Categories and Prototypes vary over time and across cultures
+
+Book: "Through the language glass", "the unfolding of language" by guy deutscher
+
+
+NLP follows both charaterizations of category
+    Annotations as all or nothing (Classical)
+    Model outputs are distributions (Prototype)
+    Annotation process is definitional (classical) but give prototypical examples (prototype)
+    Bounded categorization (Classical)
+    Tragets are multi-dimensional (Both)
+    Category Labels can be opaque (Both) - Can we move away from categorical Labels
+
+CATEGORY LAbels hide dissimilariteis between members (prottypical and frigne)
+Can natural language serve as effective proxies?
+    In the form of questions/descriptions/explanations
+    natural language reveals more than just albels
+    can be generated using LLMs
+    Natural language allows to describe the target phenomenon in definitional
+Do natural language proxies retain categorical knowledge
+Can natural language proxies reveal prototypical characteristics?
+    proxies can be tallied with existing labeling
+    Do centers of proxy clusters reveal these characteristics
+
+SNACS: Semantic Network of Adpositions and Case Supersense
+    Genetating questions   
+        1. extract the governor and the dependent of the Adpositions
+            "I am talking on the phone"
+                Dependents "talking`"
+                Governor "the phone"
+        2. Ask for question for which the answer is those noun phrases

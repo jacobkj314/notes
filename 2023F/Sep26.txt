@@ -1,0 +1,113 @@
+What happens in an abstract clinic:
+    -everyone who is submitting to a deadline, 
+    -a few weeks before the deadline:
+    -a few days before the clinic, post your abstracts in a google drive
+    -everyone reads as many abstracts as they can and add comments
+    -in the meeting, go over each paper and read all comments aloud
+
+Nov 10 - Instead of Reading Group, paper clinic for arXiv deadline
+
+Contrastive Decoding improves generation quality https://arxiv.org/abs/2309.09117
+RECONCILE framework
+
+Reviewing: (but all these ideas fit for writing as well)
+    reviewing is service to NLP community
+    it looks good on your CV
+    dictates how the field will move forward, set the bar for what is a contribution
+    for every paper you submit, review at least 3-4 (since that how many reviews you get), but you can also review more (because people don't keep up their end of the bargain
+    
+    Henry Oldenburg "the idea that one's research must survive the scrutiny of experts before it is present to the larger scientific community as worthy of serious consideration" creating the modern peer review system and the Philosophical Transactions of the Royal Society (the longest running scientific journal)
+
+    Risk of arxiv model is submitting to a central place without scrutiny
+
+    Reviewer's objective: decide whether a paper makes a sufficient contribution to the field
+
+    How to review: (when writing, make sure all these questions are answered. This makes it easy for the reviewer
+        what is the scientific contribution? Does it offer a new idea (big, little, algorithm, technique, new way to think - quite rare)
+        does it implement an idea and show that it works?
+        does it unite previous ideas into a larger framework? Is such a unification needed?
+        what is the problem being solved? 
+            is the problem worth solving? Is this goal significant?
+            are there simpler solutions that the authors have missed?
+            what are the limitations of the solution? Have authors identified them?
+            Does the paper make any assumptions? Are these assumptions reasonable?
+
+        can you understand the approach
+            is the paper so densely written that it is impossigle to understand what is going on
+            is the method valid and realizistic?
+            is the approach sufficient for the problem
+            if the idea is very new , does the paper present enough analysis or discussion
+            don't feel bad about saying "I don't understand" in a review
+        Is the paper gathering the right data to make its claim?
+            if the paper is experimental , are we doing the right experiments to back thier clai
+            is the paper interpreting the results coffdc
+            what other experiments could make the paper's case morre dojjeett
+
+    Read creative (readubg critically is easy)
+
+    What is good about the paper?
+        What are the good ideas? WHat are the qualities of the paper? What is their potential influence?
+        Do the ideas have extensions that the authors may have missed
+
+    The Act of Reading:
+        summarize the key contribution of the paper
+    
+Reading:
+    not a one time process
+    summarize the 
+
+    Look for how the paper adds to the body of knowledge:
+        what is the intellectual contribution
+        what is in the related work section?
+
+
+The Reviewer's responsibilities
+    Review is a service scientific community
+    provide an honest and critical assessment
+    (don't just say "this is the worst")
+    analyze the strength and weakness of a paper
+    provide suggestitions for improving the paper
+    be civil: don't be rude - imagine that each one is an undergraduate submitting their first paper, and your response will decide their career
+        but even if the paper is the worst thing ever, don't be rude
+        They are essentially coming to you for advice
+
+    Respect the community
+        only accept to review in your areas of expertise 
+        don't use it as an exercise to learn about a new topic
+        do not inordinately delay reviews
+
+    Be ethical:
+        do not share manuscripts
+        do not plagiarize
+        disclose conflicts of interest
+        keep an eye out for plagiarism, unethical research practicess
+        If they use any data, where did they get it from
+            i.e. web data scraping
+
+structure of a review
+    summary of the paper in your own words:
+        what is the main contribution (to help those who decide)
+    discussion about the paper
+        lists of strengths and weaknesses (can be separated into separate section)
+        questions for the authors
+    minor points
+        typos, things that are not critical, things that won't make or break the paper "this paper could use a round of copyediting"
+
+acl form
+appropriateness (does the paper fit in ACL 2014?) 
+clarity (for the reasonably well-prepared reader, is it clear what was done and why? Is the paper well-written and well-structured?)
+originality (is there novelty in the developed application or tool? Does it address a new problem or one that has received little attention? Alternatively, does it . . . )
+implementation/soundness (has the application or tool been fully implemented or do certain parts of the system remain to be implemented? Does it achieve its claims? . . . )
+substance (does this paper have enough substance, or would it benefit from more ideas or results?)
+evaluation (to what extent has the application or tool been tested and evaluated? Have there been any user studies?)
+meaning ful comparison (. . . )
+impoact of ideas or results (how significant is the work described? Will novel aspects of the system result in other researchers . . . )
+impact of accompanying software (if software . . . )
+impact of accompanying dataset (if a dataset was submitted or released along with the paper, what is the expected impact . .. . )
+reccomendation(there are many good submissions compeding for slots, how imporatn is it to feature this one? will people learn a lot by reading this paper or seeing it presented
+reviewer confidence - how good of a job at reviewing did you do
+
+
+
+ACH
+

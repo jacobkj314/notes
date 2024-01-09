@@ -1,0 +1,41 @@
+Sep19
+
+Nate Presentation: "Explanations that Support Generalization"
+	-modern models can produce an explanation alongisde the task prediction
+
+	The portrait gallery experiment:
+		predict whether a person is likely to make an optional donation when exiting a museum after visiting a portrait gallery
+			explaining to the participants that exposure to faces/eyes . . . increases cooperative behavior -> increases likelihood that participants predict they will donate
+			this was different when the same explanation was given about sculpture gardens
+
+		so:
+			explanation+portrait -> increase 
+			explanation+sculpture -> increase if sculptures are of humans
+
+	
+	?Where else does the explanation to eyes
+
+	are people more likely to donate after viewing : portrait gallery vs human sculpture vs abstract sculpture vs landscape paintings
+	tv advertisement for a children's hospital that shows patients VS a news article with statistics about how many people died in a natural disaster
+
+	Properties of Generalization
+		Broad:
+			New Questions shouldn't be about the same entities mentioned in the original question
+			Can use part or all the knowledge from the explanation
+
+	Joshi et.al. 2023 prompt davinci-instruct-beta
+
+	Vivek:
+		Khashabi 2017~2018 : "what season is it in New York in June" vs "what season is it in Sydney in December"
+		Peter Clark
+
+	!IDEA:
+		combining  power sets of predicates
+
+	Mattia:
+		Peter Clark theory dataset *"RuleTaker", "Prover", "Entailment tree" Kaj 
+
+	IDEA:
+		train a model to not know anything but be able to perform inference
+
+	IDEA: can you quantify what background knowledge a model is accessing

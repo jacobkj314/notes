@@ -1,0 +1,65 @@
+Oliver Presentation: "Finetune then compress: data-award, post-hoc language model compression"
+
+Overview:
+    efficiency in ml
+    model compression
+        matric approximation
+            svd
+            tensor networks
+            feedforward nns
+    results
+        svd
+        feedforward nns
+
+Efficiency in ML
+    training data, quality, size, energy, time dimensions
+
+    Tradeoff of model footprint vs model quality
+
+    Techniques
+        quantization, pruning
+        learning techniques such as momentum in sgd
+        automation -> hyperparameter tuning
+        efficient architectures -> transformers vs RNNs
+        infrastructure -> data/model parallelism
+
+Zhu et al. 2023 Model compression
+Low-rank factorization Zu et al 2023
+
+Matrix approximations
+
+    train using sgd to be equivalent to real Matrix
+    ideally should be able to jsut tak out
+New Hypothesis
+    svd is learned without (x,y) data, only using Matrix
+
+    if we train a ffnn to predict y from x we get better language results
+        can language vectors be described using a subspace
+
+    Traditional LM compression methods
+        pretrain -> compress -> Finetune
+    Is there an opportunity to do data-aware post hoc compression
+        pretrain -> finetune -> compress
+
+    Does this same trend hold for attention matrices?
+    How does this compare with just quantization?
+    If you know the domain for your final task, do these results suggest you can compress the model after finetuning depending on the task
+
+Ashim: TINYbert (https://aclanthology.org/2020.findings-emnlp.372.pdf)
+
+next steps:
+approximate bert matrices and test with downstream tasks
+see if same pattern holds for language generally (other tasks + datasets)
+confirm whether pattern holds for various models
+
+questions?
+-is language overall explointable like this?
+-how relevant is a pretrain-finetune-compress model in a zero-shot prompting world?
+-what are the intuitions regarding the structure of different lm matrices (ff, attention, embedding, etc)
+
+Vivek "Anytime distillation" like https://en.wikipedia.org/wiki/Anytime_algorithm
+    start by distilling local components
+    if time distil larger components or whole model globally
+
+
+"The Relational Bottleneck as an inductive Bias for Efficient Abstraction" (Webb et al., 2023) https://arxiv.org/abs/2309.06629

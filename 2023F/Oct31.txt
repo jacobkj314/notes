@@ -1,0 +1,41 @@
+Atreya Presentation "Associational and Inferential Biases Relating to Gender and Sexuality in LLMs"
+-"Associational and Inferential" - not Direct
+
+LLMs:
+    -create content
+    -are oracles trusted by unsuspecting users
+    -act as components to larger AI pipelines
+    -in short, are treated like people in terms of how their "ideas" are considered
+
+LLMs should:
+    -refer to people correctly
+    -focus on important characteristics over demographic characteristics
+    -not have derogatory/othering associational/inferential biases  or mirror harmful media stereotypes
+
+"Currently, they don't do a lot of the do's and do a lot of the don'ts"
+
+Proxies for Gender/Sexuality / latent variables:
+    -Lexical representations i.e., pronouns/agreement
+    -self-identified labels
+    -mismatches
+    -labels by others (but not focusing on this factor for this project)
+    -appearance/clothing
+    -relationships
+
+Goal: For various combinations of these attributes does it follow the should's ?
+    1. Creative Writing Prompts, based on Everyday Tasks, 'Date'/Relationships, Appearance, Professional Setting
+        -?Do the generated stories follow the should's?
+    2. Rewrite prompts:
+        Given the generated story, ask the model to rewrite to be more respectful
+
+"Free-Association for LLMs"
+
+
+"Stonewalling" - giving a non-answer to avoid the possibility of an offensive answer
+
+Atreya+Vivek reccoment "The Linguistics of Color Blind Racism . . . "
+
+H1: Inconsistency in pronouns occurs more frequently with non-gender-conforming/heterosexual prompts than with gender-conforming/heterosexual prompts.
+H2: Narratives involving standing out of the prompt subject are more frequent when the prompt subject is non-gender-conforming/heterosexual than when the prompt subject is gender-conforming/heterosexual
+    does the model focus on the identity information or does it focus on the event information
+    -evaluated using NLI with response as premise and prompt {<name> is a role model to <poss.pron> community} as the hypothesis 

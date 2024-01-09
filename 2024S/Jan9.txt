@@ -1,0 +1,53 @@
+January 9th meeting
+
+want lively discussion
+    30m presentation with discussion longer than presentation
+
+depending on what you hope for in your present, presentation with slides may be appropriate as practice for talk
+
+Can be presentation on new paper or tutorial, rather than strictly your ongoing work
+
+
+For paper clinic - have introduction ready 3 weeks before deadline
+
+ACL, EMNLP, TACL, ARR deadlines this year
+
+
+
+
+Paper Discussions (nvm, we will do this after Ashim is back)
+    Ashim has read Monarch and has strong negative opinions
+    Maitrey will share a blog about S4
+
+
+Ideas for group meetings:
+    Nate - User study piloting 
+    Fateme - Ideas for time management
+    Atreya - Ashim present on making the most out of chpc
+
+Class suggestions
+
+Mattia - Amanda Funei class
+Atreya - Matthew Flatt functional programming studio
+Michael - Advanced HCI
+
+Reading Suggestions:
+Zhichao - Mixture of experts
+Vivek - Product of experts
+Oliver - Relational Bottleneck
+
+
+Book Reccomendation:
+Vivek: Marvin Misky "society of mind"
+
+Vivek - Cool idea:
+https://www.nature.com/articles/nature21054
+instead of just asking crowdworkers "what do you think is the answer to this question"
+    ask the question and ask what they think the crowd will answer 
+        use this to detect which respondents know what they are talking about vs are guessing
+
+Social Ideas:
+Pottery
+Skiing
+Snowshoeing
+

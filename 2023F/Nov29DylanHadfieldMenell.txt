@@ -1,0 +1,43 @@
+Incomplete and Incorrect Goals, Over . . . 
+
+Incentives are brittle
+
+Goodhart's law: when a measure becomes a target it ceases to be a good measure
+    (more historical context to this though)
+
+Reward (Mis)Design for Autonomous Driving (Knox et al., 2023 in Artificial Intelligence)
+
+
+r(t_idle) = p*r(t_crash)+(1-p)*r(t_dest)
+what's the probability of crashing at which I'm indifferent about crashing compared to going to a destination
+solve for p, use it to compute expected rates of crashing
+models have it very low, because they prefer crashing over being idle
+
+
+Sing et al, 2009 "Where Do Rewards Come From
+"Hungry THristy domain"
+
+Booth et al, AAAI 2023
+Found that experts are bad at writing reward functions
+
+
+Milli et al "Should robots be obedient" IJCAI 2017
+
+Using more features is better
+
+
+Eventually, increasing proxy utility decreases actual utility
+
+Hidden Context in Preference Learning:
+    -annotator, other context, expected
+    
+    represent observed preference data as an expectain over unobserved context
+    does rlfh retrieve the expected reward functions
+
+    propose a model that learns a distribution over score functions
+
+
+Summary:
+    overoptimization is a problem in theory and practice for AI alighnment
+    relates to problems with incompleteness in preference and goal dataadaptive / qualitatiove methods are a key step to managin g the idssue
+    approaches that learn a distribution over goals and preferences are an interesting appraoch to manage incomplete information

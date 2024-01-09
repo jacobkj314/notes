@@ -1,0 +1,40 @@
+Co-Creative Intelligence for Music Production (Michael Clemens Presentation)
+    Rhythmic Auditory Stimulation - for Gait 
+        Play/Emphasize a Beat on weakened side
+
+Autonomous Creativity VS Creativity Support Tools VS Co-Creativity - Different levels of AI Creativity
+
+Kantosalo & Jordanous 2020 - Creativity Support Tools
+    Support
+        Nanny
+        Pen-pal 
+    Train - help humans use a tool
+        Coach
+    Enable - enable a new experience
+
+One AI + One human and each respond to each otehrs
+
+The Drawing Apprentice
+Robot Music - featuring Shimon, the robotic marimba player
+
+
+
+Music Composition / Production / Performance (focusing on Production)
+
+Specifically Mixing:
+    EQ, Gain, Pan, Comprehension, Reverb
+
+RQ1 Perception of AI - How do users perceive and evaluate C2I2s for music production tasks?
+RQ2 Co-Creative Intelligent Instruments - WHat are the fundamental design principles and guidelines for developing C2I2s that support music production tasks?
+RQ3 Creativity of User - How do users engage with C2I2s to generate and evaluate alternative and novel means of completing music production tasks
+
+Multitrack - good for Mixing, bad for Mastering
+STEM - good for Mastering, bad for Mixing
+
+De Man & Rice 2017 - Mix Evaluation Dataset (but most of it is copyrighted)
+Weathervane Music
+The Mixing Secrets
+The Open Multitrack Testbed
+A lot of these don't include the reccomended parameters
+
+Final Dataset has 34 songs, 114 mixes

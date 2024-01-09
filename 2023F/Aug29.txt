@@ -1,0 +1,72 @@
+Aug29
+
+Deadlines:
+    -always more ideas than time, so it gives you a goal of what to 
+
+    -submit to workshops like Representation Learning for NLP, BlackBoxNLP
+
+Group Resources:
+    -need to connect to artifact storage
+    -dvc
+
+
+
+Fateme Presentation:Evaluating Explanation Usefulness for Human-AI Decision-Making in NLP
+    -Increase Appropriate Reliance of users on AI models (rather than Under- or Over- reliance)
+
+    Under-reliance:
+        C := {x : y_p = y}
+    Over-reliance W := {x : y_p != y}
+    
+    Want to increase the usage of acceptance of correct AI responses and decrease the acceptance of incorrect responses when given an explanation 
+
+    Task/Data
+        Real-world application
+            input -> model -> output -> user -> action
+                PubHealth or LIAR datasets (not realistic because it includes a claim and an article related to it)
+                Sentiment of laptop reviews (not realistic, too easy for humans to do)
+                ExNLPdatasets.github.io has 53% of its models in this category
+
+                Good example is ContractNLI
+
+        require human effort and ability - would there be a real world use case from offloading this to an AI
+            Measured by time it takes the user to understand+process the input
+            >~650 words counts as notable effort
+            also used reported estimated human performance to estimate
+
+            57% of tasks/datasets with real-world application 
+
+            Vivek : How to factor in effort of reading the explanation?
+        
+        moderate to high risk - more important to study impact of 
+            if there is no risk, there is no question of trust
+            Jacovi, Marasovi'c, Miller & Goldberg "Formalizing trust in artificial intelligence: Pre...
+            
+            7 of the datasets survive also this criterion
+
+    Candidate Datasets:
+        Indian Legal Documents Corpus: should a claim be accepted or rejected? 
+            3167 words prompt, 94% accuracy by experts
+            Application: AI-assisted judicial decision making
+            Direct Hazard to SCI legal professionals 78%, so moderate probability, high severity, righ risk
+            Downstream impact to appellants, 
+        Evidence Inference: will treatment A significantly changed some outcome compared to treatment B?
+            3638 words on average, human ability not reported
+                Direct Hazard to Clinicians, MOderate Probability, High severity
+        ContractNLI: Contract + Hypotheses, does the contract entail, contradict, or neutral to the hypothesis
+               1361 words, etc.
+        SciFact-Open
+            -Claim verification task
+            Hazard to clinicians and patients
+        General Fact-CHecking: verifications about a broad range of topics
+            . . .
+        LIAR-Raw
+            -excluded because of strange preprocessing artifacts
+
+    Next Step: Build some models:
+        Fok, Weld (2023) in search of verifiability: explanations rarely enable complement. . .
+
+        amog
+
+
+
