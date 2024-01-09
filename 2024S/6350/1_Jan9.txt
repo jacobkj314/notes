@@ -96,4 +96,14 @@ This course focuses on the underlying concepts and algorithmic ideas in the fiel
     ability to implement learning algorithms
     identify where machine learning can be applied and make the most appropriate decision
 
-    
+
+
+
+6-7 Homeworks (~ every two weeks)
+may involve a programming component
+    should run on cade
+    strongly prefer python
+
+Project
+    use ideas you see in the lectures and homeworks, make it interesting
+    "competitive project": work individually on a kaggle dataset/leaderboard
