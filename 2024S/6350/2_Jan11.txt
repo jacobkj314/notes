@@ -1,0 +1,62 @@
+Supervised Learning
+
+badges game
+
+How could you be certain that you got the right function
+
+How did you know that you should look at th eletters?
+Is this prediction or just modeling data? Is there a difference?
+What background knowledge about letters (ie vowels vs consonants) did you use? HOw did you know that was relevant
+What "learning algorithm" did you use?
+
+
+What is supervised learning?
+Instances and labels
+    running example:
+        automatically tag news articles according to the section it should belong to
+
+"Instance space": All possible news articles - denoted x
+    could be set of images, emails, etc
+Mapped by the learned function to 
+"Label Space": all possible labels - denoted y 
+    could be {+,-}, {spam, not spam}, {real numbers}, etc
+
+"oracle" - target function so that y=f(x)
+    goal is to search over all functions that maps the instance space to the label space to try to find this target function
+
+
+Learning algorithm takes is a function from labeled training data to a learned function g : x -> you
+evaluate how well g approximates f by sampling a random test sample from X and seeing how different f(x) and f(x) are 
+aggregate to get a quality measure
+
+can we use test examples during the training phase?
+No, because then the "learning algorithm" might just be memorization
+
+input x is represented as feature vectors, with a deterministic mapping from instances to features
+
+The label type determines what type of problem wi have
+    Binary classification: {-1, 1} or {0, 1}
+        Spam filtering
+        Reccomendation systems
+        Anomaly detection
+        Authorship Identification
+        Time series Prediction (will this stock increase or decrease in value?)
+    Multiclass classification: {1, 2, 3, . . . K}
+
+    Regression: {Real numbers}
+
+
+When useing supervised learning, we need to know
+    our instance space
+        need to design an appropriate feature representation of the instance space
+            features could be boolean, real valued, etc
+            features could be hand-crafted or learned by some algorithm
+            not all information about the instances is necessary or relevant (bad features could even confuse a learner)
+            one-hot encoding to translate discrete categories into vectors
+        "feature function/feature extractor convert examples into high dimensional vectors
+    our label space
+        can be numerical/ordinal (ranking)
+            E.G., not much difference between 4- and 5-star reviews, but big difference between 1- and 5- star reviews
+    our hypothesis space (what functions should the learning algorithm search over)
+    what is our learning algorithm (how do we learn from the labeled data)
+    What is our loss function or evaluation metric (how do we measure success?)
