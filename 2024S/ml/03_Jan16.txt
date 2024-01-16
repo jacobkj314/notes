@@ -1,0 +1,110 @@
+DECISION TREES, 
+
+HW1 released tonight/tomorrow
+big programming component, incorporating topics covered in class starting today
+
+(previous lecture):
+    what is our instance space?
+    what is our label space?
+
+2^16 = 65536 boolean functions over 4 inputs
+If we have a learned funciton, an adversarial opponent could pick any input and flip the output
+so we can't know it generalizes without having seen every example
+
+Solution: restrict the search space
+    "when in doubt, make an assumption"
+
+    choose a hypothesis space which is NOT all possible functions
+        -assume some structure to the functions
+        -only simple conjunctions
+        -m of n rules pick a set of n variables, at least m of them must be true
+        -Linear functions
+        -Deep Neural Networks
+
+
+2^n simple conjunctions for n boolean features
+
+pick a different hypothesis space
+
+m-of-n rules    
+    pick a subset with n features
+    then y = 1 if at least m of them are 1
+    k(k-1)/2 such functions for k features
+
+General Strategy:
+    pick an expressive hypothesis space expressing "concepts"
+        "concepts" = the target function that is hidden from us aka the oracle
+        example hypothesis spaces - m of n functions, decision trees, linear functions, grammars, multi layer perceptrons, transformers, conjunctions
+        -develop algorithms that find an element in the hypothesis space that fits the data well 
+        -hope that it generalizes
+        -different hypothesis spaces admit different learning algorithms
+
+learning is the removal of remaining uncertainty over a hypothesis space
+want to guess a good small hypothsis class
+
+
+leaves only two questions:
+    what is our learning algorithm / what is our loss function/evaluation metric (discussion for the rest of the semester)
+
+
+
+
+
+
+
+
+modeling:       how to formulate your probem as a machine learning problem?
+                how to represent data?
+                which algorithms to use?
+                what learning protocols?
+representation:
+                good hypothesis spaces and good features
+algorithms:
+                what is a good learning algorithm
+                what is success
+                generalization vs overfitting
+                how long will learning take?
+
+Rest of the semester
+-Decision trees, ID3
+-Linear classifiers (perceptron, svm, logistic regression)
+-combining multiple classifiers (boosting, bagging)
+-Non-linear classifiers (neural networks)
+-nearest neighbors
+
+
+
+
+
+
+
+
+
+DECISION TREES
+Representation: what are decision trees?
+Algorithm: Learning decision trees with ID3 (Iterative dichotomizer 3 - a greedy heuristic) 
+
+
+Every interior node is a test for a feature value, with one branch for every value it can take
+
+if we can't fit it, then we need more features, or the data has noise
+
+expressivity of decision trees:
+    any boolean function
+    every path from the tree to a root is a rules
+    the full tree is equivalent to the cunjunction of all the rules
+
+outputs are discrete categories
+real valued outputs are also possible (regression trees)
+well-studied methods for handling noisy data (noise in the data or in features) or for handling missing attributes
+    eg pruning
+
+how do we deal with continuous (rather than discrete) features
+    thresholding
+    binning
+
+
+Exercises:
+    write down the decision tree for the shapes data if the root node was shape instead of color
+    will the two trees make the same predictions for unseen shapes/color combinations
+    show that multiple structurally different decision trees can represent the same boolean function of two or more variables

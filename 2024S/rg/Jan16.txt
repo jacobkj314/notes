@@ -1,0 +1,48 @@
+Theory of Mind, Mechanisms, methods, and new directions
+https://www.frontiersin.org/articles/10.3389/fnhum.2013.00413/full
+Michael presenting
+
+THeory of mind: the ability to perceive and interpret other people's behavior in terms of their mental states (not a theory, but rather the capacity we have for understanding another's intrinsic motivations and goals)
+due to social nature - greatest joy in terms of interactions with humans, solitary confinement as most significant punishment, etc
+social cognition is a major driver of brain evolution/function - takes up a large percent of human cognition
+autism as struggle to understand other people or be interpreted by others is often devastating -> associated with theory of mind
+
+book "Neurotribes" by steve silverman
+
+Premack and Woodruff 1978 first coining of theory of mind "Does the chimpanzee have theory of mind?" - they act as if they understand the thoughts of other chimpanzees
+    third-person view rather than newer first person view
+
+    Coctail party effect - can hear your interlocutor despite background cacophony, just from the dB values, you shouldn't be able to though
+
+Dennet 1971 - the basis for everything, mostly everything is derived from this
+    we assume that other people have desires+beliefs. Desires are what they want, beliefs are what they know, and people use what they know to get what they want
+
+Terms:
+    Agent - entity capable of having mental states, beliefs, desires, intentions
+    goal - a desured state of the world
+    intention
+
+    intentionality - the foundation for having goasl, allowing the agent to mentally represent a desried staetd and contemplate it, goals motivate an agent to act and guide their behavior action is considered intentional if it is toward their goal
+
+Sally-Anne paradigm
+    sally puts the ball in the basket
+    anne moves the ball to the box
+    where will sally look to find the ball?
+
+    kids usually don't answer this correctly until ~5
+    no intentionality until age 7
+        A pirate puts his sandwich on top of a basket, the wind blows it off, another pirate puts his sandwich on top. The first one will come back, which one will he grab? Who is to blame if he grams the wrong one?
+
+Wimmer and Perner 1983 levels
+    Mental State Inference
+    Projection, simulation
+    joint attention, visual perspective taking
+    imitation, mimicry, automatic empathy
+    identifying agents, recogniziong goals, assessing intentionality
+
+Mutlu etal 2009
+    conditions: humanlike vs stylized humanoid robot, leakage cues vs not
+
+
+
+3rd person vs 1st person - instead of asking where sally would go, you are sally (in a more restricted setup)
