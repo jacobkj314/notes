@@ -1,0 +1,94 @@
+Learning Decision Trees
+
+decision trees first to model human concept Learning
+Quinlan developed Iterative Dichotomizer 3 with information gain heuristic (late 70s)
+Breiman Freidman and colleagues develop CART (Classification And Regression Trees, mid 80s)
+other 80s improvements cope with noise, continuous attributes, missing data, non-axis parallel, etc.
+Quinlan C4.5 and C4 in 90s are most commonly used decision tree algorithms
+Boosting/bagging over decision trees is a very good general purpose algorithms
+
+Decision trees are useful hyptothesis space when you want interpretable predictors
+
+
+
+Running example
+    Will I play tennis today?
+    Features:
+        outlook : sun, overcast, rain
+        temperature : hot, mild, cool
+        humidity : high, normal, low
+        wind: strong, weak
+    Labels : yes, no / +,-
+
+  |OTHW|?
+01|SHHW|-
+02|SHHS|-
+03|OHHW|+
+04|RMHW|+
+05|RCNW|+
+06|RCNS|-
+07|OCNS|+
+08|SMHW|-
+09|SCNW|+
+10|RMNW|+
+11|SMNS|+
+12|OMHS|+
+13|OHNW|+
+14|RMHS|-
+
+ID3
+
+Data processed as a batch
+recursively decide what remaining feature to use at each new node
+if all remaining instances at the node have the same label, use it as the node
+
+
+S = dataset of labeled examples
+A = set of attributes
+ID3(S,A):
+    if all_same(s.label for s in S):
+        return a single node tree with the label
+    else:
+        create a root node for the subtree
+        a = the attrubute in A that best classifies s
+        for each value v that a can take:
+            add a new tree branch for when attribute a takes value v
+            let S_v be the subset of examples in S with a=v
+            if S_v is empty:
+                make an assumption (leaf node with most common label for S)
+            else:
+                return ID3(S_v, A-a)
+        return this root node
+
+If there is a chance that future data may have values for an attribute that aren't seen in your data, have an "anything else" edge
+
+Picking the root attribute:
+    goal: have the resulting decision tree as small as possible (occam's razor -- but finding the minimal decision tree is NP-hard)
+    the recursive algorithm is a greedy heuristic search for a simple tree, but cannot guarantee optimality
+    the main decision in the algorithm is the selection of the next attribute to split on 
+
+
+ENTROPY: measure of impurity/disorder in a set of exampels with respect of binary Classification
+
+Entropy(S) = H(S) = -(p+)log2((p+))- (p-)log2((p-)) for +,- Labels
+for k possible values: H(\{p_1, p_2, p_3, . . . p_K\}) = - \sum_{i}^{K}{p_i log2(p_i)}
+where p_i is the proportion of examples in S with label i
+
+for binary classification, highest entropy is 1
+for n-ary classification, highest entropy is log2(n)
+
+
+INFORMATION GAIN
+
+we want to choose the attribute that reduces entropy (increases certainty) the most
+
+Gain(S, A) = Entropy(S) - \sum_{v \in Values(A)}{(|S_v| / |S|) * Entropy(S_v)}
+    intuition: total entropy - average entropy of each split
+
+
+Tennis example:
+    p+ = 9/14
+    p- = 5/14
+    total entropy ~= .94
+
+    
