@@ -1,0 +1,28 @@
+announcements: moving discussions from canvas to Piazza
+
+
+Overfitting definitions:
+    Data comes from a distribution D(X, Y)
+    We are using a hypothesis space H
+
+    errors:
+        training error for hypothesis h \in H = error_train(h) #based on train set
+        true error / generalization error for h \in H = error_D(h) #based on distribution
+        h overfits if \exists h' \in H s.t. error_train(h) < error_train(h') and terror_D(h) > error_D(h')
+            That is, the particular train set makes h look better than h', but h' actually generalizes better than H
+
+Decision trees will overfit
+    grow the tree until the point where train and dev accuracy are closest
+
+
+concepts = oracles / true functions
+
+
+
+LINEAR CLASSIFIERS:
+restrict the search space
+
+
+classify x \in R^d
+    using w \in R^d
+Output = sign(w dot x + b)
