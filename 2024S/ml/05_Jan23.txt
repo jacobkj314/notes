@@ -1,0 +1,37 @@
+Decision Trees / ID3
+
+Decision Tree Variants
+    entropy Variants: majorityError (suppose the tree was not grown below this node and the most frequent label were chosen. What would be the error), Gini index
+        entropy = -(p lg(p) + (1-p)lg(1-p))
+        majorityError = min(p, 1-p)      #min of one minus each proportion
+        gini index = 1 - (p^2 + (1-p)^2) # one minus sum of squares of proportions
+
+Handling examples with missing feature values
+    what can we do at training time:
+        replace with most common value in that column
+        toss out that row (but usually that's not done unless the data source is so large/cheap that it doesn't matter)
+        select a random value
+        most common attribute value for instances with the same label
+        treat it as its own category
+
+        give it a fractional feature
+            could split column into #values real-valued one-hot columns
+
+
+Non-boolean features
+    simple multi-way split on 
+    break down into booleans
+    bucket numerical values
+
+AVOIDING OVERFITTING (today's main topic)
+
+First Bit function:
+    boolean function with n inputs, simply returns the value of the first input, all others irrelevant
+    one step decision tree
+    should not have any error on future, non-noisy test data
+
+    now imagine you have the same 2^n features, but randomly corrupted (noise)
+        train and test sets are no longer identical: both have possibly different noise
+
+        test accuracy drops
+        train accuracy is still at 100%!! - this is the output of ID3, it will make a tree that perfectly fits the training data!

@@ -1,0 +1,7 @@
+Atreya pilot study
+
+Effect of AI predictions and confidence scores on human predictions and confidence scores for answering questions about NDAs
+
+My feedback - 
+    having the ai explanation visible before you submit your part 1 could lead people to read the ai explanation before making their first decision, maybe make them submit first, then they can move to part 2 with the ai explanations visible. 
+

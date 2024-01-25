@@ -1,0 +1,47 @@
+Towards A Holistic Landscape of Situated Theory of Mind in Large Language Models
+https://arxiv.org/abs/2310.19619
+
+Maitrey presenting
+
+LLms have demonstrated some capability of inferring communicative intentions, beliefs, and desires BUT researchers also report concerns regarding a lack of robust agency in LLMs for complex social and belief reasoning tasks
+
+Paper is a complaint on current state of affairs; no coherence of what kinds of tests people are doing
+
+first task: taxonomize and propose a lnadscape of theory of Mind
+second: develop more effective evaluation for machine ToM
+
+ATOMS taxonomy proposed by beaudoin 2019 originally designed for children
+
+Kosinski 2023 first paper finding evidence for emergent ToM
+"Theory of Mind Might Have Spontaneously Emerged in Large Language Models" - GPT4 matches performance of 6 year olds
+
+    False belief scenarios: opaque container where label mismatches content
+    True belief scenarios: opaque container where label matches content / look inside container where label mismatches content / outsider informs protagonist of true contents
+
+"Large Language Models Fail on Trivial Alterations to Theory-of-Mind Tasks" Ullman 2023
+    slight modifications change the effect
+
+
+Bubeck etal 2023 - claims that gpt4 has a vvery advanced level of ToM
+
+
+Most dominant narrative is that models do not do well on ToM tasks
+
+
+
+"Neural Theory-of-mind? On the limits of social intelligence in LLMs" 
+
+
+
+Shapira et al. 2023a "Clever Hans or Neural Theory of Mind? Stress Testing Social Reasoning in Large Language Models"
+tests ToM and faux pas (like "How well do large language models perform on faux pas tests")
+
+
+
+"Early Reasoning about Desires: Evidence From 14 and 18 Month olds" Repacholi and Gopnik"
+    goldfish cracker vs broccoli 
+    experimenter modeled liking some and disliking another (balanced)
+    ask for food between both bowls
+    14mos give at random, 18mos give food shown to be liked
+
+"Towards Collaborative Plan Acquisition through theory of Mind Modeling in Situated Dialogue"
