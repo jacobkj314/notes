@@ -1,0 +1,44 @@
+Joe Presentation
+
+High-Level LLM programs
+
+More attention should be paid to what can we build using the models
+    Use them in modular ways, rather than an end-to-end system
+        like a processor
+
+"BookClub" - a platform for team building bookclubs
+    want summarization of the book - one "spark" for each chapter
+        wanted to use LLMs to make it easier to curate these - clients choose which books
+    
+    task:
+        input: a full nonfiction book
+        output: generate a "path"
+            "path": list of 10-15 sparks
+            Spark (a concept from the book): list of 5-7 slides
+            Each slide (concept, anecdote, note, etc) : a few lines of code
+
+Multi-Agent Systems
+    "Generative Agents: Interactive Simulacra of Human Behavior" Park et al
+
+    If we can simulate a town, can we simulate a productive task-oriented organization
+
+    Book: "Society of Mind" Marvin Minsky
+
+Idea: create multiple debate teams
+
+
+
+https://www.twosigma.com/articles/a-guide-to-large-language-model-abstractions/
+
+
+
+
+Prompt Constarint Layer:
+    https://github.com/outlines-dev/outlines
+
+
+
+Multi-Agent Systems
+    CrewAI
+    Llegos
+    AutoGen
