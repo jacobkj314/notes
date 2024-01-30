@@ -1,0 +1,87 @@
+Linear Classifiers:
+
+What functions do linear classifers express?
+    Conjunctions and disjunctions
+    m of n functions
+    NOT ALL FUNCTIONS ARE LINEARLY SEPARABLE
+    FEATURE SPACE TRANSFORMATIONS
+    exercises
+
+
+    linear classifiers can represent all linearly separabe functions (but decision trees can represent all boolean functions)
+
+LINEAR THRESHOLD UNIT
+
+    conjunctions and disjunctions are linearly SEPARABLE
+
+    m-of-n rules
+    subset of n variables
+    y - true iff at least m of the inputs are true, all other variables are ignored
+
+Blown-up feature space:
+    use feature conjunctions
+    i.e., use x and x^2 as two features:
+    ------++++++------- (becomes linearly separable in the new space with this transformation)
+
+    generally:
+    given a feature space X, device transformation function \phi : X -> Z
+    now learn a classifier in Z
+
+Almost Linearly Separable Data:
+    training data is almost linearly separable, except for some noise
+    ? how much noise do we allow for?
+
+
+
+
+
+QUANTIFYING LEARNING: how good is a learning algorithm?
+
+Example:
+    there is a hidden monotone conjunction for the learner to learn
+    f = x_2 \and x_3 \and x_4 \and x_5 \and x_100
+
+    How many examples are needed to learn it? How does learning proceed?
+
+    Depends on "learning protocol":
+        Active learning: the learner proposes instances as queries to the teacher
+            learner can ask [1,1,1,1,1,1,1,...,1,1,0] and recieve 0
+                therefore x_100 is in the conjunction
+            100 features -> 100 queries max
+            O(# features) queries needed
+
+    Teaching:
+        the teacher (who knows f) provides training examples
+            Teacher gives [0,1,1,1,1,0,0,0,0,...,0,0,1] -> 1 (shows that we need at least these)
+            Teacher gives [1,0,1,1,1,1,1,1,1,...,1,1,1] -> 0 (shows that x_2) is needed
+            Teacher gives [1,1,0,1,1,1,1,1,1,...,1,1,1] -> 0 (shows that x_3) is needed
+            etc
+            5 relevant features -> 6 examples needed
+            O(# relevant features) examples needed
+    (other):
+        some random source provides training exampls, the teacher provides the labels
+            algorithm: look for the variables that are positive in every positive example. All other variables can bee eliminated
+
+
+
+
+
+
+
+ONLINE LEARNING
+    Perceptron, Winnow
+
+    Mistake-driven learning
+        Consider a learning problem in a very high dimensional space [x1, x2, x1000000]
+        the function depends on a small number of attributes
+            x2 and x3 and x4 and x5 and x100
+        Can we develop an algorithm that depends only weakly on the dimensionality and mostly on the number of relevant attributes
+
+        Loop forever:
+            recieve example X
+            make a prediction using current hypothesis h_t(x)
+            receive the true label for X
+            if h_t(x) is not correct, then update the hypothesis from h_t to h_(t+1)
+
+            define "Prediction" and "update" behavior in some useful way
+
