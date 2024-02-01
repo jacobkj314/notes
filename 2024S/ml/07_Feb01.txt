@@ -1,0 +1,116 @@
+HW2 - implement Linear models
+
+
+Mistake bound algorithms
+
+setting:
+instance space X (dimensionality n)
+
+target f : X -> {0,1} f \in C (concept class parameterized by n)
+
+LEARNING PROTOCOL:
+learner is given x \in x
+learner predicts h(x) and is given f(x)
+
+PERFOMRANCE:
+learner makes a mistake when h(x) != f(x)
+M_A (f, S) : number of mistakes algorithm A makes on sequence S of examples for the target function f
+m_A (C) = max_{f \in C} M_A(f, S) : the maximum possible number of mistakes made by A for any target function in C and any sequence S of examples
+    Algorithm A is a mistake bound algorithm for the concept class C iff M_A (C_ is a polynomial in the dimensionality n)
+
+
+A concept class is LEARNABLE in the mistake bound model if \exists an algorithm A that makes a polynomial number of mistakes for any sequence of examples
+
+(not the most general setting for online learning, or most general metric - see "regret", "cumulative loss")
+
+
+
+No assumptions about distribution of examples
+ could be adversarial
+
+
+ simple intuitive model, widely applicable
+ impotant in the case of very large datasets, when the daata cannot fit in memory
+
+ worst case model, (because no data distribution)
+ no memory
+ drawbacks:
+    simple
+    global behavior, not clear when the mistakes will be made
+advantages:
+    simple
+    many issues arise already in this setting
+    generic conversion to other learning models
+
+"Is counting mistakes enough?"
+    we don't concern with the number of examples neeed to learner
+    only care about not making mistakes
+    what if the learner is presented the same example again and again 
+        mistake bound model is ok with this, even though you never learn the function
+
+
+PROOF OF concept(proof of ocncept mistake bound algorithm)
+
+Let C be a fininte concept class
+want to learn f \in C
+
+algorithm CON:
+    in ith stage
+    C_i \subseteq C = all concepts in C consistent with all i-1 previously seen examples
+    choose random h \in C_i and use it to predict ith example
+        if h(i) == f(i):
+            do nothing
+        otherwise:
+            C_{i+1} \subseteq C_i is the set of algorithms that agree with f(i)
+
+trivially, C_{i+1} subseteq C_i
+therefore, if a mistake is made, progress is made and we remove at least one function from our working set
+recall there are finitely many elements in C
+    CON makes at most |C|-1 bound mistakes
+
+if |C| is O(poly(d)), then CON is a mistake bound algorithm
+
+Halving Algorithm
+Let C be a finite concept class
+want to find f \in C
+init C_0 = C
+construct a series of sets of functions C_i
+learning ends when |C_i| = 1
+
+when an example x arrives
+    predict the output of the majority of functions in C_i
+    if a mistake happens, remove all that were incorrect
+
+If you make a mistake, your hypothesis space drops by at least half!!!
+so learning takes lg(|C|) mistakes
+
+
+NOTE:
+    Concept class is abstract representation of functions, not necesarily hypothesis space
+
+
+
+In some concept classes, Halving is optimal
+    e.g. class of all boolean functions
+
+    for the most difficult concept in the class, for the most difficult sequence of examples,
+    the optimal mistake bound algorithm makes the fewest number of mistakes
+
+a simple algorithm for FINITE concept classes
+
+
+
+Learning Conjunctions:
+    number of conjunctions with n variables = 3^n
+        imagine n slots, for each slot i, you can fill x_i, ~x_i or T 
+
+so number of mistakes is O(d)
+
+
+Learning k-conjunctions 
+    assumy that exactly k < d attributes occur in conjunction
+
+    # of possible k-conjunctions is 2^k (d choose k) \approx 2^k n^k
+
+    lg(|C|) is O(klgd)
+        SO, it  mainly cares about the number of relevant features, only weakly about number of total features
