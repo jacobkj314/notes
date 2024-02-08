@@ -1,0 +1,117 @@
+Mistake Bound Learning
+
+No algorithm can make fewer mistakes than the halving algorithm for boolean-valued functions
+
+IF EVEN THE HALVING ALGORITHM MAKES MORE THAN POLYNOMIAL MISTAKES, THEN THE CONCEPT CLASS IS NOT LEARNABLE BY MISTAKE-BOUND ALGORITHM
+
+Learning Conjunctions:
+
+. . . (see last time)
+
+
+
+Representation and efficient learning:
+	assume that you want to learn conjunctions. Should your hypothsis space be the class of conjunctions?
+		seems reasonable, except not
+
+		Theorem Haussler 1988
+			Given a sample on n attributes that is consistent with a conjunctive concept, it is NP hard to find a pure conjunctive hypothesis that is both consistent with the sampel and has the minimum number of attributes (same for disjunctions)
+				(proved by reduction to minimum set cover)
+
+		BUT
+		We will se that we CAN do that, if we are willing to learn the concept as a Linear THreshold function
+			L (set of all linear classifiers) contains subsets C (set of all Conjunctions) and D (set of all disjunctions)
+				in L, it is combinatorially easier
+
+				In a more expressive class, the search for a good hypothesis SOMETIMES becomes combinatorially easier
+
+				Intuition for this: there might be a LOT of right answers in a more expressive class, so it can be easier to find them
+			
+
+PERCEPTRON ALGORITHM
+	for learning linear classifiers
+
+Inputs are d dimensional vectors, denoted by x
+Output is a label y \in {-1,1}
+
+Linear Threshold Unit classifies an example x using parameters w (d-dimensional vector) and b (a scalar)
+Output = sign(w \dot x + b)
+
+Presented in 1958 as a probabilistic model for information storage in the brain (very optimistic)
+
+There were similar ideas earlier
+	Agnon 1954, Motkin and Schonberg 1954
+
+Goal is to find a separating hyperplane
+	for separable data, it is guaranteed
+An online algorithm
+A mistake-driven algorithm (only updates when it makes mistakes)
+Several variants exist
+
+
+InputL a sequence of training examples (x_1, y_1), (x_2, y_2), . . . ; x_i \in R^d, y_i \in {-1, 1}
+
+1. Initialize w = [0]^d \in R^d ; b=0
+
+2. For each training example (x_i, y_i)
+	1. Predict y' = sign(w \dot x)
+	2. If y' != y_i
+		Update w_(t+1) <- w_t + r(y_i * x_i) //r is the "learning rate", a small  positive number < 1
+
+3. Return final weight vector
+
+
+Claim: mistake -> y_i * w \dot x_i <= 0
+	i.e., there is a mismatch
+	need <= rather than < because first iteration has 0s as weight vector
+
+
+Intuition behind the update:
+	Mistake on positive: w_(t+1) <- w_t + r x_i
+		That is, y_i = +1 ; w \dot x <= 0
+	Mistake on negative: w_(t+1) <- w_t - r x_i
+
+
+	Suppose r=1, and mistake on positive)
+		w_(t+1) \dot x 
+		= (w_t + x) \dot x 
+		= w_t \dot x + x \dot x
+		>= w_t \dot x
+			we make rhw prediction less positive
+		including r:
+		w_(t+1) \dot x
+		= w_t \dot x + r^2 x \dot x
+			still making the prediction less negative
+	
+		Similar intuition for mistake on negative
+
+
+Practical use of the Perceptron algorithm
+
+1. using the perceptron algorithm with a finite datset
+	The "standard" algorithm
+		Given a training set D
+		For epoch 1 . . . T: // T (number of epochs is another hyperparameter)
+			Shuffle the data
+			Iterate over the shuffled dataset
+		Predict on a new example via sign(w \dot x)
+2. using voting and averaging perceptron
+	Voted Perceptron:
+		Remember every weight vector in your sequence of updates
+		At final prediction time, each weight vector gets to vote on the label. The number of votes it gets is the number of iterations it survived before being updated
+		Comes with strong theoretical guarantees about generalization, impractical because of storage issues
+	Averaged perceptron
+		Instead of using all weight vectors, use the average weight vector (i.e. longer surviving weight vectors still get more say)
+		More practical
+
+		Whether there is a mistake or not, update average a <- a + w
+
+		If you want to use the perceptron algorithm in practice, use averaging
+3. margin
+	Perceptron makes updates ONLY when the prediction is incorrect
+		y * w \dot x <= 0
+	But what if the prediction is CLOSE to being incorrect?
+	Pick a small positive \eta and update when
+	y * w \dot x <= eta
+
+	This can generalize better, but adds an extra hyper-parameter \eta

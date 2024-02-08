@@ -1,0 +1,85 @@
+PERCEPTRON MISTAKE BOUND
+
+Convergence theorem:
+    if there exist a set of weights that are consistent with the data (i.e. the data is linearly separable), the perceptron algorithm will Converge
+Cycling theorem: 
+    if data is NOT linearly separable, then the learning algorithm will eventually repeat the same set of weights and loop
+
+Perceptron can only learn linear classifiers
+Minsky and Papert 1969 show:
+    parity functions can't be learned (XOR)
+    in vision, if patterns are represented with local features, then you can't represent symmetry, connectivity, etc.
+
+
+Margin
+    The margin of a hyperplane for a datset is the distance between the hyperplane and the data point nearest to it
+    the margin of a dataset is the maximum margin possible for that dataset using any weight vector
+
+
+Mistake Bound Theorem (Novikoff 1962, Block 1962)
+    (Assume that w \dot x includes bias term)
+
+    Let [(x_i, y_i), . . . ] be a sequence of training examples, with ||x_i|| <= R
+        (just look for the R of the point farthest from the origin)
+
+    Suppose there is a unit vector u, such that for some positive \gamma, y_i * (u \dot x_i) >= \gamma (for all x_i, y_i)
+        that is, u can define weights that make no mistakes. It just means that the data is linearly separable
+        this means that the data has a margin 0
+        larger margins make learning easier
+    
+    The perceptron algorithm will make no more than (R / \gamma)^2 mistakes on any training sequence
+        order of the training sequence does not matter!
+
+    Proof
+        setting:
+            initial weight vetor w is all 0s
+        LR = 1
+            scales but doesn't chaing behavior
+
+        Claim:
+            after t mistakes, u \dot w_t >= t* gamma
+                the alignment of u and w increases over time
+
+                u \dot w_{t+1} = u \dot w_t + y_i * (u \dot x_i)
+                               >= u \dot w_t + gamma //because the data is separable by margin \gamma
+                (because w_0 = 0, u \dot w_0 = 0)
+                therefore, by induction, we know u \dot w >= t*gamma
+
+            after t mistakes ||w_t||^2 <= tR^2
+                ||w_{t+1}||^2 = ||w_t + y_i x_i||^2
+                              = ||w_t||^2 + 2 y_i (w_t \dot x_i) + ||x_i|| ^2
+                                            term < 0 (update)      term <= R^2
+                              < ||w_t||^2                        + R^2
+                (because w_0 = 0, u \dot w_0 = 0)
+                therefore, by induction, we know ||w_t|| <= tR^2
+                revise to R sqrt(t) >= ||W_t||
+
+            By definition of \dot, ||w_t|| >= u \dot w_t also Cauchy-Schwarz inequality
+                u \dot w_t = cos(theta(u, w_t)) ||u|| * ||w_t||
+                    but ||u|| = 1
+                u \dot w_t = cos(theta(u, w_t)) * ||w_t||
+                    but cos < 1
+                u \dot w_t < ||w_t||
+
+            So R sqrt(t) >= ||W_t|| >= u \dot w_t >= t*\gamma
+               R sqrt(t)            >=               t*\gamma
+            rearrange to t <= (R/gamma)^2
+
+
+R is a property of dimensionality d
+    for boolean functions, R^2 = d
+\gamma is a property of the data
+
+
+
+Beyond the separable case:
+    Good nes:
+        perceptraon makes no assumption about data distribution, could even be adversarial
+        after a fixed number of mistakes, you are done. Don't need to see more data
+    Bad news: Real world is not linearly separable
+        Can't expect to never make mistakes again
+        Can add more features to try to make it linearly separable, use averaging
+
+What you need to know:
+    -what is the perceptron mistake Bound
+    -how to prove it

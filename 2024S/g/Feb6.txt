@@ -1,0 +1,112 @@
+Zhichao Presentation
+
+LLM Compression vs Bias/Fairness/Toxicity
+
+Different flavors of LLM Compression:
+    Pruning: Identifying and removing unnecessary weights
+        structural Pruning (remove sections)
+        unstructural (doesn't speed up)
+    Quantization: reduce the bit-length for representing model weights
+    Distillation: transferring useful knowledge from a teacher model to a smaller model rather than training from scratch
+    Low-Rank Approximation: Reducing the cost of language models by substituting the weights with the multiplcation of low-dimensional matrices based on the low-rank assumption
+    Parameter Sharing: sharing weights in different modules in pre-trained language models (older idea)
+    Effective architectural design:
+        IO-aware attention
+        MQA, GQA, etc.
+
+Evaluating LLM is Difficult
+    Language Modeling / Perplexity
+        -this is how they are trained, so ?does this just always improve
+    Downstream Tasks
+        Commonsense reasoning
+        world knowledge
+        reading comprehension
+        (Math) - Zhichao says this is different
+        etc.
+    Instruction following capability
+    Bias/Fairness/Toxicity
+
+
+
+Motivation of the work:
+    existing works on LLM compression mostly focus on performance evaluation
+    In order for development, LLMs still need to go through safety training
+
+
+?Ana: why would you expect a change after compressing?
+    Fateme: weights that change during safety training may be removed during compression
+    Vivek: the only thing that Pruning tries to maintain is Perplexity, but there is no mechanistic explanation for why this preserves other abilities 
+        Ashim: but these tasks are just phrased as language modeling
+
+
+RQ:
+    how do compressed language models compare to their original models in terms of bias/fairness/toxicity evaluations
+
+
+Evaluating Bias/Fairness/Toxicity:
+    Blodgett etal 2020
+        "Representational Harms": a system represents some group in less favorable light, demeans, or ignores altogether
+        "Allocational Harms: a system allocates resources (jobs, credit, etc) to different groups unfairly
+        Evaluating Generative LMs:
+            no well established unified metrics
+            current status quo: given a textual promp, use a model to score the completion
+                potentially problematic evaluation anyway 
+
+Model keys in very hard on mentioned identities
+    e.g., if the prompt mentions an identity, the continuation will continue to list identities, with toxicity
+        model continuati
+
+
+
+Current Evaluation Benchmarks:
+    Multi-choice QA datasets:
+        "BBQ: a handbuilt bias benchmark for question answering", ACL Parrish etal 2022
+        "UNQOVERing Stereotyping Biases via Underspecified Questions", EMNLP Li etal 2020
+    Prompt Continuations:
+        "Regard: The woman worked as a babysitter: bias in "
+
+
+
+Preliminary Results:
+    Model               Perplexity Wikitext-103     MMLU 5-shot
+    ShearedLLaMA-1.3B   10.75                       25.7
+    Sheared-LLAMA-2.7B  . . .                       . . . 
+    . . .               . . .                       . . .
+
+
+
+
+
+Planned Experiments:
+    Compare different compression methods on performance vs bias/fairness/toxicity tradeoff
+
+More RQs
+    The pruning methods require a certain amount of post-training   
+        Sheared-LLaMA's continual pretraining is on 50B tokens with 16x A100 GPUs
+        RQ2: what post training budget should we use to recover performance
+    
+    So far this was only raw models wo aligmnent
+        RQ3: does similar pattern apply for SFTd models?
+
+RQ4: what are good ways to reduce bias/unfairness/toxicity
+    Llama2 report:
+        safety pretraining -> filter out toxic pretraining datasets
+        safety sft:
+            gather adversarial prompts and safe deommonstrations
+        safety rlhf -> training safety specific rewardmodel and PPO optimization
+        context distillation -> prefix a prompt with a safety preprompt, finetune the model on responses without preprompt
+        Red Teaming -> manually probe the model with unsafe prompts
+    Constitutional AI:
+        have a set of rules "constitution"
+        ask the model a toxic question
+        ask the model whether the response is toxic
+        ask it to revise the generation
+        sft the model to generate the non toxic instead of toxic, or build a preference model
+    Decoding-time Toxicity Reduction
+        Dexpermts: Liu etal ACL 2021
+            Suppose we have a vanilla lm (which we use for generation), an expert lm M+ and an antiexpert M-
+            P~(X_t, | x_{<t}) = P~(X_t, | x_{<t}) * P_{M+}(X_t|x_{<t})/P_{M-}(X_t|x_{<t}) *a
+        Inference-time Policy Adapteres: tailoring extreme scale lms without finetuning (Lu etal EMNLP 2023)
+            same idea, just train Adapter
+
+        Vivek: this increases inference time
