@@ -1,4 +1,12 @@
-Oliver/Nate paper clinic
+LESS: Selecting Influential Data for Tergeted Instruction Tuning
+https://arxiv.org/abs/2402.04333
+    You don't need an extensive instruction fine tuning phase
+    Carefully select a good data mixture
 
-"They find that 13 billion parameter models exhibit increased faithfulness compared to models of other sizes." (Abstract) -> explain their reasoning for this claim "Based on their finding that the answer is most likely to change with/without CoT for 13B models, they claim that 13b models exhibit increased faithfulness . . . "
-"When CoT reasoning is displayed to people" -> say users instead of people? 
+    How to select high-quality examples?
+    
+    Given a handful of examples embodying a specific capability, how can we effectively select relevant fine tuning data instances?
+        Select influential examples
+
+        Use LORA to train on the whole dataset
+        track the optimizer states

@@ -1,0 +1,4 @@
+Oliver/Nate paper clinic
+
+"They find that 13 billion parameter models exhibit increased faithfulness compared to models of other sizes." (Abstract) -> explain their reasoning for this claim "Based on their finding that the answer is most likely to change with/without CoT for 13B models, they claim that 13b models exhibit increased faithfulness . . . "
+"When CoT reasoning is displayed to people" -> say users instead of people? 
