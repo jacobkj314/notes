@@ -1,0 +1,81 @@
+Least Mean Squares Regression
+
+
+Examples:
+    want to predict the mileage of a car from its weight and age
+    label space is real numbers, rather than category
+
+Assume the output is a linear function of the inputs
+    e.g. mileage = w_0 + w_1 * f_1 + w_2 * f_2
+    use training data to find the best value of W
+    Prediction: Given the values for x_1, x_2 for a new car, use the learned W to predict the Mileage for the new car
+
+Strategy:
+    inputs are vectors x in R^d
+    outputs are real numbers y \in R
+    training set D = {(x1,y1), . . . }
+
+How do we know which weight vector is best for a training set?
+    given pair (x_i, y_i), is vector w or u better?
+
+    argmin_{v in {w, u}} |v dot xi - yi|
+
+    cost on the whole dataset is sum of cost on instances in the datasets
+
+    but because absolute value is not differentiable, it can be easier to use square:
+
+        J(w) = (1/2) sum_{i=1}^{|D|}{(yi - w \dot xi)^2} // 1/2 is helpful to cancel out factor that arises during derivative
+             = (1/2) sum_{i=1}^{|D|}{yi^2 - 2 yi * w \dot xi + (w \dot xi)^2}
+             = (1/2) sum_{i=1}^{|D|}{yi^2 - 2 yi * w \dot xi + (w \dot xi)^2}
+        d J(w) / d(w) = (1/2) sum_{i=1}^{|D|}{2 yi * xi + 2(w \dot xi) * xi }
+                      = (1/2) sum_{i=1}^{|D|}{2(yi + w \dot xi) * xi }
+                      = sum_{i=1}^{|D|}{ (yi + w \dot xi) * xi }
+                      I made a slight mistake here somewhere, look at his slide 36
+
+
+
+        d f(g(w))/dw = f'(g(w))g'(w)
+        f(s) = s*s   ; f'(s) = 2s
+        g(w) = w * x ; g'(w) = x
+        d f(g(w))/dw = 2(w * x) * x
+
+
+GRADIENT DESCENT FOR LMS
+    1. initialize weight vector W0
+    2. for t = 0,1,2,. . .
+        1. Computer gradient d J(w_t) / d w_t
+        2. Update w_(t+1) = w_t + r * (d J(w_t) / d w_t)
+
+Computing the gradient:
+    Gradient of a function : R^m -> R^n has shape n x mileage
+
+    d J / d W_j = d / d W_j (1/2) sum_{i=1}^{d}{ (y_i - W dot x_i)^2  }  
+                = (1/2) sum_{i=1}^{d}{ d / d W_j (y_i - W dot x_i)^2  }  
+                = (1/2) sum_{i=1}^{d}{ 2 (y_i - W dot x_i) (d / d W_j  W dot x_i) }  
+                = (1/2) sum_{i=1}^{d}{ 2 (y_i - W dot x_i) (-x_{i, j}) }  
+                = - sum_{i=1}^{d}{ (y_i - W dot x_i) x_{i, j} }  
+
+    for small enough r, for convex J, this algorithm is guaranteed to converge
+
+
+Stochastic Gradient DESCENT
+    Repeat for each example xi, yi
+        pretend that the entire training set is represented by this single example
+        use thie example to calculate the gradient and update the model
+        contrast with batch gradient descent, which makes one update to the weight vector for every pass over the data
+
+        Also guaranteed to converge as above (in expectation)
+
+        1. initialize w
+        2. For t = 0,1,2,. . .
+            shuffle the dataset
+            For each training example:
+                w_(t+1) = w_t + r * (yi - wt dot xi)xi
+
+In the general (non-separable) case, the learning rate r must decrease to 0 to guarantee convergence
+The learning rate is also called the step size
+    more sophisticated algorithms choose the step size automatically and converge the faster
+Choosing a better starting point can also have impact
+
+Gradient descent and its stochastic version are very simple, yet almost all the algorithms we will learn in the class can be traced back to gradient descent for different loss functions / hypothesis spaces
+
