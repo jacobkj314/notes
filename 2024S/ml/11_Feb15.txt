@@ -1,0 +1,134 @@
+Project details:
+    6 submissions
+    use more than one feature set
+    Use Four different ML learners
+    One sumbission may use a ML library
+
+
+LEARNING THEORY
+
+supervised learning:
+    instances, concepts, hypotheses
+Specific learners:
+    decision trees, perceptron
+
+General ML ideas:
+    features as high dimensional vectors
+    overfitting
+    "Mistake bound": one formalization of "can my problem be learned?"
+
+
+Computational Learning THEORY
+    Theory of Generalization
+    Probably Approximately Correct (PAC) learning
+    Positive and Negative learnability results
+    Agnostic Learning - no assumed set of functions
+    Shattering and the VC dimension - what if your search/hypothesis space is infinite?
+
+
+
+THEORY OF GENERALIZATION:
+Are there general "laws of nature" related to learnability?
+
+We want a theory that can relate:
+    -probability of successful learning
+    -number of trainin examples
+    -hypothesis spcae complexity
+    -accuracy to which target concept is approximated
+    -manner in which training examples are presented
+
+Mistake bound approach:
+    -may be able to determine the number of mistakes the learning algorithm can make before convergence, but no answer to "how many examples do you need before converging to a good hypothesis, because the mistake-bound model makes no assumptions about the order or distribution of training examples (strength AND weakness)
+
+PAC:
+    mistakes of a learner that learned from a sample must be close to truth  and happen infrequently
+    assumption that nature cannot give samples adversarially.
+    Specifically tries to answer "how many examples do you need before convergin to a good hypothesis"
+
+    A model for batch learning: train on fixed training set, then deploy it in the wild
+
+    Pac learning answers:
+        how well will your learing algorithm do o n future instances after it was trained on the fixed trainset?
+        how big should the training set be to learn some concepts?
+        Can we guarantee that learning will succeed?
+
+    The setup:
+        instance space X : the set of examples
+        concept  space C : the set of possible target functions. f \in C is the hidden target functions
+        hypothesis space H: the set of possible hypotheses, everything we allow our learner to explore
+        (for now, assume H=C)
+
+        training instances: S \subseteq (X \times {-1, 1})
+        we want to find a hypothesis h \in H s.t. h(x) = f(x) \forall x \in X
+
+consider that not all points in a hypothesis space are valid or likely:
+    example: bag-of-words vector with the=1000000, a=1000000, every other word = 0
+
+    rather, we assume that any finite set of examples is drawn iid from this distribution.
+    We may not know what the distribution is, but we assume one exists and that it is fixed.
+
+    The assumption of fixed distribution is important for two reasons:
+        -gives us hope that what we learn on the trianin g data will be meaning ful on future examples
+        -gives a welldefined notion of the error of a hypothesis according to the target functions
+        eg "The future will be like the past"
+        we have already seen many examples drawn according to the distribution D
+            since in all the positive examples, x1 was True, it is very likely that it will be active in future positive examples
+            if not, in any case, x1 is True only in a spall percentage of the examples, so our error will be small
+
+    we want to minimize:
+    err_D(h) = Pr_(x ~ D) [h(x) != f(x)]
+        what is the probablity that a randomly drawn instance correctly
+
+        We can't actually calculate this error, but we can approximate it using samples
+
+Empirical Error:
+    contrast to true error
+
+    for a target concept f, the empirical error of a hypothesis h is defined for a training set S as the fraction of examples x in S for which the functions f and h disagree. That is, h(x) != f(x)
+    denoted by err_S(h)
+    "overfitting" : when the empirical error on the training set is substantially lower than the true error
+        err_S(h) < err_D(h)
+
+
+Online vs Batch Learning:
+    online:
+        no assumption about the distribution of examples, could even be adversarially
+        learning is a sequence of trials
+        To bound the total number of mistakes over time
+
+    batch:
+        examples are drawn from some bix probability distribution D over the instance space
+        learning uses a training set S
+        goal: find a hypotheses that has low chance of making a mistake on a new example from D
+
+
+
+
+
+
+
+COMPUTATIONAL LEARNING THEORY: PAC LEARNING
+    1. define PAC
+    2. make formal connextions to occams razor
+
+    X instance space
+    Y label space
+    D unkown distribution over X
+    f unkown target function X -> Y \in concept class C
+    h hypothesis function X -> Y \in hypothesis class H
+
+    Theory qs:
+        Can we describe or bound the true error given the empirical error?
+        Is a concept class C learnable?
+        Is it possible to learn C using only the functions H using the supervised protocol?
+        How many examples does an algorithm need, in order to guarantee good performance?
+
+    Expectations of learning
+        we cannot expect a learner to learn a concept exactly
+            there will generally be multiple concepts consistent with the available data
+            unseene xamples could have any label
+            agree to misclassify uncommon exampls ethat do not show in im trainset
+        we cannot always expect to learn a close approximation to the atarget concept:
+            sometimes (hopefully rarely) the training set will not be representative (will contain uncommon or unhelpful examples)
+
+        The only realistic expectation of a good learner is that with high probability it will learn a close approximateion of the concept
