@@ -1,0 +1,106 @@
+Expectations of learning
+
+We cannot expect a learner to learn a comcept exactly 
+    there will generally be multiple concepts consistent with the available data
+    unseen exapmles could have nay label
+    agree to misclassify uncommon examples that do not show up in the trainning set
+
+We cannot always expect to learn a close approximation to the target concepts   
+    sometimes (rarely, we hoepe), the training set will NOT be representative
+
+The ONLY REALISTIC expectation of a good learner is that with high probability it will learn a close approxiamtiaon to the target concept
+
+
+
+In PAC learning, one requires that 
+    given small parameters \epsilon and \delta
+    with probability at least 1 - \delta, a learner produces a hypothesis with error at most \epsilon
+
+
+Consider a concept class C defined over an instance space X (containing instances of dimensionality n) and a learner L using a hypothesis space H
+    The concept class C is PAC LEARNABLE by L using H iff:
+        for all f \in C
+        for all distributions D over X and fixed 0 < \epsilon, \delta < 1
+        given m examples sampled independently accoring to D, with probability at least 1- \delta, the algorithm L roduces a hypothesis h \in H that has error at most \epsilon
+        where m is polynomial in 1/\epsilon 1\delta, n and size(H)
+
+        aka
+
+        Given a large enough number of examples
+            with high probability (1 - \delta)
+            the learner will produce a "good enough" classifier
+
+        recall that err_D(h) = Pr_{x ~ D}[f(x) ~= h(x)]
+
+    The concept class is EFFICIENTLY LEARNABLE if L can produce the hypothesis in time that is polynomial in 1/\epsilon, 1/\delta, n, and size(H) (and of course, if it is already PAC learnable)
+
+
+    We impose two limitations:
+        polynomial sample complexity (information theoretic constraint)
+            is there enough information in the sample to distinguish a hypothsis h that approximates f?
+        polynomial time complexity (computational complexity)
+            is there an efficient algorithm that can process the sample and produce a good hypothsis h?
+        we need both of these 
+
+
+    to be PAC learnable, there must by a hypothsis h \in H with arbitrary small error for every f \in C. We assume H properly contains C 
+        "properly PAC learnable" if H == C
+
+    Worst Case definition: the algorithm must meet its accuracy
+        for every distribution (distribution-free assumption)
+        for every target function f \in C
+
+
+
+FORMAL CONNECTIONS TO THE PRINCIPLE OF OCCAM'S RAZOR
+    Named after William of Occam AD1300
+    Prefer simpler explanations over more complex ones
+        "numquam ponenda est pluralitas sine necessitate" - never posit plurality without necessity
+
+
+    Why would a consistent learner fail?
+        Consistent learner: Suppose we have a learner that produces a hypothesis that is consistent with a training set
+            e.g. ID3-generated tree, memorization of training set
+
+            -if the training set is not a representative sample of the instance space, then the hypothesis we learned could be bad, even if it is consistent with the entire training set.
+
+                We can try to:
+                    1. quantify the probability of such a bad situation occurring and, 
+                    2. then ask; what will it take for this probability to be low?
+
+
+    TOWARDS FORMALIZING OCCAMS RAZOR (assuming conissistency)
+    Claim: the probability that there is a hypothsis h \in H that   
+        1. is consistent with m examples, and 
+        2. Has Err_D(h) > \epsilon
+        is less that |H|((1-\epsilon)^m)
+            (consistent, yet bad)
+
+    Proof: let h be a bad hypothesis with error (err_D) > \epsilon
+        that is, Pr_{x ~ D} [f(x) != h(x)] > \epsilon
+
+        The probability that h gets the right label is < 1 - \epsilon
+
+        Note, that, because h is known to be consistent with the m samples in the training data, it is consistent with at least m instances in the instance space
+
+        The probability that h is consistent with m examples < (1 - \epsilon) ^ m
+
+        This situation is bad. Let us see what we need to do to ensure that this situation is rare:
+
+            If we can guarantee that |H| ((1- \epsilon) ^ m) < \delta (we want to make this situation rare):
+                |H| ((1- \epsilon) ^ m) < \delta
+                log|H| + m * log(1- \epsilon) < log \delta (take log of both sides)
+                log|H| - m\epsilon < log \delta (because log(1- \epsilon) < -\epsilon, because log(x) < -x for all x)
+                - m\epsilon < log \delta - log |H|
+                m\epsilon > -log \delta + log |H|
+                m\epsilon > log (1 / \delta) + log |H|
+                m > (1 / \epsilon) (log|H| + log (1 / \delta))
+
+                so if m > (1 / \epsilon) (log|H| + log (1 / \delta)), then the probability of getting a bad hypothsis is small
+                    so if you have a consistent learner, then it is improbable that the learner has high error
+
+        1. expecting lower errorincreases sample complexity
+        3. wanting higher guarantee increases sample complexity
+        2. Having a larger hypothsis space increases sample complesity
+            Therefore, Occams Razor, because a smaller hypothesis space
+            complicated larger hypothesis spaces are not bad, just that simpler ones are unlikely to fool us by spuriously being consistent with many examples 
