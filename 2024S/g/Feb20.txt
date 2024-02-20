@@ -82,3 +82,7 @@ Style		0				0
 Groove		0				1
 Chord		1				0
 Melody		1				1
+
+
+Ana: VampNet tokenizer
+	Michael: this used audio, and some parts were proprietary
