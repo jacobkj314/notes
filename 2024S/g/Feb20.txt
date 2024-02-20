@@ -1,0 +1,84 @@
+Michael Presentation MUSIC TRANSFORMERS
+
+Rhythmic Complexity
+
+Vivek: ?Was there a pushback against non-live music when it first started, like there is a pushback about AI music generation today?
+
+
+
+MuseNet
+	OpenAI, 2017-2018
+	a deep neural network that can generate 4-minute musical compositions with 10 different insruments and can combine styles from county to Mozart to Beatles. MuseNet was not explicitly programmed with our understanding of music, but instead discovered patterns of harmony, rhythm, and style by learnning to predict the next token in hundreds of thousands of MIDI files. MuseNet uses the same general-purpose unsupervised technology as GPT-2, a large-scale transformer model trained to predict the next token in a sequence, whether audio or text.
+
+look OpenAI soundclound account
+
+
+Pretraining on "what note comes next?"
+
+ISMIR "International Society of Music Imformation Retrieval"
+
+music21 python package to create textual representation of a midi file
+
+	doesn't represent whether a note is resolved or repeated - e.g. is it sixteen consecutive sixteenth notes or just a whole note
+
+Another music to text: note pitch and duration in two separate lists
+
+Polyphonic (chord) vs monophonic (just one melody - one note per time stamp)
+	Homophonic - melody itself, and then everything else backs it up, not matching or call-and-response
+	Heterophonic - might riff off leading voice group, call and response, etc. 
+
+NOTES_VOCAB with length of 59 - depends on what you're playing, what key you're in
+DURATION VOCAB with length of 24
+	unless you wanted more detail, 32nd note, etc
+
+
+Training set created by sliding window
+uses sine-position enbedding (but maybe more recent ones use more recent positional embeddings)
+
+
+pitch input sequence, duration input sequence
+	generate two embedding sequences
+	concatenate
+	transformer block
+	two dense output layers, one to predict next pitch, one to predict next duration
+
+
+1. Given the current sequence of pitches and durations, the model predicts two distributions, one for the next pitch and one for the duration
+
+
+
+Looking at attention matrix, attends to key signature strongly
+
+
+For polyphonic Generation:
+	(Music Transformer Ana Huang and colleages at Google DeepMind)
+	
+	grid-based chunking
+		pitch vertical
+		temporal horizontal
+
+		allows to make parts and chords, but lose ability to represent durationsq
+		requires music to have a regular peak
+		not clear how to add dynamics, tempo changes etc
+
+
+Event based tokenization
+	richer:
+		NOTE_ON<pitch>
+		NOTE_OFF<pitch>
+		TIME_SHIFT<step> (shift forward in time by a given amount
+
+		A lot easier to define polyphony
+
+
+
+
+MuseGAN
+	grid tokenization
+	2 measures, 16 segments per measure, 84 pitches, 4 parts
+
+		Changes across measure?		Changes by parts
+Style		0				0
+Groove		0				1
+Chord		1				0
+Melody		1				1
