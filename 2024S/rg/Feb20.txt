@@ -119,10 +119,4 @@ Kandelwal etal 2020 "KNN-lm"
 "Retrieval-augmented generation reduces hallucination"
   arxiv.org/abs/2104.07567
 
-"Perplexity" RAG
-
-
-
-
-
-
+"Perplexity" RAG perplexity.ai
