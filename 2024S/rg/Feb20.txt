@@ -1,0 +1,128 @@
+Ashim Presentation:
+     Retrieval-Augmented Generation
+
+arxiv.org/abs/2004.04906 "Dense Passage Retrieval for Open-Domain Question Answering"
+	Task: want to retrieve some knowledge/information from a document to be used in a downstream task
+
+Previously: "sparse retrieval": keyword based matching such as tfidf or bm25
+	"sparse" refers to frequency vectors of word occurrences
+
+MIPS problem "maximum inner product search" -> fundamental problem of Retrieval
+	reduces to nearest neighbors if all vectors have the same norm
+
+Because it takes a long time, build a dense index,
+Use encoder to find approximate nearest neighbors,
+Then  use that to answer the query
+
+Train two encoders:
+	one for documents,
+	one for query
+
+Chunked documents into multiple documents of length 100
+
+Loss function is simply to decrease negative likelihood of positive passage, compared with a few negative passages
+	Oliver: More complicated version of triplet loss
+
+Once you have trained the retriever, you can do QA
+
+
+
+
+
+
+ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT
+	arxiv.org/abs/2004.12832
+
+	Based on Latent Interactions between query and retrieved passage
+
+
+
+
+
+ReaLM: Retrieval-Augmented Language Model Pre-Training
+	arxiv.org/abs/2002.08909
+
+	proposes the idea of pretraining retrieval-augmented models
+		how can you retrieve passage retriever by doing pretraining?
+
+	How it works:
+		take a sentence from pretraining corpus
+		mask tokens
+			don't mask stop words, try to mask knowledge-oriented spans
+		task of knowledge retriever: 
+			find text that could answer that span
+			First retireve the pasages, then predict what is in the masked position
+			Exclude the document itself from the collection
+
+		Then SFT the same as normal
+
+
+		This masked pretraining needs to be run for a long time
+			But you need to update the indices, because it changes each time -> so that you can find the current most relevant documents
+				So they do it after every 500 steps
+
+    Found that you must refresh the index during pretraining
+
+    
+		Reading Comprehension is based on Span Highlighting
+      So once you have retrieved a context, your final answer is a span from the context
+
+
+
+"Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+  arxiv.org/abs/2005.11401
+
+  We don't need to do any pretraining of the passage retriever like  ReaLM, we will just use a generative model 
+
+  The main difference compare to ReaLM is the generative output rather than Span Highlighting, and no ReaLM style pretraining, just use DPR from earlier paper
+
+  2 models:
+    RAG-sequence
+      Retrieves a passage, generates the whole sequence conditioned on that passage
+    RAG-token
+      For each token, you might retrieve a different passage (more expensive!)
+  
+  Condition upon top-k best retrieved passages
+
+  Experiments:
+    Open-domain Question Answering
+    Abstractive Question answering
+      MSMARCO dataset
+    Jeopardy Question Generation
+      showed that RAG-token worked better than RAG-sequence
+        used two different documents to create more complete multihop questions
+    Fact Verification
+      Retrieve Documents + NLI for entailment
+
+  What would happen if you could replace the index for the retrieval system?    
+    You can use this to update over time, replace 2016 index with 2018 index to get answer for more modern time
+
+
+
+
+
+SILO Language Models : Isolating Legal Rish in a Nonparametric Datastore
+  arxiv.org/abs/2308.04430
+
+  Differentiating between Parametric and Nonparametric memories
+
+  Suggests to pretrain on low-risk non-lisenced data, then used high-risk, grequently changing, or licensed data as nonparametric
+
+
+Shrivastava & Li 2014 - Describes why MIPS can be reduced to Nearest Neighbor
+  use Locality-Sensitive Hashing to solve MIPS
+
+Pinecone.io vector database
+
+Kandelwal etal 2020 "KNN-lm"
+
+"Retrieval-augmented generation reduces hallucination"
+  arxiv.org/abs/2104.07567
+
+"Perplexity" RAG
+
+
+
+
+
+
