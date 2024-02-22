@@ -82,3 +82,9 @@ Sample Complexity:
 
 
     what should our hypothsis class be for a 2-term DNF
+    
+    but
+    determining whether there is a 2-term DNF consistent with a set of training data is NP-hard
+    so k-term DNF is not efficiently PAC learnably DUE TO COMPUTATIONAL Complexity
+
+    But k-CNF is a superset of k-term DNF, so we can use k-CNF as the hypothses space to learn the concept class of k-term DNF
