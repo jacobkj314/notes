@@ -1,0 +1,84 @@
+PAC Learning
+
+How much data do I need to guarantee low generalization error in the future?
+
+Generalization Error: 
+    sample a random example, according to the distribution over the instance space, report whether your hypothesis agrees with the true label
+
+    PAC learnability:
+        concept class C is learnable with hypothesis space H if:
+            for any function f \in C
+            can be learned with (1-epsilon) accuracy with (1- \delta) certainty
+            given m \in poly(1/epsilon, 1/delta, |H|, n) examples
+
+            for any hypothesis space H, 
+            any hypothesis h \in H that is consistent with m training examples will have accuracy at least (1-epsilon) with probability (1-delta) if:
+                m > 1/epsilon (ln|H| + ln (1/delta))
+
+            this is occam's razor because it expresses a preference towards smaller hypothesis spaces
+
+Today: estimating size of H based on classes of functions
+
+
+General scheme, given m training examples:
+    -find some h in H that is consistent with all m examples
+        for large enough m, a consistent hypothsis must be close to f
+    -check that m does not have to be too large
+
+    -show that the consistent hypothesis h \in H can be computed efficiently
+
+
+e.g.:
+    |H| is > 2^(2^n) for boolean functions (and even greater for decision trees).
+    lg(|H|) is exponential, so decision trees are not PAC learnable
+
+
+General Conjunctions can be learned
+
+    |H| = # of conjunctions of n variables ( including and excluding negations)
+
+    |H| = 3^n
+    ln(3^n) = (ln3)*(n) is O(n) !!!, so conjunctions ARE PAC LEARNABLE
+
+
+
+    with delta = 0.05, epsilon = 0.1, n = 10; m > (1/epsilon) (ln(3)*n + ln(1/0.05)) = 140
+    for n = 100, this goes up to 1129 (scales linearly with n)
+
+    THIS HOLDS FOR ANY ALGORITHM THAT CAN PRODUCE A HYPOTHESIS CONSISTENT WITH m (clean) INSTANCES
+
+IF THE LOG OF THE DIMENSIONALITY OF THE HYPOTHESIS SPACE IS POLYNOMIAL WITH RESPECT TO THE DIMENSIONALITY, THE HYPOTHSIS SPACE IS PAC LEARNABLE
+
+
+
+
+
+3CNF (up to three literals ORd in each clause, clauses are ANDed together)
+
+What is the sample conplexity?
+    How many examples do we need to guarantee PAC learnability
+        need to know size of 3CNF hypothesis space
+
+How many 3CNFs are there in n variables?
+    approximately (2n+1 \choose 3)  \in O(n^3) clauses (2n+1 is for +,- for each variable, plus T -- this ignores that you also can't have x1 OR ~x1, but it's ok because it overpredicts)
+    each clause can show up, or not, so O(2^(n^3)) 3CNFs total
+
+    ln(2^(n^3)) is O(n^3), so 3CNFs ARE PAC LEARNABLE!!!
+
+
+
+All possible boolean functions:
+    2^(2^n) boolean functions
+    ln|H| = 2^n
+    so you can't PAC learn boolean functions generally
+
+
+Sample Complexity:
+    
+    k-CNF
+    k-clause CNF
+    k-DNF - disjucntion of any number of terms where each conjunctive term has at most k literals
+    k-term DNF -disjunction of at most k conjuctive terms
+
+
+    what should our hypothsis class be for a 2-term DNF
