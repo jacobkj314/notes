@@ -1,0 +1,90 @@
+Maitrey Presentation
+
+LLM Design Choices Through the LLama-2 Lens
+
+
+We use the models but we don't talk about the underlying components that go into the model
+  we don't talk about why a certain decision was made
+  e.g. RoPE, SentencePiece
+
+  slides are shared on slack, in case we don't finish https://docs.google.com/presentation/d/1G07iwPQbPI_195sD51Rnp1GOBJlgqlmxCE5iNK6ecxg/edit?usp=sharing
+
+
+1. Tokenization
+  Slide 4: good image of Transformer Architecture
+    Static Embeddings:
+     
+  Strategies:
+    1. Byte Pair Encoding 
+      Gage 1994 ; Sennrich etal 2016  
+        1. Split words in a corpora by space
+        2. Split further into etters and create a base vocab
+        3. Count frequency of pairs of consecutive vocab items
+        4. Take most frequent pair (tiebreak by count of words they appear in) and merge into new vocab item
+        5. Repeat steps 3 and 4 until you reach your target vocab length
+     2. WordPiece Encoding
+        Schuster and Nakajima 2012
+        Similar to BPE except merge new vocab items based on pair score
+          score = (freq of pair) / ((freq of first element)(freq of second element)) 
+          maximixe the likelihood of post merge
+     3. Unigram tokenization
+        Kudo 2016
+        Problem with BPE: multiple segmentation of phrases possible, but which is best way to tokenize?
+          1. Starte with large vocabulary of subwords
+          2. Estimate probability of best possble tokenizationn for a word using unigram model
+            Compute loss over all tokens with optimal tokenization
+          3. Remove proportion of tokens which causes least increase in loss
+          4. Repeat steps 2 and 3 until target vocab length is reached
+        (least popular method)
+      4. SentencePiece
+        Kudo and Richardson, 2018
+        Library for BPE and Unigram tokenizations
+        Similar to BPE except words are not split by whitespace, just include whitespace
+        This implementation of BPE used in Llama 1, 2, Gemma, etc.
+2. Positional Embeddings
+  1. Learned Positional Embeddings
+    Gehring etal 2017, Vaswani etal 2017
+    Parametric method that learns an embedding for each position.
+    Downsides:
+      -extra Parameters
+      -small perturbations change embeddings
+      -adapting to longer contexts
+  2. Sinusoidal Embeddings
+    Vaswani etal 2017
+      -Non parametric
+      -Normalized Range (between 1 and -1)
+      -Based on Hypothesis that the model would learn to attend to relative positions
+      PE(pos, 2i) = sin(pos / 10000^(2i / d_model))
+      PE(pos, 2i+1) = cos(pos / 10000^(2i / d_model))
+  (Vaswani etal 2017 did not find either of 1 or 2 works better)
+  3. Relative Positional Encoding
+      Shaw etal 2018
+      Add two terms to key and value computations
+      up to k tokens away
+      minimal improvements over sinusoidal absolute embeddings
+  4. Relative Positiional Bias
+      Raffel etal 2020 (t5 release paper)
+      Similar to Relative Positional Encoding, but uses bias scalars instead of position vectors, shared across layers, ignoring Positionaal Errors
+  5. RoPE Rotary Position Embeddings
+      Su etal 2021
+      Mix of Relative and Absolute PEs
+      Multiplicative component attached to query and key computations
+      Intuition: encode the distance the words are apart in the angle between positional embeddings.
+      Main advantage is that it encodes an absolute position, but also has Consistency over relative position
+  6. ALiBi
+      Press etal 2022
+      Emphasis on Exptrapolation: want model to perform on validation sequences that are longer than the ones seen during trainninng
+      sinusoidal < rotary < T5 < ALiBi
+3. Layer Normalization
+4. Multi-Head Attention
+5. Activations
+6. Dense Layer
+7. Ghost Attention
+
+Not including:
+  Pretrainng/SFT/Alignment 
+  how to prompt llama
+  experimental results
+  memory footprint
+
+
