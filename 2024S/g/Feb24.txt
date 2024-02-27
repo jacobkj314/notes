@@ -75,6 +75,11 @@ We use the models but we don't talk about the underlying components that go into
       Press etal 2022
       Emphasis on Exptrapolation: want model to perform on validation sequences that are longer than the ones seen during trainninng
       sinusoidal < rotary < T5 < ALiBi
+  7. Do you need PEs?
+      Haviv etal 2022
+        Not for Causal Decoder-Only models, but it is very helpful for MLM objective
+      Kazemnejad etal 2024
+        Actually found performance is better without
 3. Layer Normalization
 4. Multi-Head Attention
 5. Activations
