@@ -1,0 +1,50 @@
+Joe Presentation (DSPy)
+
+DSPy: Complilng Declarative Language Model Calls Into Self-Improving Pipelines
+
+Biggest framework for building on top of llms
+
+Paper was accepted as a Main-Conference paper at ICML
+
+
+
+Modules and Signatures
+
+Modules are functional building blocks that can be "parameterized" for learning
+
+Signatures specify a set of input and output fields
+
+
+Prebuilts:
+    dspy.Predict
+    dspy.ChainOfThought
+    dspy.ProgramOfThought : teaches the LM to output code, whose execution results will dictate the response
+    dspy.ReAct : an Agent that can use tools to implement the given Signatures
+    dspy.MultiChainComparison : can compare multiple outputs from ChainOfThought to produce a final prediction
+
+
+
+THREE TYPES OF LEARNING in DSPY Programs:
+
+Automatic Few-Shot Learning:
+    Select best out of provided examples for few-shot prompt
+
+!!!! Automatic Instruction Optimization:
+    Find best of auto-generated prompt instructions
+
+Automatic Finetuning:
+    Distills models to replace prompting
+
+
+Learning with Optimizers:
+
+    set training set with questions and final answers
+    define a metric
+
+    teleprompter = dspy.BootstrapFewShot(metric,)
+    compiled = teleprompter.compile(model(), trainset)
+
+Instruction Optimization:
+
+uses BasicGenerateInstruction
+use BayesianSingatureOptimizer

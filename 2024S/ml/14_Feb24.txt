@@ -1,0 +1,126 @@
+Suggestion: use perceptron for March14th project submission
+
+
+Computational Complexity
+
+    Concept class C = set of all conjunctions
+        |C| = 3^n
+
+        m > 1/epsilon [log|C| + log(1/delta)] = 1/epsilon [log(3)*n + log(1/delta)] 
+        O(n)
+        therefore, set of conjunctions is PAC learnable
+
+    Concept class C = set of all boolean functions
+        |C| = 2^(2^n)
+
+        m > 1/epsilon [log|C| + log(1/delta)] = 1/epsilon [2^n + log(1/delta)] 
+        O(2^n)
+        therefore, set of all boolean functions is not PAC learnable
+            even if it is consistent, it is not guaranteed that future error will be low
+
+    Concept class C = 2-term DNF
+        Sample complexity is polynomial
+            So it is PAC-learnable
+        BUT determining whether there is a 2-term DNF consistent with a set of training data is NP-Hard
+            So the class of k-term DNF is not EFFICIENTLY PAC learnable due to computational complexity
+        But we have seen an algorithm for learning k-CNF, a superset of k-term DNF
+            which can be effiecently explored
+            so even if you know your function is 2-term DNF, it is better to have k-CNF as your hypothesis space
+
+More Negative Results:
+    Two kinds:
+        Some cannot be learned because sample        complexity is prohibitive
+            -information theoretic
+            -the concept class is sufficiently rich that a polynomial number of exampl
+            -examples: arbitrary boolean functions ; Deterministic Finite Automata ; Context-Free-Grammars
+        "                            " computational "                       "
+            -computationalal complexity thoery
+            -"concept class C cannot be learned unless P=NP"
+            examples: k-term DNF for k> 1 === k-cluase CNF k> 1; NNs of fixed architecture; "read-once" boolean formulas; QUantified conjuctive concepts
+
+
+GENERAL SUPERVISED learning
+
+Learning as search over functions
+    supervised learning:
+        instance space
+        label spaces
+        concept spaces
+        hypothesis space
+
+How the label space defines the type of the problem we have:
+    classification, regression, multiclass classification
+
+Restricting the hypothesis space:
+    -why we need to do this
+
+General issues that we need to consider for supervised learning:
+    what hypothsis space are we using?
+    what representation (i.e., features)
+    what learning algorithm?
+
+Decision Trees: Representation:
+    -heierarchical data structure that repreents data
+    -expressiveness: can repreent any boolean function
+    -deal with continuous features by binning
+    -how to predict?
+    -Given a dataset, there are many decision trees that can represent it
+
+Decision Tree: Learning
+    ID3: greedy heuristic:
+        if all the examples have the same label, create a leaf with that label
+        otherwise, find the most informative attribute and split the data for different values of that attribute
+        recurse
+
+Entropy, Information gain
+
+Overfitting
+
+Dealing with mission features
+
+When to use decision trees
+
+LINEAR CLASSIFIERS
+what are they, why are they interesting
+
+Linear separability:
+    what functions can linear classifiers express?
+    what can they dnot
+    examples
+
+Geometry of a linear classifier
+
+
+MISTAKE BOUND LEARNING:
+    one way to ask "How good is your learner"
+
+What is a mistake bound algorithm?
+    Formal definition
+
+Proof of concept algorithms: CON and Halving
+    How many mistakes do they make in terms of the concept class size?
+
+Using the result from these algorithms for finite hypothesis classifiers
+    requires counting the number of functions in the class
+    examples of hypothesis classes are and are not learnable under this model
+
+If Halving is not a mistake bound algorithm, then there cannot be a mistake bound algorithm for that class
+
+
+PERCEPTRON algorithm
+
+Variants of the algorithm:
+    margin perceptron
+    averaged perceptron
+
+What is the margin of a classifier
+
+Perceptron Mistake Bound Proof
+
+*Least Mean Squares
+    What is LMS regression
+    Idea of learning by minimizing a cost function
+    Gradient Descent and stochastic gradient Descent
+        **the difference between them
+
+Use Linear Classifier as first step, if it works, great; if not, use the learned weights as preliminary analysis
