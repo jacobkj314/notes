@@ -1,0 +1,77 @@
+Neuro-Symbolic AI: 
+    A probabilistic Perspective
+    Kareem Ahmed Job Talk
+
+Neuro-Symbolic AI: Why
+    Scalable
+    Unstructured data
+    Universal Approximators
+Logic:
+    Explainable
+    Structured knowledge
+    Sound reasoning
+Want to combine benefits to achieve scalable and Explainable
+
+Approach:
+    A neural network induces a distribution
+    Impose structure using symbolic knowledge
+    Move probability mass to be consistent with logical structure
+    Pose questions about resulting distribution
+
+    I am to develop probabiliistically sound approaches that combine neural networks with logical reasoning from first principles giving rise to trustworthy systems 
+
+"Probabilistically Sound":
+    states
+"Trustworthy":
+    conversation with llama:
+        Ask llama for json - part of the distribution includes invalid json outputs
+    Want to drestrict the support of the distribution to only support valid json
+
+    Conversation 2:
+        "i'm starting to think they're full..."
+            distribution includes inappropriate continuations
+"combine neural networks and logical reasoning"
+    example:
+        Cat, Bat, Rat; going to choose two of these at random, put them in an image, and then blurr it
+        NN gives probability of each present at random, these can be used to generate distributions of power set of set of animals
+        But we know in advance that there are only exactly 2 of them!!
+        How can we make the NN aware of this constraint?
+        Tractable for 2/3 options, but not for larger combinatorics
+
+        We can compactly represent the constraint as a curcuit
+
+        and = *, or = +
+
+        now we can compute the probability of satisfying the constraint
+
+
+The Problem:
+    We want to shift the model's output distribution away from violating the constraing
+        Easy when p is fully-independent (cat rat bat), hard for autoregressive
+        Need to sum over |V|^|sequence length| many prefixes
+        OR just sample over prefixes that are off by a single word
+
+Detoxification:
+    constraint = "don't use these 400 expressions"
+
+    Works better than simple word banning (decoding-layer) 
+
+Guarantees:
+    The problem:
+        want to replace softmax layer with  custom constraint-enforcing layer
+
+    "Semantic Probabilistic Layer"
+        enforces constraint
+        works for path prediction
+
+Takeaways:
+    An AI system's behavior holds wrt a distribution
+    Labeled data is great, symbolic knowledge is an excellend complement
+    To develop trustworthy systems, view machine learning models as inducing probability distribution
+
+Future Outlook:
+    Want to build intelligent systems (ones that reason about the behavior of complex ML models wrt distributions)
+    approximate inference over intractable models, but with guarantees
+    Handle evolving and unkown environments?
+        -Knowledge acquisition and constraint discovery
+    Move towards chains of queries interleaved with data acquisition
