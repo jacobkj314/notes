@@ -75,3 +75,5 @@ Future Outlook:
     Handle evolving and unkown environments?
         -Knowledge acquisition and constraint discovery
     Move towards chains of queries interleaved with data acquisition
+
+    
