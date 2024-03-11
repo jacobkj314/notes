@@ -1,0 +1,204 @@
+Computational Approaches to Narratives
+(Maria Antoniak jobtalk)
+
+Goal of research is to use NLP and LLM tools creatively to study human experiences (cultural analytics)
+Focus research questions on :
+  People
+  subjective cultural concepts
+  healthcare
+
+evaluating NLP tools, using NLP models for cultural analytics
+
+"CULTURAL ANALYTICS"
+  the computational study of cultural objects processes, agents
+  traditional unsupervised NLP methods, as well as new LLM-powered ways
+
+Computational analysis of online storytelling:
+  As a rhetorical strategy, storytelling can:
+    drive social moveements, spread misinformation, educate
+  As a form of self-disclosure:
+    strengthen social bonds, build trust, benefit the teller
+  For NLP:
+    better understand pretraining and prompting
+
+Interested in discussions about storytelling
+  study of literary reception, genre formation, canonization 
+    (traditioanlly focused on elite readers, but now able to diversivy oer internet)
+  Online Reading Communities - new evidence . . . . 
+
+
+NLP/ML/Industry 
+  often focuses on downstream/tasks
+  but there is also the "upstream" ie authors, data creation, curation, text processing (all which go into the LM)
+
+  but downstream models weren't designed for use on upstream analytics
+    can be unstable and biased, reflect idiosyncrasies of the training data and its curation
+    need to measure  . . . 
+
+"Person-focused Healthcare"
+  "biomedical NLP": information extraction, diagnosis prediction
+  instead: analysis of online health support commintites, LLM chatbots for support, senesemeaking/storytelling strateigeis
+  "narrative medicine": use patients' narratives to promote healing
+
+
+
+
+
+"Where do people tell stories online? Story Detection Across Online Communities"
+  stories are all over the internet (twitter, reddit, fanfiction, e-books, etc. 
+  also scattered across communities (healthcare anecdotes in r/cancer, r/leukemia, etc)
+
+  Prior work has:
+    examined storytelling in specific settigs and on specific topics
+    compared communiteis using features like trust, linguistic distinctiveness, network measurements
+    BUT havent been able to answer "where do people stories online" . . . .
+  Challenges:
+    stories and non-stories are mixed together across topics and within individual texts
+    defining stories is notoriously difficult. There is an entire field "narratology" of the theory of narratives
+    Existing story datasets do NOT meet thre requirements (may be far too sparse, written in other lanugage, etc)
+  Solution: The StorySeekerFramework
+    formalize the task fo story detection, introducing task of story span detection (by linking to event detection
+    release expert-annotated dataset, codebook, etc for detecting
+    
+  Building a story detection dataset:
+    Reddit Webis-TLDR-17 dataset
+      3.8M reddit posts and comments
+      ~270 words each
+      each with TL;DR summary
+      2006-2016
+      we subsample from this data
+  Buillding the codebook:
+    iterations of open coding, discussionas and alighnment
+    team from narratology, economics, computer science
+    focus on agent-driven events
+    many difficult diecisions:
+      hypothetical stories, present tense, verbs with negation, how to determine if events are connected
+    "A story describes a sequence of events involving one or more people"
+      could be as short as one sentence, or as long as an entire post
+      -who/what qualifies as "people"
+      -what are events
+      -what are sequences of events
+    (the full codebook is available on github
+    First annotated event spands, then annotated story spans
+  Final dataset:
+    235 stories, 267 non-stories
+    cohens kappa of .72 for story spans, .65 for event spans
+    texts 100-500 words in length, mean span lank is 92 tokens for comments, 119 tokens for posts
+
+  Building a story detector
+    evaluate a series of models for the story-detection task
+      tf-idf, ft roberta, zs/fs gpt4
+    For document-level classification:
+      GPT-4 is best, but ft roberta is close behind
+    For span-level classification:
+      ft roberta is best
+
+  Where do people tell stories?
+    categorized 500 subreddits
+    which subreddit categories have omre storytelling?
+      high in storytelling, r/tifu, r/breakups, r/pettyrevenge, . . . 
+      also high in animals, heathcare, addiction, mental health, hildren, relationships, confessions categories . . .
+      low in news and politics categories
+  Can rank across two axes:
+    storytelling rate x distinctiveness of vocabulary used
+      different categoreis of communities form different subreddit
+
+  Plot debate topics and amount of story topics as a rhetorical strategy in replies
+    social norms, lifestyle choices, music recieve more storytelling comments
+    rights & laws, religion, economic systems recieve fewer
+  But are those stories persuasive?
+    lifestyle choices have most persuasive stories
+    But more importantly, look for categories where they are unlikely to be used, but likely to be persuasive
+
+  Future Directions:
+    -how do different demographic groups percieve stories
+      -what rationales do they provide when identifying a story
+      -how does this compare to our "expert" annoataions
+    analysis of event annotations and the relationship to stories
+
+  "Take my data: an anlysis of personal information disclosure in human-chatbot interactions"
+    as people use chatbots, risks emerge about the information shared with the chatbots
+      How much sensitive infomration are users sharing, 
+      in what contexts does more sharing happen
+
+    use a dataset called "WildChat"
+      offered free access to GPT in exchange that their datasets could be used for research (650,000 user converstations)
+
+      Journalist input private texts from a source (woman whose children have health issues) to ask for an article
+
+    Found that there is a lot of creative writing (fan fiction, etc)
+
+    Creative writing: sexual preferences, hobbies
+    Non-creative writing: work infor, including verbatim emails and texts, etc.
+    advise: health info, relationship
+
+    PII distributions shift when stories are filtered
+      proportion of firstnames goes down
+      jobs, financial infomration increases when not including stories
+
+
+"Narrative Paths and Negotiation of Power in Birth Stories"
+  Healthcare community where storytelling is very important
+
+  Maternal mortality rates are higher
+  Postpartum depression rates at 6-13
+
+  Online "Birth stories"
+    detailed personal narratives of giving birth that have been sshared throghout history and are very popular online
+
+  RQs:
+    What narrative of pathways are described? How are expectoed or unexpected event sequences framed?
+    Who is framed as holding power and what about them?
+
+  Data: r/BabyBumps, look for text "birth story"
+    Stories can be Very complicated and difficult to analyze stories, so want to target medium complexity
+  Ethical questions:
+    need to consider:
+      privacy tradeoff
+      setting and context
+      who is most vulnerable
+    Our decisions:
+      Paraphrase all quotes
+      no data release
+      share our findings on r/BabyBumps
+  
+  Narrative Patters: Topic over time
+    Trainied latent Dirichlet allocation (LDA) topic model on the stories
+    LDA is an unsupervised, generative model that produces a probaility distirbution over words for each topic and a probability distribution over topics for each hdocument
+    Divide each story into 10 equal chungs, and generate the probability distribution
+
+    create plots for different topics (e.g. sleep is most often a topic at the beginning and end of birth stories)
+
+    Can find likelihoods for most probable sequences of topics
+    create flowchart
+
+    can use this to look for outliers in stories
+
+    Power framing: lexicon of verbs
+      adapted from dataset of movie scripts
+
+      baby has least power, medical professionals have more than author, "we" (author+doula) have more than nurse
+      
+  Limitations: 
+    findings apply to one reddit community
+
+"NLP for Maternal Healthcare: Perspectives and Guiding Principles in the Age of LLMs"
+  follow up
+
+Future Work: Longterm goal
+  use methods from NLP to illuminate subjective human experiences: stories, values, self-disclosure, for applications in healthacare and digital humanities
+  Modeling narratives:
+    study folkloricand memetic tradition storyytelling
+    Focus on llms and healthcare
+
+   Toolbuilding for Bridging AI and humanities
+    aiforhumanists.com
+    RIVETER - python pipeline for extracting and measuring connotation froames
+    More tools: mallet wrapper, goodreads scraper, etc
+
+
+
+QUESTIONS:
+  Question about application to multimodal video mediums
+  Does perspective make a difference in story detection? e.g. when I tell a story vs when I tell a 3rd person story
+    Depends on the community  
