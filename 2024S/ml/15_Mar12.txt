@@ -1,0 +1,98 @@
+Project milestone due date moved back until March 19th
+  Report should only be a paragraph or so
+
+  "Descriptive statistics"
+    how many examples are there
+    what happens if you pick one of the labels instead of the other
+    don't just immediately apply all the algorithms you can think of, want to actually understand the data
+    what's the ratio of features
+    etc
+    
+HW4 available on thursday
+  No programming, all about computational learning theory
+
+
+COMPUTATIONAL LEARNING THEORY
+
+PAC is one of the most successful mathematical frameworks for learning theory
+
+
+
+
+today: AGNOSTIC LEARNING
+
+Assumptions so far (PAC):
+  (1) Training and text examples come from the same distribution over a (2) finite hypothesis space, and (3) for any concept, there is some function in the hypothesis space that is consistent with the training set
+  
+today: so far, we have assumed that the learning algorithm could always find the true concept (Assume that concept space is subset of hypothesis space)
+  today we will drop this assumption (agnostic learning)
+
+  WHAT CAN WE SAY ABOUT SAMPLE COMPLEXITY?
+    Are we guaranteed that training error will be zero? NO, there may be no consistent hypothesis in the hypothsis space
+
+    We can find a classifier h \in H that has low training error (the proportion of training examples that are misclassified)
+      err_s(h) = |{f(x) != h(x) : x \in S}| / m
+    But what we really want is a guarantee that a hypothesis with small training error will have a good accuracy on unseen examples
+      err_d(h) = Pr_{x ~ D}[f(x) != h(x)] 
+
+Use Tail bounds:
+  how far can a random variable get from its mean?
+
+  Law of large numbers:
+    as you collect more samples, the empirical average converges to the true expectation
+
+    ex: suppose we have a coin and we want to estimate P(heads)
+      toss the coin m times
+      as m increases, (#heads / m) approaches P(heads) -- empirical mean approaches true mean
+    but what can we say about the gap between these two terms?
+
+  Markov's inequality: probability that a non-negative RV exceeds a fixed value P[X >= a] <= E[X] / a
+  Chebyshev's inequality: bounds the probability that a random variable differes from its expected value by more than a fixed number of standard deviations P[|X-mu| >= k . . . . .
+  Hoeffding's inequality: upper bounds on how much the sum of a set of RVs differs from its expected value
+    P[p > p\bar + epsilon] <= exp(-2m epsilon^2)
+      p = true mean
+      p\bar = empirical mean over m independent trials
+      P[p > p\bar + epsilon] = the probability that the true mean will be more than epsilon away from the impirical mean, computed over m trials
+      Hoeffding's inequality quantifies the convergence rate: you get eponentially closer
+      (True for bernouilli trials)
+
+Back to agnostic learning:
+  Consider the true error err_d(h) to be a Random Variable
+  ask: how well can we estimate that random variable?
+
+  treat correctness as bernouilli variable
+  compute empirical value of how correct it is p\bar
+
+  now ask: what is the probability that the true error is more than epsilon away from the empirical error p\bar
+    want to find how many examples are needed to guarantee that P(p > p\bar + epsilon) < delta
+    !!! main clever trick is to treat true error as RV and empirical error as estimator for true error
+    we don't care if true error is less than empirical error (although there is an analagous inequality we could use if we did care)
+
+  so P[err_d(h) > err_s(h) + epsilon] <= exp(-2m epsilon^2)
+  ie P[true err > emp. err + epsilon] <= exp(-2m epsilon^2)
+
+
+  Probability that a single hypothesis h has training error that is more that epsilon above true error is bounded above
+    P[err_d(h) > err_s(h) + epsilon] <= exp(-2m epsilon^2)
+  The probability that there exists a hypothsis in H whose training error is epsilon above the true error:
+    P[exists h \in H s.t. err_d(h) > err_s(h) + epsilon) <= |H| exp(-2m epsilon^2) (via union bound)
+
+  This is an undesirable situation because our learner MAY end up picking this hypothesis! Let us see what it takes to make this an immproabable situation
+
+  so set |H| exp(-2m epsilon^2) <= delta
+    this ensures that P[exists h \in H s.t. err_d(h) > err_s(h) + epsilon] <= delta
+  |H| exp(-2m epsilon^2) <= delta
+  ln(H) -2m epsilon^2 <= ln delta
+  ln|H| - ln delta <= 2m epsilon^2
+  ln|H| + ln(1/delta) <= 2m epsilon^2
+  m >= (1/(2 epsilon^2))(ln|H| + ln(1/delta))
+    this training size guarantees that with probability 1-delta, the true/generalization error of h is not more than the training error + epsilon, all without assuming that f is in the hypothesis space
+
+      epsilon here is the DIFFERENCE between training and generalization errors, not the error rate itself
+      logarithmic in hypothesis space size, so we can decide whether a hypothesis space is learnable, another manifestation of occam's razor
+
+      if we have more than m examples, then with probability more than 1-delta, err_d(h) - err_s(h) <= sqrt((ln(H) + ln(1/delta))/(2m))
+  
+But does this apply to linear classifiers?
+  NO, |H| for linear classifiers is infinite
+  So how can you adapt this when you have infinite hypothesis spaces?
