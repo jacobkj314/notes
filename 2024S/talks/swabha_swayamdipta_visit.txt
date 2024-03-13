@@ -1,0 +1,161 @@
+Understanding LLMs through their Generative Behavior, Successes, and Shortcomings
+
+despite the hectic activity, two trends:
+  1. Larger Model  -> better performance
+  2. More training -> better performance
+
+
+TedTalk "Why AI is incredibly smart and shockingly stupid" April 2023
+  Yejin Choi
+
+  Swabha: "so are we"
+
+Using humans as point of comparison for successes and failures
+
+"What can we learn about LLMs from their behaviors successes and struggles, vs those of humans"
+
+
+
+What do some generative behaviours tell us about the limits of LLMs
+  Model Sampling for generation
+    (Choose a threshhold \tau and only sample tokens with probability greater than \tau)
+    Threshold sampling is guaranteed to only sample tokens in the support of the true distribution
+      As long as the chosen threshold is larger than some bound
+    ?So what causes these tail errors that truncation sampling is able to avoid?
+
+  Language models are Low Rank
+    Language models use a low-rank softmax matrix W in their output layer
+    There will always be some error in the model's logprob estimation
+    Despite this, language models still semm to perform quite well
+    Hypothesis: truncation sampling is sufficient to approiamtely mitigate errors from the softmax bottleneck
+    Needs to be revisited for byte-tokenization
+
+    sampling works because LMs are low-rank
+
+  Propose a direct method for mitigating errors due to the softmax bottlenexk
+    "non-monotonic thresholding: onyl sample from tokens in the support of the true probability distribution
+
+    e.g. Swift (top token) might subsume token Sw, which is above threshold
+
+  Model/algorithm only explains part of the story
+
+Knowledge-oriented vs Language-oriented (metalinguistic) vs Societally-oriented vs Application-Oriented tasks
+
+KNOWLEDGE-ORIENTED:
+  Generating Comparative Knowledge:
+    collab with people from Intel
+
+    Comparative knowledge is an essential component of world knowledge and crucial to how humans acquire knowledge about every concpepts.
+
+    e.g. "Compared to blenders, food processors . . ."
+      ". . . have slightly different functions", ". . . have more versatility", ". . . have several different functions"
+      GPT-4 and GPT-2 have similar outputs
+
+      Extract pairs of comparable entities from Wikidata
+      Overgenerate comparatives from various LMs
+      filter and deduplicate
+
+      NeuroComparatives corpus of comparatives
+    
+      Human Evaluateion: LLM-powered comparative knowledge is much better than web-retrieved OpenIE comparative knowledge, and nearly as good as Manual Comparatives
+      Smaller models + constrained decoding performed slightly better than GPT4
+
+      Diversity: constrained decoding have best diversity
+      GPT-4 have less diverse than web retrieval OpenIE
+
+
+  Generating Knowledge-Aware Explanations with Human Utility
+
+    Mechanistic vs Teleological Explanations
+
+    Mechanistic: explains the process behind a phenomenon, may not be causal
+
+    Telological: explains the function or the goal behind the phenomenon
+
+    In what style do LMs explain thing vs humans?
+
+    extract 10,000 why questions over 6 domains, some with ~20 explanations
+
+    Ask questions to GPT and have human annotate the explanation type
+
+    Humans tend to produce mechanistic explanations, while models tend to produce teleological explanations.
+      Data - model has answers to more functional answers, humans may be working to recall from partial memory
+
+    Does this change if we explicitly ask the model for a particular type of explanation
+      depending on whether its first response was mechanistic or not
+      Models tend to stick to the kind of explanation they originally generated
+      However, humans can do this
+
+    Next steps:
+      Wht default roles do llms play in explaining why questions
+      How useful are these roles to human users
+      Can LLMs serve as more intuitive explainers compared to humans?
+
+      Brighton Fox : is it possible that this is a result of RLHF finetuning, that humans preferred teleological explaintions:
+        Swabha: it is possible, but unclear without knowing that data
+
+LANGUAGE ORIENTED TAKS:
+
+  Ambiguities: "The cat was lost after leaving the housse"
+    The cat couldn't find its way after leaving the house. VS The humans couldn't find the cast after it left the house.
+
+  "He always ignores his mother's advice to follow his own dreams" -> give different disambiguations
+
+  Task: Recognizing Disambiguations
+    {A - ambiguous sentence} {may, does not neccessarily, cannot, can only} mean {d paraphrase}
+
+  Task: Generating Disambiguations
+    model performance very below human performance, but human performance only at 90
+
+  "The mix is baked for 20 minutes in moulds and served with a vegetable cream sauce, lentils, and sauteed mushrooms"
+  Task:  "Write a new sentence as similar as possible to the given example, by replacing the verb baked with toasted, such that all semantic roles in tehe given example are appropriately filled"
+  "The bread is toasted for 20 minutes in the oven and served with a vegetable cream sauce, lentils, and sauteed mushrooms"
+      problem that you cant toast bread for 20 minutes or it will burn
+
+    etc., same with "ejected" to "amputated"
+
+    Providing gpt4 with the semantic structure does slightly imrove its performance
+
+
+
+GENERATING SOCIALLY AWARE IMPLICATIONS
+
+  toxicity detection
+
+  Based on Goffman's Theory of Stigma (1963, 1964)
+
+  Solutions/Interventions -> Responses (. . .)
+  Societal / Structureal Crituiqeue -> Critiquies (. . .)
+  Dehumanization -> Perceptions (media portrayal, not it my backyard, harmful generateion, deserving/undeserving, personal interaction/observation)
+
+  LLMs do fairly ok at this, especially when helped with experts.
+
+
+
+GENERATING DIALOG TO ASSIST SEMICONDUCTOR NANOFABRICATION
+  Oxford RIE 80 for nanofabrication
+    come with complex manuals containing images, instructions, text for explaining how to operate the device and concepts, as well as textbooks that tell a lot about these reactions
+
+  QA task: I am in this stage of the process, what should I do next?
+
+  LMs are not very good at this task yet
+
+
+
+
+PUTTING IT ALL TOGETHER
+
+Knowledge-oriented, 
+  LLMs exceed/match collective human capacity, but there are distinctive streengths
+language oriented, 
+  lms struggle at nuacnced linguistic skills, unlike humans
+societallyorinted / application oriented
+  LLMs do need specialization via expert inputs
+
+This reveals as much about the nature of natural language as it does about the nature of models and data
+
+"The Generative AI Paradox": what it can create it may not understand
+  LLM;s exhibit a mastery of surface form language, genralization capabilities are not uniform 
+    very different from humans
+
+Interpretabilility needs to consider the human component ; must consider the task domain (language) and the overall utility (communication intent)
