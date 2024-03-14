@@ -1,0 +1,62 @@
+Computational Learning Theoyr: SHATTERING AND VC DIMENSIONS
+
+
+If a learner explores a finite hypothesis space and:
+  1. guarantees a hypothesis that is consistent with a training set: Occam's razor for a consistent learner
+  2. does not guarantee a consistent hypothsis: Agnostic learning, and another Occam's razor
+
+In both cases, the sample complexity depends on the log of the size of the hypothesis space.
+
+What if the hypothesis space is infinite?
+  e.g. for Linear classifiers with real-valued weights
+
+  Some infinite hypothsis spaces are more expressive than others, so we need a measure of the expreviveness of an infinite hypothesis space other than its size
+    e.g. polygons more expressive than rectangles
+
+Vapnik-Chervonenkis dimension (VC dimension) provides such a measure
+  -what is the expressive capacity of a set of functions
+  analogous to |H|, there are bounds for sample complexity using VC(H)
+
+  example: suppose target concept is an axis-parallel rectangle (points inside classified +, points outside classified -)
+  learner must find one that matches the 2D data
+
+  in order to learn the "true" rectangle, you can always get closer and closer to the edge
+
+  BUT, can we get CLOSE to the target rectangle?
+
+  for any epsilon
+
+
+  Consider: we have two points
+  Can linear classifiers correctly classify any labeling of these two points? YES (enumerate all 2^2 labelings of the two points)
+    We say that linear functions are expressive enough to SHATTER two points
+    What about fourteen points? Linear functions are not expressive enough to shatter fourteen points
+    BECAUSE THERE IS AT LEAST ONE LABELING THAT CANNNOT BE SEPARATED BY THEM
+    
+SHATTERING: a set S of examples is SHATTERED by a set of functions H if:
+  for every partition of S into positive and negative examples, there exists a function in H that correctly classifies with these labels
+  Intuition: a richer set of functions shatters a larger set of points
+  
+  example: a set of left-bounded intervals can shatter a set of one point
+  For a set of two points : 1/4 labelings does not have a left-bounded interval!!
+    so set of left-bounded intervals does not shatter two points in one dimension
+  So left-bounded intervals shatter at most one point
+  
+  example: interval [a,b] with contained points labeled as positive and outside points labeled as negative
+    shatters at msot 2 points in 2D
+    
+   half-plane can shatter 3 non-colinear points, but not in the general case
+   
+   half plane with 4 points?
+    3 cases:
+      * 3 points colinear
+      * no three points collinear, 4th point inside convex closure of the other 3    
+      * no three points collinear, 4th point not inside convex closure of the other 3
+      None of these cases are shatterable
+
+
+Some functions can shatter inifite points!
+
+if arbitrarily large finite subsets of the instance space X can be shattered by a hypothsis space H
+an unbiased hypothsis space H shatters the entire instance space X, i.e. it can induce every possible partition on the set of all possible instances
+The larger the subset X that can be shattered, the more expresssive a hypothesis space is
