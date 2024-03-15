@@ -1,0 +1,162 @@
+Generalization in the LLM Era
+  Zhaofeng Wu - March 2024
+
+Generalization "in the good old days"
+  Train on some instances; test on others
+
+  cross-dataset (but within the same task!) generalization
+
+  didn't make sense to generalize ACROSS tasks
+
+Pretrainined LMs
+
+  still train, but use LM
+  some subtle transfer of abstract knowledge, (hopefully linguitic and world knowledge)
+  but cant use LM out-of-the-box for downstream tasks, because output dimensions are different
+
+Zero-shot learning:
+  specify the task in natural language
+
+  add "verbalizers" for classification tasks
+    "this review is . . . " negative vs positive
+  formatting issue goes away; now generalization only depends on capbility - the knowledge acquired during language modeling is highly generalizable to many tasks
+
+What kinds of generalization are still relevant?
+  no training happens, so what notions still apply
+
+  -Generalization from LM pre-training data
+
+  can they REALLY generalize to many tasks?
+    have they been trained on these tasks? How do we know they haven't been?
+
+IN THIS TALK: We show that LMs generalize very porrly to simple variants of common tasks
+
+Another kind: Cross-lingual generalization (SOTA LMs are predominantly english
+
+  e.g. "Cuantas letras hay en el alfabeto"? "El alfabeto espan~ol tiene 26 letras" -ChatGPT
+
+  How do we generalize LM training to other, low resource language
+
+  IN THIS TALK: show transfer
+
+"Reward Model Transfer for . . . . "
+
+  AlpacaEval: out of 12 open-source models on the leaderboard, only 2 are multilingual
+
+  What if we want a croatian LLM?
+    pretraining -> Supervised Finetuning on Instruction Data -> Reinforcement Learning on Human Feedback
+
+    RLHF alignment alternative: "best of n"
+      sample N outputs from sft-trained LM and use Reward Model to select the best
+
+    If we want a Croatian LLM, we need Croatian finetuning dataset, Croation SFT dataset, Croatian alignment
+      pretraining data is easiest, Reward Modeling data is hardest
+
+    RQ? CAN YOU USE AN ENGLISH Reward Model ? (also, RQ? CAN YOU USE AN ENGLISH SFT dataset?)
+
+      why would this work?
+        Ideally, a multilingual LM produces a langauge-agnostic meaning representation, then a trained classifier on top (LM) should be language-neutral
+        past work has found success with zero-cross lingual generalization of other classification tasks
+          (Maitrey: this only worked for languages that were well-represented in the training)
+        We expect this to work for Reward Models
+
+      Tasks & Data:
+        Summarization, Dialog Generation
+
+      Experiments:
+        Does the source-lang. RM work on target-lang. RM data?
+          yes, it performs above statistical baseline for both tasks
+        Does the source lang RM assign higher scores . . . 
+          yes
+        Does this generalizability propagate through the alignment process, leading to higher-quality end generations?
+          Metric: "Oracle" target-language RM score
+            i.e., simply use the Croatian RM's score
+            expect English-RM-trained model to be judged higher than Croatian-sft-trained model, by Croatian-rm-trained model than 
+
+      Why does cross-lingual alignment work better?
+        Hypothesis: mitigates "reward hacking"
+          RMs capture lexical spurious correlations, which may be more easily explited by a same-language policy model
+          
+Fully Zero-shot alignment (no SFT data!)
+  Translate English SFT trainingset into croatian
+  
+  two factors:
+    -quality lost due to translation
+    -different datasets have different style
+    but backtranslating hr->en->hr results in in-between performance  
+
+Takeaways:
+  cross-lingual transferability observed in prior work CAN propagate to downstream tasks
+  to get an aligned target model, use other language RM
+
+
+"Reasoning or Reciting? Exploring the Capabilities . .. . computational tasks" (NAACL)
+
+  GPT4 can apparently sum infinite sums, and write code, but these do not generalize
+
+  CAN"T GENERALIZE FORM TEST INSTANCES -- high variance, cherry-picked examples
+  can't generalize just from existing datasets
+  DATA CONTAMINATION
+
+  "we can't gneralize just from task instances"
+    Task instance ability != general task ability
+
+  Use Counterfactual Evaluation
+    Can LLMs really do math?
+      change from "default" task condition (base10 addition) to "counterfacutal" task condition (base9)
+      If the model has generalized to a process, it should do well at both conditions
+      If it is memorizing, it should still do well at base 10 (because there are many examples), but bad at base 9
+      ? Do they have General task abilities, or non-transferrable procedures?
+
+      Results:
+        GPT-4 does 100% at base 10, but drops off for other bases
+
+      BUT, what if gpt4 doesn't know base 9
+        Counterfactual Comprehension check (CCC)
+          ask much simpler questions to establish that the model knows the conterfactual case
+            ask what is the next number
+              CCC test results: performance is much higher for both bases
+  Some Notes:
+    I can't do base-9  arithmetic as well as base-10 either
+      but this only applies under a fixed time budget, but what about given unlimited time?
+    why calibrate using human performance, the math can be done better
+    Is it bad to have a perfect but specific implementation of base10 only
+      not necessarily, but it represents a lack of generalizability
+      we don't actually know if the LM implements perfect base10 arithmetic
+    Do we care about base9 arithmetic
+      sometimes, but mostly its a useful test
+    Would better prompts help?
+      prepended up to 16 in-context step-by-step demonstrations
+      plateaus at 16
+      
+  Other tasks: Coding execution
+    By providing such hintsto ChatGPT, its success rate can be further increased, fixing 31/40 bugs
+    
+    task: compare default Python 0 based indexing to ThonPy 1-based indexing
+    results: same as addition: performance is much better in "default" condition
+    same results with coding generation
+    same with drawing, guitar, chess
+    
+  Ana: did you find any task where it CAN generalize?
+    Syntax, yes, possibly because it is more language instead of reasoning
+    
+  
+  The Role of Default Performance:
+    the default performances reported are likely overestimating overall performance on the tasks
+    But it's still important for benchmarking progress
+    
+  Title: Reasoning or Reciting:
+    LMs possess SOME degree of reasoning abilities for many tasks (because non-default performance is above random)
+    But Much of observed LM performance is from recigint default task variant
+    It is hasty to draw conclusions based on default condition task performance
+    
+  Future Directions: tease apart instance memorization vs overfitting to task variants
+  Pinpoint HOW llms implement each task
+  How can we build models that are better task-general reasoners
+
+QUESTIONS:
+Ana:
+  what would a counterfactual look like for a text only task 
+  -first-order logic that violate world knowledge:
+    if corgis are mammals and mammals are animals, then corgis are animals (default)
+    if corgis are reptiles and reptiles are plants, then corgis are plants (other)
