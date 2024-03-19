@@ -1,0 +1,170 @@
+
+Shattering: Intuition that more expressive concept classes can shatter more points
+
+  (By a line) Two points in 2d can always be shattered, Three points in 2d can sometimes be shattered, Four points in 2d can never be shattered
+
+  Some functions can shatter infinitely many points!
+    if arbitrarily large finite subsets of the instance space X can be shattered by a hypothesis space H
+    An unbiased hypothesis space H shatters the entire instance space X, ie, it can induce every possible partition on the set of all possible instances
+    The larger the subset X that can be shattered, the more expressive a hypothesis is, ie, the less biased it is
+
+Vapnik-Chervonenkis Dimension
+  A set S of examples is shattered by a set of functions H if for every partition of the examples in S into positive and negative examples there is a function in H that gives exactly these labels to the examples
+
+  Definition: the VC dimension of hypothesis space H over instance space X is the size of the largest finite subset of X that is shattered by H
+
+    if there exists any subset of size d that can be shattered, VC(H) >= d
+    if no subset of size d can be shattered, then VC(H) < d
+
+    so to prove VC dimension = d
+      show shatterable arrangement of d instances (this proves VC >= d)
+      prove that d+1 instances are unshatterable  (this proves VC < d+1)
+
+VC dimensions examples:
+Linear threshold unit in d dimensions : d+1
+Neural networks                       : #of parameters (theoretical limit ; because of local minima, real NNs often do not find shattering parameters)
+1-nearest neighbors                   : infinite
+
+What is the number of parameters needed to specify a linear threshold unit in d dimensions? d+1
+
+Why VC dimension?
+  Want to talk about sample complexity like Occam's razor, for agnostic learning
+
+
+  using VC(H) as a measure of expressiveness, we have an Occam theoryem for infinite hypothesis spaces
+
+  Given a sample D with m examples, if some h \in H is consistent with all m examples and m > (1/epsilon)(8VC(H) log(13/epsilon)+4) . . . 
+    LOOK AT SLIDES!!!!
+
+
+  Agnositc Learning err_D(h) <= err_S(h) + sqrt((VC(H)(. . . .) + ln(r/delta) )/m) LOOK AT SLIDES
+
+Exercise: what is the VC dimension of axis-parallel rectangles?
+
+
+COMPUTATIONAL LEARNING THEORY RECAP:
+
+What is PAC learning:
+  -remember we care about generalization error, not training error
+For finite H spaces:
+  -connection between size of hypothesis space and sample complexity
+  -defive and understand sample complexity bounds
+  -count number of hypothesis in a hypothesis class
+For infinite H spaces
+  -shattering
+  -how to find VC dimension
+PAC:
+  -a general definition that assumes a fixed but perhaps unkonwn distribution
+Occam's razor for consistent learners in finite hypothisis spaces
+  -Positive and negative learnability results in this setting
+Agnostic learning and the associated Occam razor
+Shattering and the VC dimension
+Many extensions to the theory exist
+  -noisy data, known data distributions, probabilistic models
+  -one important extension is PAC-Bayes theory that makes assumptions about the prior distribution over the hypothesis space
+
+But caveat: Computational Learning Theory still doesn't explain why learning does/doesn't work in all practical cases
+
+Why computational learning thoery:
+answers questions such as :
+  -what is learnability? How good is my class of functions?
+  -Is a concept learnable? How many examples do I need
+Mistake bounds imply PAC-learnability
+Raises interesting theoryeteical questions:
+  -If a concept class is weakly learn able, does this mean that the concept class is strongly learnbable?
+  Boositng
+  Can we use this to define a learning algorithm?
+  Structural Risk Minimization principle
+  Support vector machine
+
+Checkpoint:
+Specific learners:
+  -decision trees
+  -perceptron
+General ML ideass:
+  -features as high dimensional vectors
+  -verfitting
+  mistake bound
+  PAC
+
+
+
+
+
+
+
+BOOSTING AND ENSEMBLES
+
+What is boosting?
+  A general learning approach for constructing a STRONG LEARNER, given a collection of weak learners
+  A practically useful idea: a way to create a strong learner using only weak learners "rules of thumb"
+  A special case of an ENSEMBLE METHODS:
+    a class of learning algorithms that composes classifiers using other classifiers as building blocks
+  Boosting has stronger theoretical guarantees than other kinds of ensembling
+
+Example: automatically categorize the type of phone call requested by a phone customer
+
+  Observation: rules of thumb are often correct e.g. "login"->OnlineServices ; "balance"->CheckBalance
+
+  Boosting approach:
+      select a small subset of examples
+      derive a rough rule of thumb
+    repeat T tiimes
+    combine T separate rules into a single prediction rule
+
+  Still need to specify:
+    how to select subsets of examples
+    How to combine rules of thumb into a single prediction rule
+
+Boosting is a general method for converting rough rules of thumb into accurate classifiers
+
+A strong PAC algorithm:
+  for any distribution over examples, 
+  for every epsilon, delta > 0
+  given a plynomial number of random examples
+  finds a hypothesis with error <= epsilon with probability >= 1-delta
+Weak PAC algorithm:
+  -same, but only for epsilon > 1/2 - \gamma for some small gamma
+  e.g. gamma=0.01, epsilon > 0.49
+  That is, the error is only slightly lower than chance
+Question: does weak learnability imply strong learnability? (Kearns and Valiant 1988)
+  If we have a weak PAC algorithm for a concept class, is the concept class learnable in the strong sense?
+
+Shapire 1989
+  First provable boosting algorithm
+  Call weak learner three times on three modified distributions
+  Get slight boost in accuracy
+  Apply recursively
+Freund 1990
+  Optimal algorithm that boosts by majority
+Drucker Shapier, Simard 1992
+  First experiemtns using boosting
+  limited by practicl drawbacks
+Freund Schapier 95
+  Introduced AdaBoost
+  
+ADABOOST
+
+Intuition
+
+NEED TO CHECK THE SLIDES FOR GRAPHICS
+
+assume weak learner can only put an axis parallel line
+  can only choose: should it be horizontal or vertical, and where should it be?
+  
+Initially, all examples are equally important
+Increase the importance of examples where there was a mistake and down-weight the importance of examples that the original hypothesis originally got correct
+  e.g. increase the learning rate for those examples
+  
+  weight error by importance
+
+  after running over enough intermediate steps of the classifier, scale the outputs of the classifiers by a weight associated with the classifier, sum them up, and take the sign
+
+Outline:
+  1. Given t training set (x1, y1) . . . (xm, ym)
+  2. For t = 1,2,...T
+  3. Construct a distribution D_t on (1,2,...m) 
+  4. Find a weak hypothesus h_t such that it has a small weighted error epsilon_t (This can be outsourced to any learning algorithm)
+  5. Construct a funal output H_final
+
+  Steps 2. and 5. need to be specified by boosting procedure, sptep 4 can be outsourced to any learning algorithm

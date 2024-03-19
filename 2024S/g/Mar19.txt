@@ -1,0 +1,64 @@
+Guest Talks Discussion
+
+Utah AI Law (Just passed)
+
+  Ai governance 
+    several efforts under way across the world: EU AI law, OSTP's Blueprint for AI Bill or Right, NIST's AI Risk Management Framework, etc
+    General Themes: Effective, safe, and secure systems; Protections against discriminations ; Transparent/accountable systems; maintain data privacy; human alternatives if needed
+    Socialtechnical questions, standards organizations
+
+  Artificial Intelligence Policy Act SB0149
+    Establishes the "Learning Laboratory Program" to assess AI technoligies, risks, policy implication
+      -a new artificial intelligence analysis and research parogram
+      -a sandbox for evaluating AI tech (like emissions test or cookies box
+
+      How it works:
+        AI corp wants to participate in the learning laboratory to deploy in UT
+          (it can choose to not participate)
+        Its technology is evaluated by the laboratory
+          if approved, it will enjoy regulatory mitigations (any system that has been approved will have a cap on how liable it will be)
+
+        How to evaluate:
+          should evaluate Risk Assessment and Management
+            -do the consumer benefits of the technology outweigh risks?
+            -is there a plan to mitigate risks 
+            -etc
+
+        Participants
+          -may enjoy potential regulatory mitigations (reduced fines)
+          -scope limit on the use of AI such as # and type of users, geographic limitations
+          -will be asked to implement safeguards
+
+    Goals:
+      investigate the risks benefits of AI
+      evaluate the effectiveness of regulations on AI
+      new unit in the department of commerce manages the learning laboratory program
+        select the areas of AI applications
+
+    Transparency about AI interactions:
+      businesses regulated by consumer protection division MUST disclose AI use when you ask
+      Regulated professions (like doctors or lawyers)
+        Can't use AI to replace themselves completely
+        Must disclose AI use when providing services
+      Liability for undisclosed use of AI that violates consumer protection laws
+
+    "No Escape" Clause: the following statements won't shield you from legal trouble:
+      "The AI made the bad statement."
+      "The AI did the wrong thing."
+      "The AI helped break the law"
+      i.e. You're responsible for your AI deployments
+
+    Sometimes the technology may not be ready:
+      ProPublica COMPASS recidivism
+      Banjo 
+      Face Recognition (often tags the wrong person)
+
+  "Blueprint for an AI Bill of Rights" Whitehouse OSTP
+
+  Opportunnities for AI research
+    questions related to low data, low compute, energy efficient, privacy
+
+  Interesting first step, 
+  what protections are offered? Who does it protect
+  Who monitiors the state use of AI? Who monitors the learning laboratory?
+  Copyright, plagiarism, etc.?
