@@ -1,0 +1,61 @@
+"Encouraging Divergent Thinking in Large Language Models throgh Multi Agnet Debate
+arxiv.org/abs/2305.19118
+Alex Presenting
+
+Problem:
+  Self-reflection can get in a loop with models once it is convinced that it has the correct answer "degeneration of thought"
+Proposed Solution:
+  Multi-agent debate
+
+Mattia: does this assume a particular temperature?
+  Alex: No
+
+1 Bias and Distorted Perception
+2 Rigidity and Resistance to Change
+3 Limited External Feedback
+  Disagreement is good
+
+"MAD" Multi Agent Debate
+  Two agents express their own arguments
+  A Judge monitors the debate
+  Proposed as a way to avoid degeneration of thought
+
+Algorithm:
+Require topic t; number of rounds M and number of debaters N
+Return Final answer a
+procedures
+  initialize judge J
+  initialize debators D_1 . . . D_H
+  initialize history H
+  while m <= M
+    m += 1
+    for each D_i in D 
+      H += D_i(H) append model to history
+      if J_d(H) #detect whether the debate has already reached a conclusion
+        break #if the judge comes to a conclusion, then end early
+  return J_e(H) extract the final answer
+      . . . see paper for graphics
+
+
+Experimental setup
+  2 Debaters (affirmative and Negative)
+  One Judge
+  GPT3.5
+
+Uncleear how this was implemented in GPT chat templates
+
+
+Adaptive Break:
+  Force judge to extract an answer after different amounts of debate
+    Found that forcing models to debate more than one round decreases result
+
+Found that if you have different models for debators, model will pick debator that is more similar to itself
+
+Experimented with different levels of disagreement
+  both sides must always agree
+  mostly disagreement, but there should be some consensus on some points
+  its not necessary to fully agree, but objective is to find correct answer (this one gave the best result)
+  both sudes must always disagree
+
+  another paper:
+  arxiv.org/abs/2309.13007
