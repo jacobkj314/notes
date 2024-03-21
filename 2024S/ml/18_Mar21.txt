@@ -1,0 +1,159 @@
+!!!READ PAPER "Learning Decision Lists" to answer extra credit question
+
+
+An outline of boosting
+
+Given a training set (x1, y1), . . . (x_m, y_m)
+  instances x_i \in X labeled with y_i \in {-1, 1}
+For t = 1, . . . T
+  Construct a distribution (assigning importance weights) D_t on {1,...m}  #Needs to be specified!
+  Find a weak hypothesis h_t with a small weighted error epsilon_t
+Construct a final output H_final #Needs to be specified
+
+So e.g. for update, w <= w + r D(i) y_i x_i
+
+For AdaBoost theory to work out, the importances have to add up to 1, so it can be treated as a distribution
+
+
+Ititially (t=1), use uniform distribution over all examples:
+  D_1 (i) = 1/m
+
+After t rounds:
+  we have:  D_t and learned hypothesis h_t
+            weighted error epsilon_t of hypothesis h_t on the training data
+
+  we want:  a hypothesis so that examples that were incorrect in the previous (tth) round are correctly predicted by (t+1)th round
+
+D_{t+1} (i) = D_t(i) * e ^ ( {-1 if h_t(x_i) == y_i else 1} alpha t ) / Z_t
+  intuition: demote coreectly predicted examples by multiplying by number smaller than one ; promote incorecctly predicted examples by multiplying by a number greater than one
+  Z is normalizing factor
+
+  use h_t(x_i) * y_i:
+
+|| D_(t+1)(i) = D_t(i) exp(- alpha_t * y_i * h_t(x_i) ) / Z_t
+
+but what is alpha?
+  adaBoost defines
+  alpha_t = (1/2) ln ((1-epsilon_t)/(epsilon_t))
+
+  because epsilon_t < 1/2, 1-epsilon_t > 1/2
+  so (1-epsilon_t)/(epsilon_t) > 1
+  so ln((1-epsilon_t)/(epsilon_t)) > 0
+  so alpha_t > 0
+
+  Eventually, the classifier h_t gets a vote of alpha_t in the final classifier
+
+
+Using information that is available at the end of each round:
+Distribution of previous round
+error at end of previous round
+hypothesis of previous round
+
+
+
+HOW TO CONSTRUCT THE FINAL OUTPUT LEARNER
+
+After T rounds, we have T weak classifiers h1, h2, . . . h_T
+T values of a_t > 0
+
+Recacll that each weak classifier takes an example x and produces y\hat \in {-1,1}
+
+Define the final hypothesis H_final as
+  H_final(x) = sgn(\sum_{t=1}^{T}{alpha_t h_t(x)})
+
+
+ADA_BOOST full algorithm:
+
+  1. Initialize D_1(i) = 1/m for i \in {1,...m}
+  2. For t = 1,...T
+    Find a classifier h_t whose weighted classification error epsilon_t is better than chance
+    Compute its vote alpha_t  = (1/2) ln((1-epsilon_t)/(epsilon_t))
+    Update the values of the weights for the training examples D_(t+1)(i) = D_t(i) * exp(- alpha_t * y_i h_t(x_i)) / Z_t
+  3. H_final(x) = sgn(\sum_{t=1}^{T}{alpha_t h_t(x)})
+
+
+ADABOOST THEOREM (Formalization of the training error)
+  Run AdaBoost for T rounds
+  let epsilon_t = 1/2 - gamma_t
+  let gamma > gamma_t for all t
+  Then training error(H_final) <= exp(-2 gamma^2 T)
+    As T increases, training error drops exponentially!!!
+    Then we can have a consistent learner, and plug this into PAC learning bounds
+    BUT this means AdaBoost is prone to overfitting
+  Pointer to the proof on the class website
+
+In practice:
+  Training error of combined classifier does reduce exponentially fast
+  Individual classifiers' error actually increases!
+  Interestingly, AdaBoost does not tend to overfit!! (Schapire Freund Bartlett Lee 1997)
+
+What is good about it:
+  simple, fast and only one additional parameter to tune (T)
+  use it with any weak learning algorithm
+Caveats
+  performance often depends on the dataset and weak learners
+  can fail if the weak learners are too complex (overfitting)
+  can fail if the weak learners are too weak (underfitting)
+Empirical evidence (Caruana Niculescu-Mizil 2006) shows that boosted decision stumps are the best approach to try if you have a small number of features (no more than hundereds)
+
+
+
+
+
+ENSEMBLE METHODS
+
+In general, meta algorithms that combine the output of multiple classifiers
+Often tend to be empirically robust
+
+Boosting:
+  Initialization:
+    -weigh all training samples equally
+  Iteration step:
+    train model on weighted train set, compute weighted error of model on train set, increase weights on training cases model gets wrong
+  Typically requires 100s to 1000s of iterations
+  Return final model: carefully weighted prediction of each model
+
+  A maximum-margin method (Schapire etal 1998, Rosset etal 2004)
+    trades lower margin on easy cases for higher margin on harder cases
+  Boosting is an additive logistic regression model (Friedman Hastie Tibshirani 2000)
+    Tries to fit the logit of true conditional probabilities
+
+BAGGING:
+  Short for BootstrapAGGregatING
+  Given a training set with m examples
+  Repeat for t= 1,...N
+    draw m' < m samples with replacement from the training set
+      
+    train a classifier C_i
+  Construct final classifier by taking votes from each C_i
+
+  No learning theory guarantees, but some guarantees of robustness
+
+  A method for generating multiple versions of a predictor and using these to get an aggregated predictor
+    Averages over versions when predicting a numerical outcome (regression)
+    Plurality vote for classification
+  The multiple versions are constructed by aking BOOTSRATP REPLICATES of the learning set and using these as training sets
+  Tests on real and simulated datasets using classification and regression trees and subset selection in linear regression show that bagging can give substantial gains in accuracy
+  INSTABILITY OF THE PREDICTION METHOD: If perturbing the training set can cause issues, htis becomes more robust
+
+  BAGGED DECISION TREES:
+    Draw T bootstrap samples of data
+    Train depth limited trees on each sample to produce T trees
+    Average prediction of trees on out-of-bag samples
+
+  Can also use stdev of predictions to get more information about the quality of the predictions
+
+
+  RANDOM FORESTS (Bagged Decision Trees ++)
+    Draw T (possibly 100s) bootstramp samples of data
+    Draw sample of available attributes of each data split
+    Train trees on each sample+attribute set to produce T trees
+    Average prediction of trees on out-of bag samples
+
+BOOSING AND ENSEMBLES : What ahve we seen?
+  What is boosting?
+    Does weak learnability imply strong learnabiliity? Yes
+  AdaBoost: 
+    intuition, the algorithm, why it works
+  Ensemble methods:
+    Boosting, bagging, random forests
