@@ -1,0 +1,28 @@
+ACL takeaways
+    -ways to fit things into a transformer
+    -theory of mind in AI
+        *read some theory of mind papers from ACL
+
+Internship takeaways
+    -NSF+DoD need "Program Managers" to manage grants
+
+
+LLama2
+    -OpenAI 5.5X1.8 vs 3.6x3.6
+    -Vivek : what does scaling laws numbers mean when doubling tokens? You can't just duplicate the data
+        -Need a better way to quantify the amount of pretraining data
+    -Vivek : if GPT4 is rumored to be an ensembling of 8 models, what if we just took Llama-2 and ensembled 8 copies of it together
+    -FLAN-style instruct finetuning VS RLHF-style instruct finetuning
+    -Supernatural Instructions (non-nlp tasks) vs Self-Instruct
+
+
+Secrets of RLHF in Large Language Models Part I: PPO 
+huggingface RLHF tutorial
+openai RLHF tutorial
+
+DPO rather than LIMA (rather than RLHF)
+ !!! DPO is implemented in Huggingface !!!
+
+!read FlashAttention2
+
+What are the most important questions in your field right now? If you can't tie that to your research, why aren't you working on that?
