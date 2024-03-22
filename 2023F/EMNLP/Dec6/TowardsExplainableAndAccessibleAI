@@ -1,0 +1,36 @@
+Towards Explainable and Accessible AI (Brandon Duderstadt and Yuvanesh Anand)
+
+Nomic
+2019 RadAI - focus on data curation to outperform radiologists
+. . . 
+2023 GPT4All
+    Pushback against closed science
+
+
+
+GPT4All
+GPT4 gives no detail about training
+
+Stanford Alpaca:
+    GPT Distillation
+    Finetuned LLama 7B on davinci
+
+
+OG GPT4All uses gpt-3.5 turbo, 1M seed prompts, Atlas (Nomic Platform), and LLama7B
+Version 2 used GPT-J instead of LLama7B
+GPT4all-snoozy
+    scale up, use dolly dataset, llama13b
+
+Integrated other models into the ecosystem (MPT, Wizard, Hermes)
+Supplemented online presence with in person events (e.g. hackathon)
+ship early + often based on community feedback
+Ecosystem of tools
+"Vulkan backend" - unclear what is this?
+
+ATLAS
+    atlas.nomic.com
+    training data clustering and visualization
+
+Make maps of the internet to search for "memetic warfare" - garbage generated content
+
+!visualize CondaQA on atlas?

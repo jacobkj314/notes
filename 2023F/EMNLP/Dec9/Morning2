@@ -1,0 +1,124 @@
+Absolute Position embedding  . . . 
+
+rearrange attention formula using SVD to get new Query and Key
+
+
+
+
+
+
+
+
+
+
+Statistical depth for ranking and characterizing transformer based text embeddings
+
+assign numbers to each document in a corpus indicating how representative of the corpus that text is
+
+
+assign numbers to each document in two corpora indicating how representative of one corpus that document is
+    interleaved ranking -> corpora are iid
+    layered ranking -> corpora are different
+
+strategy to detect distributional shift in extended corpus
+
+
+
+
+
+
+
+
+
+Explaining Interactions between text spans
+
+want exxplanations for interactions between mupltiple parts of claim-evidence pair in fact checking task
+
+
+
+
+
+
+
+
+
+
+Bridiging information theoretic and geometric compression in language models
+finite lexicon + rules -> infinite productivity
+
+degrees of freedom on a manifold, ambient dimension vs intrisnic dimension (Geometric compression)
+
+what is the intrinsic dimension of nn?
+
+vs infomration-theoretic compression
+
+are geometrkc and information compression related?
+
+methods:
+
+intrinsic dimension measurement
+    use off the shelf id estimator
+information theoretic coding length
+    average surprisal
+ease of adaptation measurement  
+    final eval complexity, sample complexity
+
+correlates to linguistic structure
+
+
+
+
+
+
+
+
+
+
+What cocmes next? Evaluating uncertainty
+
+speakers have variable communicative intents
+even for a fixed communciative intent, surface realization may vary
+appliies to individuals and populations
+
+formal representation of uncertainty    
+    possible vs plausible
+
+sample diversity:
+    representainot of uncertaintly
+
+linguistically interpretable distance functions
+    lexical distance: fraction of distinct ngrams in two productions
+    syntactid distance 
+    semantic distance
+
+characterizinguncertaint    
+
+input x -> productions y1 . . . n ; generation yhat1 . . . yhatn
+measure variability in distributions
+
+empirical results:
+measure distribution of distance across one generated one human response
+
+
+
+
+
+
+
+
+
+
+Data Factors for Better compositional geenration:
+
+larger datasets lead to better generalization
+with data augmentation , generalization improves
+more complex datasets -> better generalization performance
+
+pattern complexity (more primitives, more structures)
+    increases the difficulty of memorization
+scale complexity (larger)
+    avoid memorization by reducing frequeytnyly recurring examples
+
+both complexity types improve generalzitoint
+
+high frequeyncy example repretition hurts generalization

@@ -1,0 +1,160 @@
+Academic Research in the age of LLMs: Nothing but Blue Skies
+
+1993 ACL
+"Unification (Rule-Based) Grammar" Boom
+
+(VERY COMPUTATIONAL LINGUISTICS FOCUSED)
+
+
+Then corpora of text became available (still before the internet)
+
+"statistical NLP"/"corpus linguistics"
+    -ACL 93 was the start of many of these^ papers
+
+
+Automatic Acquisition of a large subcategorization dictionary from corpora
+(Manning 1993) @Xerox parc and Stanford
+
+Back then, older people were gloomy about future of ACL, now its the young students
+    what do you work on when closed source models can outperform anything you work on
+
+    Paper: "A PhD Student's Perspective on Research in NLP in the era of very large language models"(mentioned in talk, maitrey reccomends)
+
+
+    Example: Aerontautical Engineering students do not try to create a better 747
+
+Compute:
+    you can't get very far unless you have some compute available
+
+    returning to early days of computers, when compuers would also be a large chunk of research budget
+
+    something fuding agencies should be aware of
+
+    BUT
+    its not the case that you need huge amounts of compute to get something done
+
+    i.e., having good ideas is more important than having compute
+
+Opportunities:
+    systems:
+        small models, quantization
+        speeding things up (Tri Dao etal 2022)
+    problem/data driven
+        finding valid evaluation methods in this new age
+        how do we best build nlp models for lnaguages with little data
+    ML:
+        how can we achieve successful continual learning (Hu et al. 2023)
+        How can we do one shot learning of facts from language as humans do
+    Language 
+        models with better systematic generalization from less data (Murty etal 2023)
+
+Just scaling up is not a very introducing solution to a problem
+
+
+Special Note for Linguistically Oriented Researchers:
+
+"Why wasn't it the case that all the Linguists and Philosophers were running at full speed to engage in the world of LLMs?" someone asks him
+    He thinks this person is right
+    Opportunities for exploring extent of linguistic knowledge in models, and their implications for linguistic theory
+
+
+Noam Chomsky vs Claude Shannon
+Chomsky 1969 "But it must be recognized that the notion of 'probability of a sentence' is an entirely uselyess one under any known interpretation of this term'
+Shannon 1951 "anyone speaking a language posesses implicitly an enourgous knowledge of the statistics of the language, enabling them to complete the phrase"
+
+
+
+Linguistic Structure Discovery:
+    Distributuional learning in modern nlp harks to the ideas of American Structuralism / Distributuionalism (Bloomfield, Harris, Swadesh, Boas, Sapir) - distinct from eruopean stucturalism
+        their idea was that linguistic structure could be derived from a corpus of texts via a mechanical discovery procedutre to derive the grammar of the language
+
+    Chomsky argued the procedure is impossible
+
+    But self-supervised learning (Hewwit and manning 2019)
+
+Examples:
+
+
+"Steering Large Language Models: DPO" Eric Mitchell
+    tasks: 
+        write stuff for use
+        read for us
+        dialogue systems
+
+    But none of these work with just pretraining
+    therefore RLHF . . . 
+
+    DPO:
+        if we parameterize our reward model correctly, 
+        we can extract it from our reward function in closed form
+
+    Direct Preference Optimization, Rafailov, Sharma, Mitchell, Ermon, Manning, Finn NeurIPS 2023   
+
+    Now used to get Mistral -> Zephyr
+        show that DPO works
+    Notus
+    Intel NeuralChat
+    Neural Hermes
+    * Tuelu-v2
+    Diffusion-DPO
+    
+    John Schulman
+    PPO developed for DOTA 5, then applied to LLMs
+    
+    May DPO
+
+    Now other ideas:
+    CPL, IPO, KTO, cDPO
+
+
+    Takeaway:
+        hard thought led to an improveement
+
+
+
+"Building a more interpretalbe LLM: Backpack Language Models"
+
+    Why do we want to understand language models 
+        want a foundation to understand about them
+        want to build tools to precisely localize and treat their failures
+
+    ?How did this vector in my network get here? what is it doing? for what inputs would similar vectors be constructed?
+
+    Complex questions that depend on inputs
+
+    When similar vectors occur how do they affect the predictions of the model
+
+
+    cf word2vec:
+        this vector appears when this word appears. It has the effect of making words with high cosine similarity to be predicted
+
+    df sinlge layer self-attention
+         .. .
+
+    multihead: allowing multiple heads leads to specialization
+
+
+    Want an architecute that scales like a transformer and allows us to understand some vectors like a single layer of self attention
+
+    approach: keep the weighted sum of word2vec like fectors but define the summation weights through an expressive function
+
+    weighting function is determined by transformer, but individual word vectors are like word2vec
+
+
+    when does this vector appera:
+        whtn the word is used
+    what does it do?
+        increase the likelihood of similar vectors if it is attended to
+
+
+
+    backpack senses can specialize to encode biases
+
+
+    170M parameter backpack is comptetitive with a 124M parameter transformer
+
+    hEWITT ETAL 2023 "Teaching language models with canonical examples"
+    compare ensemble of backpack + GPTj to full finetuning and loRA finetuning of GPTj
+
+
+    modeling complexity can be largely handled by a very complex routing function to simple vectorss

@@ -1,0 +1,88 @@
+Systematic Generalization by Finetuning: Analyisng pretrained lms using consistuency tests
+    (Aishik Chakraborty)
+
+Probing lms it is difficult to separate the contribution of the forzen lms and teh probing classifiedr
+Understanding what can be extracted from a LMs represetnation is . . . 
+
+
+Contributions:
+    understand the competence of lm
+    f
+    ?Can lms perform linguistic transformations on input text corresponding to popular constituency tess?
+        important for semantinc understadning fo nli
+
+        Create set of tests "Constituent sentitive transformations"
+
+        Show that lms can replicate a specific transformation if they say it during finetuning, but not in other settings
+
+Start wwith Kann et al 2018 dataset
+    contains sentences in dative/locative constructions
+        DatuveL
+            Direct object pass the person the sald
+            Prep obj    pass the salt ot the person
+
+    Clefting involbes displacing a verbal argument with a copular 
+        it was the salt that he passed to the people across the table
+        it was the person across the table that he passed the salt to 
+
+        other non base transfomations include proform substutuion, wh question formation
+
+Can the model apply the correct CST? 
+    inpuys are varied in terms of similarity to training sentences
+
+    use novel combination sof cst + input
+    novel verbs
+    ceneralizaiton acgross constituency lengtsh
+
+Key takeaways:
+
+
+
+
+
+
+
+
+
+!!!!!
+Emergent Linear Representaions of World Models in Self-Supervised Sequence Models
+
+Can they learn world models?
+    or do they parrot surcae level statistical patters
+
+Model of underlying laws that produce a sequence of interest
+    eg Gravity, Chess game states based on 
+
+How to study world models
+    game
+
+OthelloGPT arxiv.org/abs/2210.13382
+    autoregressively train 8-loayer GPT on next-move prediction for othello
+    trained on randomly sapled 
+
+    task: valid next move prediction
+
+Probing for board state
+    encode tiles as mine, yours, empty
+    !!! you can learn a linear representation of the Board state !!!!
+
+    Use probing/editing to verify that 
+        you can control model behavior with vector addition
+        vecter representations
+
+We can draw multiple interpretations
+
+
+Unembedding layer
+    analagous to probe vectors
+
+    probe vectors encode board state, while unembedding layers compute lecal moves
+    
+
+    shows the board state may be computed at an earlier layer than legal moves
+        does this happen?
+
+Later in game the model computes legal moves before computing board state
+    learning smaller set of circuits
+
+Empty circuat

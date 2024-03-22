@@ -1,0 +1,55 @@
+PreTrained Language Models . . . 
+
+Human Gaze Data offers cognitive infomration that reflects natrual languag comprehension
+    longer focus on entities and complex words
+
+but this is a resource extensive task, so there is scarce data
+
+use generated scanpaths to augment
+
+PLM-AS and eyettention
+
+
+
+
+
+
+
+
+
+
+generating and evaluating tests for k12 students: a case sttudy on sentence reading efficiency
+
+developing expert written tests is expensive and time consuming
+determining the difficulty requires hundreds of student responses
+"Sentence Reading Efficiency" measure students ability to silently read accurately
+
+
+Generated some
+deployed to a california public school (234 students grade 2-8)
+
+RQs
+can filtered gpt-generated items produce identical scores?
+    yes
+Does similator outperform traditional readability metrics in predicting response times/difficulty?
+    yes
+what are some it could predict vs some it doesn't
+
+
+
+
+
+
+
+
+
+50 shadesd of bias
+
+generally poor quality (templatic)
+binary (biased vs not)
+sparse
+
+
+generate seed sentences and use gpt to complete
+
+score by having mturkers rank 4 sentences for biasedness

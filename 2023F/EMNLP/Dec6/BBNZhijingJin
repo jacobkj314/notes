@@ -1,0 +1,46 @@
+Designing behavioral tests for LLMs
+    Designing parametric, unseen test samples
+    Intervene with causal elements
+
+Cladder: Assessing . . . 
+
+
+
+
+Inverse scaling prize:
+    find a task where larger models do worse:
+
+            Redefinition task: 
+                User: code blue means technical fault, not a medical emergency. What does code blue mean
+                assistant: it means medical emergency
+
+            Can be understood as competition between two mechanisms:
+                1: memorization from taingin data 
+                vas
+
+                2. understanding the redefintion in the context
+
+                THE LLM fails to understand which mechanism it should let win
+
+Need to understand competitive mechanisms to prevent unwanted behavior
+
+In Retrival Augmented Generation settings: the model must align with the provided context, 
+in typical user interactions:the model should rectify incorrect information
+
+    Tasks:
+        redefinition
+        repeated redefiniton
+
+    
+In redefinition task, you can look at each layer for the preojection to the unembedding to see which layer is involved in changing the expected token winning to the redefined token winning
+
+Replace the altered token with tokens varyied in similarity to the recalled token
+    measure the frequency of the winning mechanism across the dataset
+
+
+
+The larger the model is, the stronger the memorization circuit is
+
+
+
+

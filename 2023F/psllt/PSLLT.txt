@@ -1,0 +1,1766 @@
+PSLLT 2023
+
+Wednesday:
+    Data visualization for Linguists (Joseph V. Casillas - Rutgers University)
+        R
+        jvcasillas.com/dv4ss/index.html for slides and demo R script
+        
+        Goals:
+            make elegant, truthful, plots
+            help reader understand data
+            make process repeatable and shareable
+            discuss pitfalls and bad practices
+            provide resources to help continue learning
+
+        "Just use a table . . . the data speaks for itself"
+            cringe
+            you might not know that you're looking like a dinosaur
+            "Stats don't lie, but liars use stats" / "The numbers don't lie, but liars use numbers"
+        
+        "There is no way to know from knowing nothing about a subject to knowing . . ."
+
+        X-axis interpretability, Y-axis aesthetic
+            Easy to end up in "fun but useless" or "suitable, but not ideal" 
+
+        Principles of Graphic Design "CRAP"
+            -Contrast, Repetition, Alignment, Proximity
+            -"The Non-Designer's Design Book" by Robin Williams
+
+            Contrast
+                -if two thing's are not the same, make them very different
+                    -colors : complex, accesibility for color blindness ***
+                    -fonts: weight, size, family
+            Repetition
+                -color palettes
+                -fonts (families, weights, sizes)
+                -other graphical elements (alignments, etc)
+
+                !Make it easy for readers to compare different visualizations in the same article
+
+            Alignment
+                Elements on a page/screen/plot should have a visual connection with something else on a page/screen/plot
+
+            Proximity
+                Group related items together
+                Focus on document layout 
+                (less applicable to data visualizations in an article)
+
+        Types of of plots
+            Pie Charts:
+                -avoid
+            
+            Bar Graphs:
+                -Box Plots are like Bar Graphs but give more information about distribution
+
+            Box Plots:
+            
+            Histograms/Density plots
+                -great!
+
+            Scatterplots
+                -continuous variables on x and y axis
+
+            Heatmaps:
+                -two continuous independent variables, plus one continuous dependent variables
+                -can also make 3d Histograms
+
+        Grammar of Graphics:
+            -ggplot grammar of Graphics
+            "The Grammar of Graphics" by Leland Wilkinson
+            -map data to aesthetics
+
+            Data:
+                columns in a dataframe (excel, .csv, etc)
+            Aesthetics:
+                A visual property of a plot, i.e., position, shape, color, etc
+
+        ggplot2
+            -part of the "tidyverse"
+
+            -writted by Hadley WIckham as a gradstudent at Iowa State
+            -automatically deals with spacing, text, titles, or allows you to annotate
+
+            Different layers:
+                Theme, Labels, Coordinates, Facets, Scales, Geometries, Aesthetics, Data
+
+            Components:
+                dataframe
+                aesthetic mappings: how data are mapped to coords, color, size, shape, etc
+                geoms: geometric objects like points, lines, boxplots, etc
+                stats: statistical transfomations
+                facets: 'panels' for conditional plots
+
+            Templates:
+                ggplot(
+                    data = DATA_FRAME,
+                    mapping = aes(AESTHETIC)
+                ) + geom_*()
+
+
+                link <- url("")
+                new_data <- readRDS(link)
+
+                head(new_data) # to see first few rows
+                summary(new_data) # to see summary (min, median, max, quartiles, etc)
+
+                #aesthetics
+                aes(
+                    x = proficiency,
+                    y = score,
+                    . . .
+                )
+                
+                #geometric objects
+                geom_point() # scatter plot
+                geom_smooth()
+                geom_hist() #Histograms
+                geom_bar()
+                . . .
+
+                #statistical transformation stat_*()
+
+                + stat_summary(
+                    fun.data = 
+                )   
+
+                !!! Use viridis color:
+                + scale_fill_viridis_d()
+
+                Faceting:
+
+                #make separate plot for each value (the one after the tilde)
+                . . . + facet_grid(. ~ age) + . . .
+                more generally:
+                . . . + facet_grid(<vertical> ~ <horizontal>) + . . .
+
+
+            Good principles:
+                remember CRAP
+                colorblind friendly palletes
+                highlight important things
+                help your reader
+
+            Bad Principles:
+                plots wo contesxt
+                illegible fints
+                unordered xaxis
+                a zillion categories
+                pie Charts
+                axis with scientific notation
+                . . .
+
+            Resources:
+                SimplPoints (Timo Roettger yt channel)
+                Dat visualization with R (course)
+                The Truthful Art: Data, Charts, and Maps for Communication
+                Data Visualization . . .
+                . . .
+
+            
+    Online Pronunciation Practice and Data Collection (Atsushi Fukada, Purdue):
+        Japanese Linguistics and Technology-Assisted Language learning
+        Creator of Web Application "Speak Everywhere"
+            Fukada (2013)
+
+        Speak Everywhere
+            speak-everywhere.com
+
+        Online Oral Practice
+            Various Exercise Formats
+
+        Authoring Oral Exercises
+            just use powerpoint to generate jpegs with instruction and add that as you build
+            save d01.jpg, d02.jpg . . . and v01.mp4, v02.mp4, . . . all in the same .zip
+
+        Online oral data Collection
+            Jessica stat_summary    Sturm 2019 and another in preparation
+                Used SpeakEverywhere to Measure the effect of innovative Cued Pronunciation Recall activities (Martin 2015)
+            -Easier than for preparing oral exercises (no need to record videos)
+
+        Workbook
+            ellllc.com/LJO18/menus/umenu1.html
+
+        Publishing Opportunities
+            publish a series of Speak Everywhere exercises packaged as an "online workbook" through e-Language Learning llc
+
+
+    Demystifying Open Science for Speech Research: Individual and Team-Based Approaches (Charlie Nagle - UT Austin & Amanda Huensch - University of Pittsburgh):
+        What is Open Science? Why Participate?
+            "Open science consists of principles and behaviors that promote transparent, credible, reproducible, and accesible science" (Parsons et al 2022, p314)
+
+            -Improve reproducibility for you colleagues, community
+            enhance credibility
+            save time and money for you colleagues and the public
+            accelerate discovery
+            improve scholarly rigor and reach 
+            (Gilmore 2023)
+
+            FAIR: Findable, accessible interoperable reusable
+            CARE: Collective benefit, Authority to Control, Responsibility, Ethics 
+            )Carroll et al. 2021)
+
+        Some practices
+            Sharing: materials data, analysis code, experimental protocols
+            Preregistration
+            Open access publishing: preprints/postprints
+            Replication
+
+        Resources  
+            Center for Open Science (COS)
+            Open Science Forum (OSF)
+            . . .
+
+        
+        What is data:
+            Nnumeric responses stored in a csv
+            raw files such as audio files, eit (elicited imitation task) recording, questionnairre responses
+            Data annotations such as coding protocols, Praat TextGrids, CHAT files
+        Narrow vs. Broad data and usage
+            What can we use data for, depending on what is shared?
+            If numberic responses, then study variables could be computed
+            If raw data . . . 
+
+            i.e., numeric only is narrow, but numeric and raw is more Broad
+
+        osf.io/9wdah
+
+Thursday
+    Conference Welcome
+        First PSLLT in 2009 in Ames, Iowa
+        First conference to specifically begin to address second language pronunciation as a field
+        Proceedings of PSLLT conferences have published over 400 oaoers and generated thousands of citations
+        We will hear topics on 18 different languages!
+        
+    Plenary Address "Perceptual Pathways to L2 Pronunciation Development" (Ron Thomson - Brock University):
+        What is pronunciation? What does in mean for an L2 learner to have good pronunciation?
+            Speech Production / Speech Perception - equal
+        Goals:
+            we need to spend far more time on the process of L2 pronunciation and less time on the final Production
+            update on a research-based technique that should be used by more learners/teachers
+
+        First Language Speech Development:
+            Toddler Elliot can distinguish between "Elliot" and "Elliert"
+            But pronounces it as "Elliert" until a few days after being pointed Opportunities
+
+            L1 perception begins to develop in utero (Zhao Kuhl 18)
+                -preference for mothers voice (Lee Kisilevsky 2013 ; may zamuner werker 2018)
+            Newbords can bpercieve contrasts for 1 year, then gain efficiency, then discriminate foreign contrasts as poorly as adults by age 4
+
+            !Lag between L1 perception and production, BUT same trajectory
+        L2
+            Adult L2 pronunciation is uniquely resistant to change among L2 subskills, but can continue to improe for many years, even in naturalistic contexts without explicit training
+
+            Individual differences:
+                Age and L1 background
+                    -Flege Bohn 2021 : not a drop off age
+                Gender, Context, Motivation, Foreign Language Anxiety, Phonetic Aptitude
+
+                If We have ideal instruction, these individual differences don't matter because we want them to learn like L1
+        
+            !GOAL OF L2 LEARNING IS TO OVERCOME L1 LIMITATIONS ON Perception
+
+        Naturalistic L2 pronunciation  
+            Must be rooted in perception
+            adult learners want to quickly start speaking in L2 to do real things, (schmidt frota 86)
+            younger learners have silent period (ervin tripp 74 . . .)
+            . . .
+
+            When L2 pronunciation meets learners communicative purposes, motivation to improve diminishes
+            for adults this happens within 6-24 months (derwing munro 15)
+            For some it continues as long as 10 years (thomson derwing munro 23)
+
+            Instruction is an opportunity to reoritnt learners perception, even eyears after they have begun
+
+        Lab-based perceptual Training studies:
+            changes in speech perception normal
+            changes faster than naturalistic
+            changes not immediately in production
+
+            HVPT - High Veriability Pronunciation/Phonetic Training
+
+                Canonical HVPT:
+                    Effective training requires multiple talkers in multiplie phonetic contexts
+                    Must provide corrective feedpack
+                    Train L2 vowels and consonants, with a couple exceptions for lexical tone and syllable structure
+
+                Ex:
+                    ac english accent coach
+
+                Increase in HVPT has grown in 1991
+                Growth in mentions of it on Google scholarly
+                Average improvements is 10%, significant
+                1/3 of studies have included delayed post tests with staying (Thomson 2018)
+
+                Transfer to new talkers, always
+                To new contexts, mixed results
+
+                Transfer to production in controlled contexts, not more spontaneous production
+                Size of gains in production less than in perception (due to the lag in mapping from perceptual to articulatory)
+
+                Does HVPT apply to all age
+                    yes 
+                    some found children better than adults, some find equal
+                    also works for 50 year old - second highest gain within a study
+
+                To all L1?
+                    yes
+
+                To all preexisting L2 proficiencies?
+                    yes
+                    some see greater benefit for lower proficiency learners
+
+                Limits on how much talker veriability some learners can handle (Antoniou Wong 2015)
+                Some learners could not handle intermixed talkers within a single session (Furhmeister Myers 2020)
+                    -have one talker per session?
+                        But also some studies have found no differences
+
+                Uchihara 2021 - Can get an advantage with 2 talkers, but even more advantage with over 8 talkers
+
+                Auditory Attention Switching
+                    Learners with more auditory attention control seem to fare better in more demanding hVPT conditions
+                        But maybe no effect in ideal cananoical conditions
+                    Mora-Plaza et al. 2022
+
+                Variations to Canonical HVPT
+                    Training with nonsense word is better
+
+                    Doubling the length of vowels or optimizing for distance from learners L1 does not help
+                    Tripling the length of vowels does maybe?
+
+                    Are synthetic better than natural stimuli?
+
+                    Discrimination Task instead of Forced Choice?
+                        -Forced choice have larger effect (Shinohara Iverson 18)
+
+                    Feedback should be immediate
+                    Learners should hear target again, or on example of misperceived category, but not both
+
+                    Production Practice
+                        Many learners can be observed subvocalizing
+                        immediate imitation is disruptive to learning in some cases
+                        delayed imitation may be less disruptive in some circumstances
+
+
+                HVPT Works in laps, but so what?
+                    englishaccentcoach.com  
+                        american/canadian
+                        Free
+                        thousands of contexts
+
+                    Linguatorium Auris
+                        paid nonprofit
+                        two talkers
+
+                    British English Vowel Trainer (Iverson Evans 2009)
+                    Ouie (Inceoglu 2022) for French vowels
+
+                Implications of hvpt reasarch for instruction
+                    teachers should allot more time for perceptual training
+                    incorporate variation in listening stimuli 
+                    use nonsense syllables and real words
+                    give corrective feedback after each items
+                    use input flooding activities to give massive amounts of explosure to target sonds and opportunities to practice in communicative contexts
+                    focus training on sounds that have greatisest load
+                    derwing muno 2018
+
+                    Card Game with minimal pair on either side of a card, learners show the side of the card that they heard and receive immediate feedback
+
+                
+                What if there is something better?
+                    Perceptual fading (iverson 2005)
+                        continuouum of stimuli from exaggerated to natural [p^hhh, p^hh, p^h]
+                        similar improvement as Hvpt but more effortful to create
+
+                    ! ! ! ! ! Golder Speaker Builder (ding 2019)
+                        theoretically compelling but no empirical evidence yet that it is better
+                        -Use learners own voice to synthesize 
+
+    Talk Sessions:
+        "measuring Knowledge Needed for Pronunciation Teaching and Technology Use: Developing and Validating a Survey" (Agata Guskaroska & John Levis -- Iowa State University):
+            Exploring teacher cognition is important because of its impact onteaching and students' learning
+            Knowledge and beliefs cognitive processes
+            How do we measure knowledge?
+                Surveys, interviews, tests of declarative & procedural knowledge
+                How are survey items created|? HOw can we make that process more rigorous?
+
+            Research on Teachiner Beleifs and congitions:
+                semistructured interviewrs . . .
+                classroom observations Baker 14; baker burri 16
+                multiple measrues (Kochem 2022)
+                questionaires (sifakis & sougari 2005())
+
+            TPACK - Technological Pedagogical Content Knowledge - Shulman 1986
+                content knowledge is not sufficient without knowledge of pedagogy
+                Mishra koehler 2006
+
+                used to examine practitioners' TPACK
+            
+            1. clerly define what we are measuring 
+                -define Tech, Pedagogical, produncation knowledge
+                -get expert feedback
+                revise
+                outpucome a clear defintion
+            2. create survey
+                . . .
+
+            Creswell Plano Clark 2007 instrument development model to validate study
+            Chapelle 2021 vailidity arguent
+                Interpretation/Use argument (the fromaework for collecting and presenting evidence, kane, 2006)
+                -> Research
+                -> Validity argument
+            
+                Comprehensive, transparent, clear rational
+
+                Inferences -> Claims -> Assumptions => Detail for reasonging -> warrant
+
+            Does the survey measure what it intends to measure? Is it useful for its indented burposes?
+
+            Methodology
+                Docuent analysis -. construct, item, expert, survey
+
+                Document analysis   
+                    25 documents
+
+                    several issues:
+                        imprecision of construct definitions
+                        failure to identify some subdomanis as separate constructs i.e. pronuncation knowledge vs pron. content knowledge
+                        subject independent vs subject dependent Surveys
+                        lack of validation theory to guide the studies
+
+                    goals:
+                        clearly define the construct
+                        remove overlapped subdomains
+
+                        create subject dependent
+                        validate
+
+                Item createion
+                    refer to construct, refer to survey questions from previous papers, 5 experts, feedback on survye items
+
+                Qualtrics survey to evaluate TPAPrK items   
+                    39 experts
+                    23 items - essential, useful, not neccesari (Lawshe 1975) + open comments
+                    distributed via social media nad empirical
+
+                    Analisys
+                        Calculated Content Validity Ratio (crv)
+                        and coded open comments
+
+                    Technological knowledge was most problematic - possibly because it is very writted
+                    removed one item and revised all items with negative scores or which had qualitiative feedback suggesting a need for revision
+
+        "The effect of perception training with synthetic and natural stimuli on the identification of english vowels /ae/ and /3/" (Rosane Silveira & Elisabeth Ann Bunch Oliveira da Rosa - Federal University of Santa Catarina):
+            BR Portuguese lacks /ae/, tendence to conflate with /3/ in production; difficulty to perceive contrasts
+                Many previous studies benefit from training with synthetic values
+
+            Objectives
+                compare effect of natural vs sunthetic stimuli
+                understand ability of learners to generalize to new voices
+                are participants able to Replication
+            
+            Synthetic stimuli in this study:
+                Manipulation of duration of vowel sounds    
+                Temporal exaggeration can help learners develop new contrasts
+
+            HVPT
+                expose listenerw to multiple voices speaking target sounds or workds
+                helps listeners to disregard speech differences that are irrelvant to perception of an L2 contrast to instead focus on the acoustic differences that ARE important for the L2 sounds
+                
+            Identification training and cue weigting
+                l2 learners of english rely on duration rather than formant frequency
+
+            In Brazil you can not pay participants so they had to be volunteers
+            57, split into control, natural, and synthetic croups
+
+            vowel identification test from american and highly proficient brazillian speakers
+
+            Pretest: 12 tokens in triads with duration not altered
+                -all three groups listened to same pretest
+                -gorilla experiment builder, 24 opportunities to respond
+                    -able to Replication
+                    -immediate feedback for incorrect answers
+                    -natural group presented original sounds, synthetic had vowel lengthened to 350ms
+
+            Posttest and delayed posttest:
+                -included unfamiliar tokens
+                posttest: right after training
+                delayed: six days after completion of the post test
+                ~20 minutes of data collection
+
+            Results:
+                H1: syntehic would increase perceptual ability over natural stimuli
+                    - improvement for both. Instruction was equally beneficial for both groups, so H1 NOT Confirmed
+                H2: participants with synth. would be better at generalilzign
+                    - both perform similarly with familiar and unfamiliar tokens. Generalization confirmed for both experimental groups. H2 is not confirmed
+                H3: participants with synth would better retain their learning
+                    -both groups maintained learning, but only naturla group showed improvent. But not to a statistically significant degree
+
+            Consideration:
+                this study confirms the effectiveness of identification perception training
+                no significant difference between synthetic and natural stimuli
+                    maybe it was just for this vowel pair, other studies have included more vowel participants
+                training generalizes to new voices and words
+                controlled tasks alone can trigger attention and lead to learning
+                results support SLM (flege bohn 21), imply that new phonetic categories can be formed through training
+
+            Questions:
+                All tests (pre-, post-, delayed-post-) were natural
+                natural stimuli were shorter than 350ms, so all synthesizing was extending 
+
+        "Teachers' social characteristics modulate language learns' pronunciation preferences" (Shannon Barrios, Rachel Hayes-Harb, and Alayo Tripp - University of Florida):
+            osf.io/8nu2p
+
+            Flores & Rosa 2019 Elite Multilingualism
+                limits ways of engaging with the research
+                conduct for the purpose of investigating not reinforcing or legitimizing them
+                meant to capture existing beliefs
+
+            L2 involves novel contrasts and novel phonetics
+                have to in highly variable input    
+                    track VOT durations that are subphonemic in English
+                    other variability is noncontrastive
+                        speech rate 
+                        dialectal variation
+                        phonological contexts
+                        individual talker differences
+                
+                subphonemic variation between talkers is a property of speech
+                i.e. some people have long vot/short vot
+                listeners can track the phonetic characteristics of individual talkers
+
+                speech learning may be enhanced by noncontrastive variability, e.g. hvpt multi-talker leading to more robust categories
+
+            Most studies do not note the social setting and especially don't manipulate
+                !Input is never socially neutral
+                    -what is it and how does it impact what learners take always
+                    how we interpret speech depends on who we think we are hearing
+                        race, age, gender, etc.
+                Tripp 19 - Affiliative Model describes learners as preferring input from talkers who they believe belong to knowledgeable groups
+
+            Language learners experience the speech of multiple talkers: in a classroom- from teacher and from student Perceptions
+                social perception and language ideologies may influence language learners to selectively attend to teachers as better informants
+                nativeness bias, 
+                    some research has enforced while some has problematized
+                intelligibility principle (levis 05)
+                    -also problematic in underspecified contrast
+
+            Results:
+                when they only heard short, or only heard long, they prefer the one they heard (control conditions)
+                In test conditions - no preference at first test, but in second test, they prefer whatever they heard the teacher syllable
+
+            Repeated with /s///z/ contrast, now much stronger effect in favor of the teacher
+
+            How can we moderate this effect?
+                -perceive teachers as better/worse, by giving them "background info" on the "teacher"
+                    one highly praised and native ; one "struggling" and adult learner of L2
+
+                Result: strong effect in "favorable teacher"
+                        weaker effect in "unfavorable", no significance by end of second test
+
+            Takeaway:
+                social beliefs impact learner performance in this artifical classroom setting
+                The impact of these social beliefs is present when testing subphonemic contrasts, but even stronger when phonemic
+                can be modulating
+
+            Limitations:
+                manipulated to teachers/students by simple
+                artifical language and learning setting
+            Next steps:
+                are they affected by teachers age? racial group? 
+                properties of participants?
+                types of interaction ie.e feedback? - does this weight the teachers input more?
+
+            Empirical evidence for social oritnation in linguistic perception and learning   
+
+        "Automatic Speech Recognition as a Pronunciation Teaching Resource: In-Service Teachers' Perceptions" (William Gottard & Rosane Silveira):
+            Previous Studies potential benefits:
+                learners autonomy
+                limitless practice and feedback
+                objective evaluation
+                self-study
+                oral production
+                reduced Anxiety
+                enjoyment
+
+            Instruments:
+                background questionnairre
+                Survey
+            
+            Intervention:
+                prununciation teaching workshop presented asrbased pronunciation tasks
+
+            Methods:
+                12 participants:
+                    -inservice english teachers
+                        4 in public, 6 in private 2 in both
+
+                Workshops
+
+            Data Collection Timeline
+                Participant recruitment over email/soc.media
+                background questionairre over google Forms
+                2-3hours zoom Workshops
+                then survey over google Forms
+
+            RQ1:
+                Teacher development needs
+                ASR accessibility
+                ASR affordances
+            RQ2:    
+                . . .
+
+            Workshop:
+                designed 7 activities which use ASR
+                Used Google Translate becuase it is free/accessible, and well-known in BRazil
+
+            What are in-wervice english teacher's perceptions of AASR
+                Teacher Development Needs:
+                    teach pronunce. often and confidently
+                    use digital resources often and confidently
+                    DO NOT USE ASR OFTEN OR confidently
+                        After workshop - yes; would use ASR to teach pronunciation and to improve their own pronunciation
+                            83% want more in teaching techniques ; 75% want more instruction in digital resources ; 
+                ASR Accessibility:
+                    9.3 on likert scale that it is easy to use GoogleTranslate ASR and that their students have access to Google Translate
+                ASR Affordances:
+                    high ratings that:
+                        asr helps teach
+                        students would be interested
+                        i would use asr as a tool
+                        asr can encourage/motivate learners to practice outside the transfprort
+                        asr is beneficial to learners development
+
+                    They would use asr for:
+                        -self study, out of class supplement, in-class resource, self-assesment
+                
+                (RQ2)
+                How do teachers perceive:
+                    chappelle 2001 criteria
+
+            Favorite activities:
+                vowel contrast
+                pronuncation self assesment
+                tongu tuisters
+                roleplay 
+                . .. 
+
+
+        "Exploring Chilean pre-service teachers' reactions to lecturers under different face/voice conditions" (Masatoshi Sato, Kim McDonough, Rachael Lindberg, Sadie Cazorla . . .):
+            Socially-Cnsturcted Biases:
+                Face:
+                    people excpect speech patterns
+                    Reverse linguistic stereotyping: impressions of speech characteristics, qualifications, interpersonal characteristics
+                        Kang Rubin 09
+                accent  
+                    form first impressions of people
+                    linguistic stereotyping
+                Native Speakerism
+                    idealization of Native. Speakers
+                    L2 speaker teachers may face limited opportunities or negative evaluations
+                        based on accent or appearance
+
+            Context in Chilean
+                homogeneous in race and foreign accents
+                majority of english teachers are chilan with spanish as L1
+                how will preservice teachers react to teachers face and voice?
+                    less diversity > greater bias? Or will training to be a teacher reduce bias?
+
+            RQ1:
+                how do chilean preservice efl teachers react under differnt face/voice conditions
+            RQ2
+                do thair ratings change from pre to post?
+
+            44 University students in teacher EFL program
+                All spanish speaking
+            Sampled to get 4 30sec lectures like an intro to psych/education
+            Four face/voice pairings
+                (White , Chinese) x (L1 English, L2 English)
+                Lecture preceded by name, photo, brief cv of instructor
+                4 unique presentation orders
+
+            Rating scales (100pts)
+                This is a good teacher 
+                I would like this person as my teacher
+                This teacher will be / is easy to understand
+                This teach will have / has a strong accent`
+
+            Procedure:
+                Review picture/cv - rate - listen see picture - rate again
+
+            Afftected by pairing? Did the ratings change before vs after?
+
+            Good teacher
+                ChineseL1 = WhiteL1 > WhiteL2 > ChineseL2
+            I would like this teacher:
+                ChL1 > WhL1 > ChL2 = WhiteL2
+            Easy to understand:
+                ChL1 > WhL1 > ChL2 = WhiteL2
+            strong accent
+                ChL1 = WhL1 ; ChL1 < ChL2 = WhL2 ; WhL1 < . . .
+
+            Voice:
+                Prefer L1 voices
+            Faces:
+                Little difference in white vs Chinese
+                slight preference for chines in L1 conditional
+
+            Difference before _> after?
+                WhL1
+                    No significant difference
+                WhL2
+                    down in all except up in strong accent
+                ChL1
+                    up in all except down in strong accent
+                ChL2
+                    down in all except slight up in strong accent
+
+                Consistent before ratings for all four faces, 
+                    no negative or positive perceptions based on face
+                . . .
+
+            No downgrading based on face, 
+            but preference for L1 voices
+
+            Interesting positive comments about ChL1 speaker
+                was there actually a difference in the voice?
+                or jsut because of surprise hearing the l1 voice with the chinese face
+
+            Moving forward:
+                exposure to more accented speeches beyond their own
+                legitimization of accented speeches
+                engagement with research findings
+                create community of practices 
+                    online interaction with more l2 english speakers
+                    esl teacher communitey
+
+        "Meaningless Parrot-Like practice or an effective technique? Shadowing as a method of L2 pronunciation progress" (Ewa Kusz - University of Rzesz'ow, Zoe Zawadzki & Kate Challis *--Iowa State University):
+            Shadowing: a paced, auditory tracking task which invomves the immediate vocalisation of auditorialy presented stimuli
+                dates to 1953
+
+            RQ1:   
+                to what extend does it help l2 polish speakers conprehensibility, fluency, accentedness
+            @:
+                what is the relationship between motivation and c, f, A
+            . . .
+            . . .
+
+            Involves manyc coordinated processes
+                simlutaneous linear task
+                show to improve phonemic awareness
+
+            L1 unkranian speakers learning L2 polish
+                both slavic but not mutually intelligible
+
+                different vowels, more palatalizations in poslish
+                penultimate stress in polish, but variable stress in unkranian
+
+            Methods:
+                15 Ukranians, 7 in control group and 8 in experimental roup
+                    survey to measure motivation: 40 questionss for why they want to learn polish, how imporant it is, long term plans to stay in poland
+
+                shadowing task: 4 weeks 8 meetings
+                    15 minute practice twice a weeks
+                    pronunciation was rated by 9 L1 polish speakers
+
+            Results:
+                very positive attitudes toward learning polish
+                all want to sound native
+                "my pronunciation of polish makes others hard to udnerstanda me"
+                learning polish is difficult, but I can do it
+                i need to leafrn to get a job, but it is hard to find a better jocb
+                they want to learn to stay in poaland
+                Spread out on "I avoid speaking polish because of my accent"
+                all want to speak better
+                the proununciation is different and very different from my mothre tongue
+                sperad on "my accent makes poles treat me wordse than other polish speakers"
+
+                .54 interrater reliability (moderate reliability)
+
+        "The functional load of Brazillian Portuguese phonemes and implications to teaching (Mariana Centanin-Bertho - University of Arizona):
+            Making Portuguese Learners available in corpus
+                -based on a similar useful resource in English  
+                    -can you make the same implications and Assumptions
+            
+            Dissertation is on pronunciation of English Spanish billigual learners of Portuguese as a third language
+                Acoustic similarity may play a bigge role than inventory size in L2 perception
+                    because Iberian SPanish speakers could more easily adapt than Australian Enslish speakers
+
+                Most portuguese learners at University of Arizona are already Spanish-English Bilinguals
+
+                Studies show influence from Spanish (whether ES is L1 or 2) 
+                    supporting Typological Primacy MOdel 
+
+                Functional Load: quantification of the amont of work elements from a linguistic class do in the language   
+                    e.g., high-front and reduced vowels are used more often in the lexicon than any other vowels in english, and thus do more work
+                
+                Gilner & Morales 2010
+                    Functional Load in English
+
+                    10K most frequent unlemmatized words from the spoken subcorpus of the British National corpus
+                    phonetic transcription of each item
+                    all segments in the list of items transcripted became the dataset
+                    determine  the cound of each segments
+                    most frequent has 1
+                    everything else has proprortion relative 
+                            > zipfian ?
+
+                This Owkr
+                    C-Oral-BRasil
+                        Raso Mello 12
+                    
+                    13K unlemmatuzed items (excluding proper nouns)
+                    transcriped using marquiavel 2010 (Petrus automatic grapheme to phoneme)
+
+                    /s/ has highest FL=1
+                    /j/ has lowest
+
+                    vowels only:
+                    /a/ to /3/
+
+                    difficult to diffeentiate /e/ /i/ are close
+                                    also      /o/ /u/
+                                    but       /e/ /3/ are on opposite sides
+
+        "Relationship between Connected Speech Process and Utterance Fluency in L1 and L2 Read Speech" ()Jimin Kahng, Abner Tian Zhang -- University of Mississippa):
+            Fluency:
+                Lennon 90
+                    global speaking proficiency
+
+                    cognitive fluency : efficiency of underlying cognitive processes
+                    utterance fulency:
+                    perceived fluency
+                
+                Speed: articulation reate, mean syllable duration
+                Breakdwon: frequency, length, location, of pauses
+                Repair: frequency of corrections. . .
+                Others:
+                    Tavakoli Hunder 18:
+                        very narrow : speed breakdown, Repair
+                        narrow:     ease, flow and continuity, discstinct from accuracy and complexity
+                        broad: L2 speaking ability
+                        very broad: master / general proficiency
+                Cononected speech is one aspect of suprasegmentals and has been linked to L2 understanding. Perceived as more natrual friendly personal and sympathetic. 
+                Has a significant accentuation role
+
+                Increase in speaking rate is associated with greater overlap of gestures for adacent segmentsconnected speech is one of the ways to realize unstressed syllables. More unstressed syllables ruesult in faster sppeecchhe
+
+                Research Questions:
+                    1. are there differences in the frequency of connected speech processes in read English speech produced by native English speakers an d L1 Chienses L2 English speakers
+                    2 . . .
+                
+                Methods
+                    Participants:
+                        44 ChL1 EnL2 from an Illinois University
+                        Mostly intermediate learners of English
+                    
+                    Materials and Procedure read the passage of Weinberger's speech accent archive
+                    one minute to look at th epassage before reading and read at their own pace. Their speech was recorded using Praat
+
+                    Features:
+                        Mean syllable duration
+                        Breakdown measures (number of silent pauses and filled pauses within a clause and between clauses)
+                        number of repetitions and correctionspause location, filled pauses, repetitions and corrections were identified and annotated manually on the text grid wbased on the waveform spectrogram information on Praate/ 
+
+                        connected speech processes:
+                            linking ask_her xiz_spoons_of
+                            deletion (ask'er)
+                            reduction (unreleased consonant, schwa)
+                
+                Results:
+                    l2 speech slower with more disfluencies
+                    linking, reduction, deletion are not highly correlated, no milticollinearity
+                    significant negative relationships between linking and mean sullable duration 
+                    significant negative relasitonship between reduction and mean sullable duration
+
+                    linking reduction and deletion not highly correlatedsignificant negative relationsihp between linking and mean syllable duration and mid clause silent pausessignificant . . .
+                    . . .
+
+                    linking and reduction explain 48 percent of variabance
+                    mdan syllable duration 21
+
+            "Eyebrow raising and Lexical Stress Perception in L2 Spanish (Sebastian Leal-Arenas & Amanda Huensch -- University of Pittsburgh):
+                Stress - relative emphasis in a syllable
+                    lexical - particular to a word
+
+                    en record vs record
+                    es yo hablo vs ella habl'o
+
+                    difficulties for English l2 : change in vowel quality also, not just stress
+                    perception and language proficience French/English-Spanish interface:
+                        learners less accuragte than Spanish monolinguals
+                        advanced learners are not better than betginners - inabliity to create phonological representations
+                        exposure: L2 learners are more accurate than French / English monolinguals
+                    Linguistic factors:
+                        position in sentence
+                        tense
+                        vowels
+
+                    Acoustic features are different in English / Spanish
+                        features outisde of acoustic domain
+                        articulatory movements of lips jaws and tongue
+                        upper part of head: head and eyebrow movements
+                        gap: results on l1 populations and prasal stress
+                        Gap: perception oin non germanic languages
+
+                    Experiment 1:
+                        RQ1 : to what extendt are participants capable of perceiving lexical stress w and wo ebebrow raising
+                                how does this relate to reaction times
+                        RQ2:
+                            to what extend to es the factors of position tense and vowel quality influence the perception of lexiacal stress accomapained by eyebrow raising and relcation times
+
+
+                    Ex2:
+                        . .. .
+
+                    Methods:
+                        60 uni students taking spanish language courses
+                            diverse proficiency
+                        
+                        tasks:
+                            sociolinguistic backtroupnd
+                            language proficiency test3 perception tasks
+                            feedback Survey
+
+                            (at own time and convenience viea qualtrics)
+
+                        Uaw mwmojia ro ewpewawnr dXIl mocwmwnr
+                        nARAKEEt text to speech to avoid pitch variations (Sierra 2018)
+                        adobe premier pro to merge audio and memoji
+
+                            watch and listen to the memoji utter a sentence and press the sentence you hear
+                            variables:
+                                eyebrow raising
+                                position
+                                stress
+
+                        Task 2 : match vs mismatch eyebrow raising
+
+
+                    Results RQ1:
+                        no eyebrow : .627 accuracy
+                        yes : .899 
+                        significant imrpveomvent
+
+                    Linguistic Factors:
+                        only significant variable was tense/present (reaction times not significant)
+
+                    rq3 cue weighting:
+                        only significant was when it was matched
+
+                    rq4: how participants learned these differences:
+                        23% said they wer note explicitly, and those who were were in a grammar way or in a tex
+                        80% noticed no patterns in memoji movement patterns
+                            but noticed the eyebrows moved, that the lips didint move much, some thought it moved more
+
+                    Discussion:
+                        extra linguistic factors can support perception
+
+                        Pedagogical implications
+                            improve perception training
+                            individual training or flipped classroom
+
+                        Future research:
+                            prolonged study / interventions
+                            compare l1 / l2 perception
+                            explicit training
+
+                    Quesitons:
+                        - did this cause them to rely too much on the nonlinguistic cue?
+                        did they not notice the eyebrow movement because they were too busy looking at the options to select
+
+        "Portuguese vowel contrasts are more precisely lexically encoded for learners with greater orthographic awareness" (Hunter Brakovec & Isabelle Darcy --Indiana University):
+            Lexical encoding of difficult L2 contrasts remains a mistery
+                have difficulty encodeing
+                    pallier etal 01
+                    cutler etal 06
+                even whenthey can perceive  
+                    darcy ea 13, daidone 20
+                orthography hh barios 21
+
+            Mixed effects of orthography
+                beneficial
+                    escudero 08 ; showalter hh 13
+                neutral
+                negative
+
+                studies don't use experienced
+
+            Portugueuese
+
+                phonemic distinction between close and open for front and back vowels
+
+                English learners have difficulty in perception and production
+                    despite mapping to separate english categories
+                    spelling may be a factor if they ignore accents
+
+                    circumflex indicates close, acute indicates open
+                    but unacceted is unpredictable and lexically based
+
+            RQs:
+                are learners aware of the role and position of accent marks in Portuguese
+                    metalinguistic accent marking task
+                        predict variation
+                are they able to perceive the sets of mid vowels
+                    phonological ax task
+                        predict they should be able to use L1 categories
+                do they use the accent mark information to encode vowel quality precisely
+                    lexical decision task
+                        predict: higher wawareness + knowledge of accent marks > higher accuracy
+
+            Method:
+                20 L1 and L+ BP speakers
+
+            AX 
+                word, babble word
+            Lexical Decision Task:
+                is this a word or not
+                    L1s scored well overall, but lowset in Target-Contast condition (changing across the vowel contrast)
+                    L2s scored decently high in all, but 20% !! in target contrast
+
+                    between groups, they score significantly (but only slightly) higher when  orthography is present with accent marks
+            Accent Marking and Metalinguistic Knowledge about accent marks task was performed by L+ speakers only
+                
+            Why are even the best learners bad at the lexical encodoing?
+
+            Teaching implications:
+                orthographic awareness helps lexical encoding
+                so there should be teaching in classroom
+                but it cant do anything
+
+            the role ofaccnent marks is small but shows a larger effect in those groups which have high awareness
+
+            "The effects of pronunciation instruction on L2 learner perception in Spanish: DOes instruction affect perception" (Heather M Offerman - University of Arkansas):
+                Based on a production study
+
+                Literature Review:
+                    Perception/Production:
+                        often assumed that perception precedes production
+
+                        zampini 98 
+                            found that learners were able to use short tmer memory to rememere production
+
+                        Sleech learning model flege 95
+                            longer an l2 eanrlnr is exposed to l1 the harder it becomes to get l2 categories
+                    
+                    Explicit instruction : use IPA instead of graphemes
+
+                        Lord 2010 Miller 2012
+
+                        repetitions and modeling yoshinda fukada 2014
+                        explicit corrective feedback 
+                            saito lyster 2012
+
+                        visual feedback to display visual represntation useing sound waves and spectrograms
+
+                            offerman olson 2016 olson 14 olson offerman 21
+
+                        combination instruction
+                            kartushina
+
+                    Target features:
+                        VOT and aspiration
+
+                Perceptua l stassk
+                    AxB
+
+
+                Research Question:
+                    Does pronunciationinstruction improve perception for discrimination skills?
+                    Does pronunciation instruction improve perceptual social category iassignation measured through a nativeness judgement task
+
+                Methods
+                    Participatmns
+                        45
+                        intermediate - 3rd semester spanish University
+                        L1 of EN, L2 of ES
+
+                        Grpushs
+                            Explicit instruction
+                            visual feedback
+                            cmbination instruction
+                            control
+
+                        Task 
+                            AxB
+
+                            nativeness rating:
+                                aspirated vs non-aspirated
+
+                        Pronunciation interventions
+                            EI
+                                IPA symbols to demonstrate differences
+                                also differences in place and manner of articulation
+                                exercises
+                            VF
+                                after pretest, took part in activity
+                                guided questions to analyze their own productions and native speaker productions
+                                    how does your spectrogram look different from those of a native speaker
+                            CI
+                                EI + VF, but with explicit description of why there are VF differences in the specrrogram
+
+                Results:
+                    Discrimination: no groups improved significantly
+                        They were all already at ceiling
+                    
+                    Nativeness judgement task   
+                        all three experimentla group improved
+                            but control group went down, so actually only cI group increasesd
+
+                Theoretical Implications:
+                    Noticing hypothesis:
+                        when a learners attention is drawn to a pseicic form, they are more likely to acquire it
+                        scmhmidt 90 92
+
+                    Learner modalities
+                        baran lucarz
+
+                Pedagogical implications
+                    no percetpual improvement, ut it is important to test other phonemic features
+                        it could be that they associated unaspirated [p] with [b]
+                            best 94 scobbie 06
+
+                Limitations and future research
+                    not large number of particiapngets
+                    
+                    Considered exploratory (huensch nagle 21
+                    
+                    delayed posttest saito plonsy 19
+                        but very few participated
+
+                Fiturue research:
+                    examine on vowesl?
+                    investigate on a variety of L2s
+
+        "Effects of awareness-raising activities on bottom-up processing of world Englishes pronunciation" (Katsuya Yokomoto - sophia university, Aki Tsunemoto, kansai university, Yui suzukida - . . .univeristy)
+            Importance of teaching different varieties of english
+                lingua franca
+                use of l2 users > use by L1
+
+            Pressing need for l2 users to enhance thier processing of varieties of english
+                for language educationto incorprate iunderstanding, 
+
+            Processing of accented english:
+                topdown : existing knowledge : association of contett and speech Theme
+                bottom up : 
+                    segmentation of connected speech, detecting segmental and superse   features
+
+                difference in lingusitic distance and familiatiyr with faeriety
+                    LD : bent bradlow 03 stibbard lee 06 orikasa 16 . . .
+                    familiiarity : adank 09, gass varonis 84 matuura 07, shin etal 21
+
+                1CLASSROOM INSTRUCTION should
+
+            lANGUAGE EDUCATION:
+                LIMITED NUMBERSS of studies have used dialugues between l2 users, wtched videso ie ted talks, or Reading articles about world Englishes
+                    Lee 12 oren 17 rajani na aythay sitthitikul 16
+
+                Guided awareness-raising activiteis might help?
+
+            RQ
+                whether and to what extent could guided awareness raising activites assist efl learners to process l2 speech accurately?
+
+            Method
+                parrticipants
+                    52 japanese students B1 english
+
+                    Pre/post tests
+                        dictation of ko, ch, in - accented english
+                        stimuli played 3 times with 20 sec interval
+
+                    pretest on all three 
+                    Treatment:
+                        w1 awareness raising activities on koren OR ono Sustatinbalbe development goal 1
+                        2 chinese OR sdg 2
+                        3 indian nOR sdg 3
+
+                        Two 100 minute classes, guided awareness-raising activiteis
+                            academic articles, phonological characteristics, short video clips, 
+                            discussing possible difficulties with bottum up processing at the end of the two Sessions
+
+                    Analysis:
+                        scores for correctly transcriped words
+
+                    Results:
+                        Significant improvement for all languages in experimental group ! ! !
+                        surprisingly also significant improvement to korean accented language for control group
+
+                    Positive impact of instruction!
+                        derwing 02 kissling 18
+                    Learning typical segmental and spereasegmental featrues raised awareness
+                        vandergrift baker 15
+                    increased familiarity with L2 english
+
+                    Korean and Hinese accented was better understood and improved than indian accented
+                        consistent with previous linguistic distance findings
+                            hashimoto 17 orikasa 16
+                        interlanguage speech intelligibility ?
+                            bent bradlow 03
+                        greater familiarity with ch/ko speech
+                            adank 09
+                    Control group became better at comprehending koreean accented speeck
+                        unknown why
+
+                    Implications
+                        teachers may intruduce activities in the classroom
+                        choose a variety of english that students will likely encounter
+                        read papers illustrating unique characteristics of the target language variety
+                        students discuss and predict what phonological characteristics may interefere with Communication
+                        watch a short clip to demonstrate the phonologyical characteristics of targert veraitey
+
+                Limitations and Future Directions:
+                    -included many activities, which were specifically helpful
+                    can students comprehend a longer stretch of utterance or interact with an L2 accented speaker ? OR only the short dictation task
+
+        "Effects of Peer Phonemic Drills on Edem Igbo Children's Pronnciation of English Words with Alveolar Lateral" (Ruth Ihedigbo & Evelyn Mbah):
+        "How do immigrants perceive each other's heritage language? Examining the perceptions of Canada- and Vietnam- born speakers in a dyadic conversation" (Thao-Nguyen Nina Le, Pvel Trofimovich, Kim McDonough & Masatoshi Sato):
+            . . .
+            Co-Ethnic Conflicts:
+                "I think my partner likes my heritage language skills"
+
+            Belonging Gap vs Heritage Language gap "Do they accept me into the ethnic community" vs "Do they like my heritage language skills"
+
+
+            RQ:
+                Is there a sence of belonging and/or a heritage language cap among canada-born and newcomer
+                . . .
+
+            23 pairings - encouraged to speak vietnamese as much as possible
+                introduced for 5 minutes
+                    asked about hobbies, travel, etc
+                interaction perception questionaire:
+                    how they feel about thier partner vs how they feel about me
+                return to discussion room to talk about challenges each person helped, advice for each other, bonding activity
+
+            Data Analysis:  
+                compare metaperception (what I think my partner thinks about me) against rating (what my partner thinks about me);
+                    after intro vs after activity
+                    introduction vs discussion
+                    heritage speaker vs newcomer
+
+            is there a sense of belonging or heritage language gap:
+                no interaction effects, only main
+                    NO BELONGING GAP
+                    HERITAGE LANGUAGE GAP
+                    RATINGS INCREASED FROM INTRO TO DISCUSSION
+
+            is choice of lenghuatge associated with metaperception?
+                Not for newcomers
+                but HL thought the more they used vietnamese, the more they thought the newcomers would accept them, intensified even more after discussion
+
+            Limitiations and Future directions:
+                small sample size
+                encouraging participants to speak vietnamese may have influenced their association
+                data collection in montreal where it was more politicized. COuld have been more neutralized in , say vancouver
+                only had one immigration/heritage background and only two levels, there could be more nuance
+                        
+        "Phonetic Training for novel category perception and orthographic learning: Relative gains of low- and high-variability for beginners of German" ()John H G Scott - University of Calgary Universtity of maryland , Sadi E Phillips - Indiana University Bloomington, Juan Z. J. Lim - Universit . . .:
+
+            Perspectives on the landscape:
+                category perception in l2
+                orthography in L2   
+                    what is the place of novel grapheme phoneme correspondencies
+                Perceptual Training
+                    input intervention aimed at warping the perceptual sympathetic
+                    hvpt sussenbach 23, thomson 18
+
+                    Very few studies compare high vs low Variability Phonetic Training
+            
+            This study
+                first l2+ german study of 
+                    orthographic learning, 
+                    lvpt vs hvpt
+                    naive prelearners vs novice l2 learners
+                    interaction of category
+                    Lisa sussenbach's thesis on aural vs aural +visual hvpt
+
+            Participants
+                Groups:
+                    HVPT - heard 4 voices total
+                    lvpt - heard multiple tokens from one voice
+                    control
+
+            Stage 1 background questionaire
+            stage 2 pretest spelling tests
+            Stage 3 training - nonword oddity w/ feedback
+                4hrs over 2 days
+                    1her cononants and 1hr vowels
+            Stage 4 Post test 1
+                5th voice
+                spelling test
+            Stage 5 post test 2
+                v1-v3 + v6
+                spelling test on new and unfamiliar words
+
+            Grapheme-Phoneme correspondencies
+            novel words were selected to match graphotactics
+
+            Spelling scores by Damerau-Levenshtein distance:
+                edit distance / # of letters in the larger of the output and target word
+
+            All learners improve spelling with familiar words
+            l- and h- vpt generalsize spelling to novel words
+            lvpt spells best ?
+            . . .
+
+            /u/ vs /y/ is better for pre-learners than L2+ (attention to phonetic detail)
+            lvpt performed better in short term, hvpt exceed Lateral
+            untrained group performes lower or on par with lvpt group post tests
+            spelling clearly improves with famililiar vocabulary
+            lvpt and hvpt groups generalize to novel words
+
+            Planned Analyses:
+                clean up outliers and trim improbably casse for impossible short reaction times
+
+                mixed effects
+                    consonant vs vowel condiionns
+
+                    familiar vs novel voices
+                    account for l2 french / l3 germann
+
+                
+
+                coding of D-L distance for specific target sounds within words
+                code for permissible alternative german Graphics
+                cross reference results with pre-test l1 spelling performance and self-reported reading disabilities
+                integrate oral oddity data and spelling data
+
+            
+            connections:
+                Theory:
+                    how are phonological and orthographic domains connected in l2+
+                    beginning l2 learners is hvpt too taxing? is lvpt abetter for early on
+                        Mitterer Mattys 17 Strange 11
+                    Instruction
+                        attention to perception and orthography, not just alphabets
+                        phonotactics for speech sounds and Graphics
+                    Equity
+                        l1 and previos l2s are important for both sounds and orthography
+                        how can we better serve l2+ learners with dyslexia or disgraphi
+
+            referenceS 
+                Hayes-Harb escudero 
+
+        "Exploring how production during perception trainin affects the perceptual learning of English /l/-/r/ by L1 Japanese Learners" (Ruri Ueda - The Australian National University):
+            Perceptual Training
+                Effects on perception
+                    helsp learn difficult l2 phonemes
+                        iverson evans 09 nishi kewley-port 07 lively 91
+                effects on production
+                    improves ability
+                        bradlow 97 99 shinohara iverson 18
+                    not effective 
+                        alinga garcia mora 09 hwang l33 . . .
+                    . . .
+            Production Training
+                Types:
+                    lecture style instructions
+                    asrvisual displaces
+                    waveform and spectrogram
+                Effects on Perception
+
+            Perception- and production mixed training
+                disrupted perceptual learning of thai tokens
+
+                no disruption but no extra benefit
+
+                    Thorin et al vs Baese Berk Samuel 16
+
+                Mixed findings due to need ?
+
+            
+            This study
+                investigate effects of production during perceptual training on l2 perceptual learning
+
+            RQ
+                does perceptual training using identification improve perception
+                . . .
+
+            Participants
+                L1 japanese
+                undergrad in japan , non -english majors
+
+                l-r target contrast
+
+                Groups
+                    production - first
+                    production - last
+                    perception -only
+
+                Identification Training
+                    perc_only: none
+                    prod-f : repeated a stimulus right after hearing it
+                    prod - l : produced after stimulus questionaire
+
+            Analysis
+                logistic mixed effects model for all stimuli:
+                    binary accuracy score, tiem, group, s. . .
+
+
+            Discrimination task result:
+                no significant interaction, main effect of time
+            Identification task results:
+                significant interaction between time and group
+                perc increased their score
+
+            rq1:
+                YES The perc only signivicantly improed their discrimination and identification scores
+                the learning was generalized to a new voice for identification but not to new words
+            rq2:
+                does production during perceptual training disrupt l2 phonemic perceptual learning
+                yes, perc improved identification significantly more than prod-first and prod-last groups
+
+                    This was a more difficult contrast (single-category assimilation vs category goodness) than thorin 18
+                However, although the prodfirst did not improve their identification accuracy, their discrimination score increased
+                    learners prior experience with the target language might alleviate disruption to perceptual learning
+                    disruption might have been alleviated in the current study
+
+        "Influence of abstract phonological process in the acquisition of languages" (. . .):
+        
+            RQ 
+                Do speakers whose L1 has a rule targeting a word final segment, do their learning diverge from learners whose l1 does not have such a rule?
+
+                Lexical representation - form stored in long term memory
+                    assume that ilexical representations consist of distinctive and nonpredictable features
+                    abstract rules applied to arrive at output phonetic form
+
+            Rules
+                Word final devoicing in German
+                    has been argued to be of spread glottis 
+                        iverson salmons 99 07 jessen ringen 02
+                Word final voiced stop sin spanish undergo lenition/spirantization
+                    become more continuant
+                    changes in duration and degree of openness 
+                    (also happens intervocalic)
+                English - no comparable phonological process
+
+
+            Challenges
+                orthography can interefere
+                    barrios hh 20
+
+                deneutralization
+                    port crawford 89 p280
+                
+                can leat to accentedness/
+
+            CURRENT STUDY:
+                focus on processes targeting wordfinal segments,
+                    specifically word final /d/
+
+                participants    L1      L2
+                                De      es
+                                es      de
+                                en      es
+                                en      de
+
+                Most L1 german speakers are Multilingualism
+
+            Task:
+                target word repetition:
+                    listen to a sentence in the target language and anser a quesstion requireing about the target word, which was at the end of the sentence
+                    use real words , with recordings done by an L1 speaker
+            
+                nonce word repetition:
+                    following phonotactic restirction of a language , same set up as task 1
+
+            analysis:
+                glottal pulsing, aspiration
+                impressionistic judgements
+                0 elision; q fricative/aproxemant 2 voiceless stop 3 voiced stop
+
+            results
+                not super clear (only 3 in each group`)
+
+                slight tendency that precence of rules inl1 can have a positive effect on the learner
+
+                    es-de
+                        84.4% rule application 
+
+                    when was rule not applied:
+                        l1 spanish to lenite or elide, english to voice
+
+                        lq german more consistnent in nonce word task, l1 more consistent application of the rule
+
+            condlucionss
+                tendency for learners to apply phonolocigal rules of l2 if they ahve an l1 reule targeting the same segment
+                not clear when it comes to linguistice trasnfer if there is a heirarchy that infleces a learners awareness
+
+            future work:
+                do other languages of the particiapnt impact the acquisition of phonological rules?
+
+        
+        "Monitoring students' behavior during autonomous Automatic Speech Recognition based pronunciation practice" (Solene Inceoglu - Australian National University, Wen-Hsin Kelly Chen - National Central University Taiwan, Hyojung Lim, Kwangwoon University South Korea):
+            CALL and ASR
+                provide personalized instuction kessler 18
+                autonomous practice in and out the classroom reinders 18
+                asr has given opprtunities for self regulated oral practice cucchiarini 09
+
+                Mixed results 
+                    mixed out come may be due to learners' l1, l2 proficiency, learning setting (esl v efl) . . .
+
+                positive perceptions
+                    autonomous practice mccrocklin 15
+                    immediate feedback inceoglu 22 liakin 18
+                    sense of iteliligibility
+
+                frustation
+                    slow,
+                    technical difficulties
+                    mistrust
+
+            CALL
+                Limitations
+                    ability to not see what learners actually do fisher 07 12
+
+                    tracking data
+
+                        screen recording w or wo audio, w eyetracking
+                            focus on learners attiontion while they are engaged in a learning activite or think aloud protocols to explore metacognitive processes
+                            dfifficulties associated with recording and subsequently storing recordings
+                    
+
+                        what monitoringr eveals
+                            they do not alwyas use call programs as teachers researchers expect chun 13 fisher 12 hwu 03
+
+                            large variability in startegey organization, dilleicence
+
+                            implications for evaluating program effectiveness and learner autonomy
+        
+            RESEARCH questions:
+                what are types and proporions of pronunciations pracitce epicosed during autonomous asr based training?
+                How is learners' behavior related to self reported motimvation and pronunciation attitudes
+
+            Method:
+                46 taiwanese efl learners early
+                6 sessions of asr based dictation practice as homework
+                    short reading passage
+                    six sort sentences
+                    individual words targeting i~I 3~ae
+                    submit recording, also questionaires before and after
+
+                coding
+                    learners production of target word 
+                        -> Missing
+                        -> technical issues
+                        -> correct (might be that a listener would have heard something else)
+                        -> incorrect asr does not recognize target word
+                            -> ignore (learner disregards asr output moves to next word)
+                            -> success (learner successfully produces the target word)
+                            -> fail (user tries again, but never accomplishes the success)
+                
+                results and discussion
+                    correct : 20 slight turpulent improvemtn20 - 25, max 30 min 15
+                    incorrect_ignore : decrease over sessions20 - 10 
+                    incorrect sugccess : 22-26 , nearly familiatiyr
+                    incorrect_fail : turbluent flat 30 max 40 min 25
+                    tech issue: turpulent flat low 5 max 10 min 0
+                    missing flat low 5
+
+                    The proportion of cases where learners subsequent attempts were unsuccessful was always greater than the proportion where they ended up successful
+
+
+                    30 learners disregarded at least one, 5 learners disregarded all 
+
+
+                    Successful after 4.9 attempts on Average 5.9
+                    still unsuccessful after on average 6.4
+
+                    higher pre pronunciation attitude were associated with lower percentages of ignored episodes !
+                            higher percentages of corrected episodes
+                            higher number of attempts to correct an intially unsuccesful trasncriptions
+
+                    pre ideal l2 self scores were associated with lower numbers of attempts that led to successful transfrictosin
+                    post out to seflf scores linkned to higher numbers of attemptes that remained ultimately unsuccessful
+
+            limitations:
+                screen recordings : huge volume of information not analyzed
+                    potential for shedding light on learners engagement
+
+                    different strategies emplyed by learners attempting to produce the target word
+                        i.e. listen to a model or online dictionary or give each other feedback in groups
+                    affective engagement
+                        feelings and emotions about various aspects of l2 learning process pawlak kruk 22 p43
+
+            future studies:
+                could emply stimulated recalls:
+                    why did you skip? why did you try 42 times?
+                    did you disagree with asr and know yours is correct
+                probe further into motivation:
+
+
+            questions:
+                maybe asr will get to a point where it can learn and update from rejected
+                in this particular study, there was no change in production , but for other ones ist does
+
+                defense lnaguage institue asr gives phoneme output if it can't map the utterance to a known word
+
+Teaching Tips:
+    Using ChatGPT
+        use asr + chatgpt + text 2 speech
+        generate practice activities
+        generate long lists of minimal pairs
+        practice to define terms for exams
+
+    Engaging Graduate Students in Prosody Practice with Facutly Interviews (Ana Modlawa-Shetty - Yale)
+        
+        Teaching Prosuty with Faculty Interviews Rationsale:
+            create meaning ful opportunities for students tho share/discuss research
+            finding good modles can be challenging (3-minute thesis, TED)
+            ! ! ! MacMillar Report - open source one-on-one interview show featuring facutly discussing their research
+
+            Listen to host:
+                listen to prof. response:
+                    how do they start?
+                    what do they say next?
+                    divide her response into smaller subsections based on the purpose they serve.
+                        research topic, previous researchthe gapresearch topic more specifically
+            
+                like to see the relevance:
+
+                structure / vocabulary:
+                    we : do all instances have the same functional
+                    highlight any phrases you like or would like to use when presenting:
+
+                mark pauses and thought groups, focus stress, etc.
+
+                look at pitch patterns during transitions. 
+
+                shadowing
+
+    "Raising awareness of new information placemtn:
+        english speaksers use prominence and voice pitch to acall attention to most important information:
+            this can shift, most of the time it is at the the end.
+
+            even within words i.e.  "known and 'un known"
+
+        improtant for percieving what somebody intends to communicative
+
+
+        New v old invormation
+
+        exercises on yellow papers
+
+        youglish
+            collection of youtube videos that is searchable by words and phrases
+        
+
+
+    "Using autogenerated captions for feedback on segmental pronunciation"
+        asr-based pronunciatino activities:
+            most are synchronous with dictiaon method
+                drawbacks:
+                    frustration,
+                    lack of authenticity as students slow down or overenunciate
+            !ASYNCHRONOUS
+                read a dialogue and record, then upload it to Kaltura media sympathetic
+
+                chack the auto generated captions by going to caption & enrigh -> closed captions generator
+
+                think about why they were errores
+
+            Benefits for students:
+                motivation (less frustrating)
+                on other assignments, they will voluntarily use it even if they are not required to
+
+                2. self monitoring (so stil upside)
+
+            benefit for instructor:
+                window into their meta cognition.
+                    i.e. student picked up that it was a stress issue instead of a segmental issue
+
+            limitations:
+                error in the captioning software
+                false negative
+
+                errors were more frequent with proper nouns
+                and word final consonant clusets
+
+                homophones
+
+                background noise affects the quality
+
+                kaltura captions gives a confidence level for the captions, but make it clear that these are not a rating of the pronunciationinstruction
+
+    "Podcasting projects for incontext phonetics learning
+        original recording and then respond to a classmate
+
+
+        task:
+            read paragraph
+            describe picture
+            varous other activities
+
+        tips/ways to edit the project
+            control on spanish class
+            experimental condition nin phonetics class.
+
+            phonetics class liked it more
+
+            change the groups? maybe
+
+            now it is into their own podcasting class 
+
+            allyssa martoccio @ ucdenver education
+
+    "Using English - Japanese congnates to enhanse Japanese pronunciation of segments, long-vowels, consonants, phonotactics, pitch accent, and phonological processes in Japanese as an additional language
+
+        Why congnates
+            lowers cognitive load enambe learners to focus on pronunciation 
+                segments, 
+                supersegmentals
+                    more timing, special moras, semgent lenge pitch accetn . . .
+                phonotactics
+                processes 
+                . . .
+        
+        teaching framework:
+            cognates can be easily integreated into pronuncation focused task based learning
+
+        pitch accent generally falls on the third to last, not necesarily in the same place where
+
+        special moras
+            long vowels
+            geminates
+            moraic nasal
+            palatalized sounds
+            devoiced vowels
+
+    "Using Audiovisual Materials to Teach Pronunciation" (Ines Martin - United States Naval Academy, Carolin Jolitz - The Pennsylvania State)
+        captioned video
+            visualize the speech stream and help learners identify individuaul words
+                charles trenkic 2015
+
+            simultaneous can strengtthen link
+                wisniewska mora 20
+
+        expicit pronunciation instruction - video viewing - controlled practice -communicative pracitce
+
+        explicit pronunciation  
+            why is this so difficult to pronounces
+            what do learners need to pay close attention to
+            why is it important
+
+        video viewing
+            suggest split into two parts
+            1. focus on content, comprehension questions, etc
+            2. focus on pronunciation
+
+            give word bank to see what words to look for
+
+            ** Deutsche Welle learngerman
+
+        Controlled Practice Phase
+            use the resources to focus on the pronuncation
+            give them the word bank again or the entire transcript of the video
+
+        Communicateive practice
+            now the focus is no longer just on pronunciation, but rather to use them in Communication
+
+            roleplay
+                continue the one from video
+
+        
+
+        German: Nicos Weg learngerman.dw.com/de/nicos-weg/c-36519687
+        edpuzzle.com/discover
+        go.playposit.com

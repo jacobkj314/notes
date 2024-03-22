@@ -1,0 +1,159 @@
+Lion: adversarial distillation of proprietary large language models
+https://arxiv.org/abs/2305.12870
+
+
+motivation:
+    current most powerful llms are hard to deploy and proprietary
+
+loop:
+    let teacher model provide feedback to student model
+
+harder to do without access to teacher model params
+use in-context learning
+
+Use Generator model to generate new queries, implicit curriculum learning
+
+
+
+
+
+
+
+
+
+
+EpiK eval - evaluating LLMs as epistemic models
+
+LLMs b o f cscale
+
+issues not solved by scale:
+    alignment
+    continu al learning
+    hallucination
+
+    *** knowledge consolidation ***
+
+what is knowledge consolidation?
+
+
+train on stories, one model get parts, one gets whole story in a row
+!* reread this one
+
+
+
+
+
+
+
+
+
+To know our future we must know our past: contextualizeing NLP paradigm shifts
+    clara na
+
+qualitiative sduty of reserachers 
+
+47% of papers in 2019 cited BERT
+
+"exploit-explore" patterns
+
+new era of benchmarking focusing on ethics, interpretability
+
+
+"software lotteris"
+
+
+
+
+
+
+
+
+
+"Large language mdoels: th e need for nuance in current debates . . . " *! reread
+
+
+
+    Bram van Dijk
+
+analysis of current disputes of llms and their implications for human cognition and language
+positioning of a more philosophical pragmatic 
+
+
+Disputes:
+    LLMS are stochastic parrots
+        technically not incorrect
+        overlooks nuance in ways llms learn to represent input
+            can represent input heirarchincally despite not boing explicitly trained to do so
+            Abdou etal 2021 color space represntaionts
+
+    LLms can master language but not thought
+        people with aphasia can compose music, solve puzzles, etc
+        we don't know how to distinguish language from thought ability in humans
+
+        speaker proposes to suspent judgement on whether llms have thought
+
+    language acquisition in llms cannot imnform human language acquisiton
+        should see llms as domaint general and weakly biased distributional learners
+            can show which phenomena are in perinciple learnable
+
+        "if an llm can learn a phenomenon, then we can argue that in princible there is no bias needed to learn that phenomenon"
+
+
+
+A Pragmatic Perspective on Understanding (philosophical)
+
+    llms have no real/true/actual understanding of human langauge and intentionality
+
+    "chinese room" thought experiments
+
+
+    we don't strictly speaking know that other peple have internal mental states
+
+    IT HELSP US PREDICT BEHAVIOR
+    and abstact away from physical correltes
+
+    We can tattribute mental states to LLM  in a prgagmateic sense
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FreeAL: Towards Human-Free Active Learning In the era of lLSms ! could be relevant
+
+    using LLM and SmallLM
+
+
+
+
+
+
+
+
+
+
+
+LLLMS onlhy pass primary school exams in indonesia: a comprehensive test on indommlu
+
+English Centric Benshmarks
+
+indommlu 
+    not translation of english mmlu
+    vased on indonesian education standards
+
+    hired 7 professional teachers (from 77 applicants)
+    1hr workshop
+    1 month manual scsrabping
+
+GPT-3.5 scores best but not outsatandging
+mT0-xxl scores best on local language category (a hair higher than gpt3.5)
+

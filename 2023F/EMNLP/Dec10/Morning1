@@ -1,0 +1,175 @@
+Speech and Multimodality
+
+
+A video is worth 4096 tokens: verbalize videos to understnad them in zero shot
+    aanisha Bhattacharyya
+
+
+motivation
+    video understanding is complex, perfomance is not up to deployment standartds
+    lack of video understanding datsets
+
+gel the gap using lnaguge 
+
+Pipeline:
+    extract metadata
+    use ocr to extract text from screenshots
+    use asr 
+    pass to LLM to generate story
+    pass story to various classifiers
+
+    vision:
+        use blip to caption image and detect objects
+        ocr to get text
+    asr:
+        transcription
+
+    LLM template
+
+Benchmarks 
+    video story dataset (li etal 2020) - videos of common complex events with corresponding annotated stories
+    long video understnading (wu and Krahenbuhl 2021) - benchmark of 9 diverse tasks for long video understanding
+    holistic video understanding (diba etal 2020)
+    release persuasion strategy dtaset
+
+
+
+
+
+
+
+
+
+
+Balance Act: mitigating hubness in cross-modla retrieval with query and gallery banks
+    yimu wang
+
+hubness:
+    when "hubs" emerge: certain datapoints that are frequently the enext-enightbor to many instances
+
+
+previous methods (is, dis)
+
+rqs:
+do hubs exhibit similarity with gallery data? can we usde it to identify hubs
+. . .
+how to use it
+
+
+DBnorm (dual bank norm)
+    construct dual banks
+    calculate smilarity beteen query and gallery
+    normalize similarity based on banks with dualis and dualdis
+
+    duais:
+        divide similarities by similarity between banks and gallery
+    dualdis:
+        renormalize the gallery that has a very high rarnk  with banks
+
+experimantal settigsd:
+    datasets:
+        msrvtt msvd activitynet didemno
+
+
+
+
+
+
+
+
+
+
+
+Three stream based multipleval contrsativ learning for text-vido extractionS
+
+EVANT extraction:
+    print endities and 
+
+*! I should rewatch this one 
+
+
+
+
+
+
+
+
+
+
+Reading Order Matters: infromation extraction from visually rich documents by token path predition
+    chong zhang
+
+
+outputs of ocr systems for structure page layouts may not correspond to a helpful reading order
+
+ovrview:
+    labeling    labeled entities as 
+    !* I didn't understand this part
+
+cost is 1.5x previous methods
+
+
+
+
+
+
+
+
+
+
+multiturn cleanup: a benchmark for multi turn spoken conversational transcript clearnup
+    hua shen
+
+compared with written text, spoken language contains extra irregularities
+disfluency detection methods to improve
+but these are focused on single tuern transcriptions
+    eg. repetitions at the end of one turn to the beginning of the same interlocutor's next turn
+
+lack of 
+    task definition + analyisi
+    no datasets
+    modeling + eval benchmakrs
+
+definiition:
+    remove sources of noise from single turn disfluencies  and cross-turn irregularities
+    five cateogires:
+        acknolwedgement + confirmation
+        (4other)
+    fout step data labeling schema to label cleanups and cateogies for mturkers
+
+
+two stage model pipeline:
+    train single-turn detector with traditional disfluency dataset
+    train cross-turn with new dataset
+combined model pipeline:
+    combine both datasets
+
+combined model > two stage > baseline (traditional disfluency model for 1 speaker)
+
+
+
+
+
+
+
+
+
+
+
+Large Language Models and Multimodal retrieval for visual word sense disambiguation
+    maria lymperiaiou
+
+Visual wordd sense disambiguoation vwsd: retrieve most appropriate image among 10 candiates for a given phrase
+
+leveage llms as kbs 
+
+rephrase as unimodal task (text to text or image to imatge
+)
+
+baslien:
+    Vistion Langaugeplace images and text in joing embedding space
+
+llm based phrasea enhancement
+
+image-to-imtage and text-to-imtage retrieval scores were not satisfactory
+    some information loss in crossing modalities

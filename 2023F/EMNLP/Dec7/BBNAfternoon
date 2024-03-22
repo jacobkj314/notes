@@ -1,0 +1,265 @@
+Knowledge-grounded Natural Language Reccomendation Explanation
+    Anthony Colas
+
+Can we leverage knowledge graphs to provide fact-grounded natural language expanations for reccomendations?
+    current work is not fact grounded or using knowledge graphs
+
+    Generate User-Item Graph:
+        User u (purchase history)
+        Item v (item KG)
+
+        Linearize into tokens to ask to model
+
+    Encode User-Item graph
+        Global Attention
+        And User-Item attention using mask
+            Mask is based on the topology of the graph !!! This is a really cool idea
+
+    Model Rating Prediction
+        separate the user and the item using different masks
+
+    Joint learning reccomendation and explanation
+        Weigh Explanation loss more 
+
+    Review Datasets augmented with KGs
+        lots of datasets on KGs and lots of datasets with reviews, but need to combine them to focus on fact-grounded explanations
+
+    Eval
+        NLG Metrics Bleu rouge
+        Entity Coverage : want all entities from item KG to be mentioned in NLG explanation
+    Results:
+
+
+
+
+
+
+
+
+
+
+On Quick Kisses and How to Make them Count: A study on Event Construal in Light Verb Constructions with BERT
+    Emmanuele Chersoni
+
+Temporality of event representation
+    perceived duration is influenced by grammatical cues in te message
+
+Atomic vs non-atomic
+    can we divide into subunits that count as the same event
+
+    Kissed : can be multiple individual kisses
+    spoke : only one event, even if they stopped 
+
+How do grammatical cues in the linguistic description of an event affect the representation
+    _ kissed _ vs _ gave a kiss to _
+
+
+Stimuli:
+
+Hypotheses
+    shortening effect of light verb construcition
+    like mass nouns, durative events undergo meaning shift in count syntax
+
+Asked participants to estimate how long the event took in each condition, also asked to rate similarity of events
+
+resuls;
+    consistent shortening effect of light verb
+    durrative mass events shorter, but not significant
+
+    similarity:     
+
+Do BERT vectors encode linguistic information about duration an  d similarity
+
+
+Semantic projections (grand etal 2022)
+    take word embeddings along a property to make a prototype vector
+        project embeddings onto feature line
+        found to predict human judgemnets of descriptions
+
+    Used this approach to make a duration vector
+
+Sampled 40 sentences
+    took vector of transitive verb or of nominals in light verb constructions
+
+significant effects for construction and construction x eevent catoegyrery
+
+Negative result for semantic similarity
+
+
+Results:
+    light verb -> shortening effect
+        -> bert encodes duration
+
+    no significant effect in difference between transitive verbs and light verb constructions
+
+
+
+
+
+
+
+
+
+Rigorously assessing natural lnaguage explanations of neurons
+    Jing Huang
+
+How do we know if it is faithful?
+
+two creteria:
+    observational: a neuron a activates on all and only input strings that refer to a concept picked by E
+        S_E : the set of strings that describe the abstract entity refereed by E
+        A_a : the set of strings that the neuron activates on 
+
+        Metrics:
+            Precision: |Intersection| / |S_E|
+            Recall:    |Intersection| / |S_a|
+
+        Onllyevaluates whether a concept is encoded, as opoposed to used
+
+    
+
+    interfventional: A neuron a is causally active representation
+
+        to evaluate:
+            "interchange intervention"
+                change the input, but replace the activation with the activation for the proposal
+                    Input: "1 + 54" -> "43" (because you replace the activation of the particular neuron with the activation for "42")
+
+Evaluation:
+    evaluate 300 highly confident explanations of gpt2 neurons by gpt4
+
+    observational mode results;
+        P 0,64 R 0.5 F1 0.56
+
+
+    Interventional mode:
+        little to no causal efficacy, same as random baseline
+
+Is natural language a good medium of explanation?
+    pros: accessible and expressive
+    cons: ambiguous, bague, context dependent
+        substantial problems if we want explanation to guide technical decision making
+            QA: maybe not though, we do this with people all the time
+
+Is neuron a good unit of analyissi?
+    individual neurans sometimes encode multiple concepts (superposition)
+
+
+
+
+
+
+
+
+
+Memory Injections: Correcting Multi-Hop Reasoning Failures During Inference in Transformer-Based Language Models
+    Masi Sakarvadia
+
+Problem: LLMs struggle to reason
+    "the largest coral reef is off the coast of " -> "the phlillipines" X
+    "the larges coral reef is names" -> "the great barriar reef"
+    "the great  barrier reef is off the coast of" -> "australia"
+
+breaking multihop question into several prompts can result in better results
+
+HAND datasets
+
+Encode the memory and use transpose of unembedding matrix  to inject this 
+
+Result:
+    0.047 -> 0.136 (very )
+    Language models fail to recall intermediate entites
+
+What should be the magnitude of the injection?
+What layer should be the injection?
+
+    For different models and datasets, different ideal locations for injection
+
+What should be injected:
+    curated injections perform better than all automated/random baselines
+
+
+
+Future work:
+    automating memory selections from external knowledge sources
+    reverse memory injections for forgetting
+        could be used for alignment etc
+    expanding to other models
+
+
+QA:
+    could this just be because the memory is semantically related to the expected answre?
+        injecting "Koala" instead of "greate barrier reef" also increases australia
+
+
+
+
+
+
+
+
+
+
+NPIs Aren’t Exactly Easy: Variation in Licensing across Large Language Models
+    William Palmer
+
+LM performans on NPI 
+    has been show that LLMs struggle to acquire
+
+What factors of a model determine how well it is able to learn the distribution?
+What makes some NPIs harder to learn than others?
+
+
+Dataset:
+    broad classes of NPIs and liscencing contexts
+
+Extract probabliity of each NPI at each positions
+
+Predictors:
+    #params (significant impact bigger -> better)
+    #contexts liscencing an NPI (more -> better)
+    occurence freqency
+
+Use one NPI as baseliene and all others as predcitctiors, use this to create Hasse Diagram
+
+
+
+
+
+
+
+
+
+
+Identifying and Adapting Transformer-Components Responsible for Gender Bias in an English Language Model
+    Oskar van der Wal
+
+proxy of gendered pronouns + occupations
+
+Can we identify indivicual components in the model that are responsible for the bias we observe?
+Can we use that to do targeted interventions?
+
+
+Three methods for identifiation:
+    causal mediation analysis
+        swap the activations to counterfactual 
+        (top-k strtegy ingroes interaction)
+
+    cirguit discovery:
+        minimal subgraph that performs a gien task
+        Used ACDC library for this 
+
+    DiffMask+
+        learn  a static mask over all model components to indicate which are not important for the behavior
+        mainly focus on attention heads in gpt2-small
+
+Find substantial overlap between all three methods
+
+Attention heads mainly in last 4 layers of the model
+
+Can we use this to do targeted interventions?
+
+    Finetune gpt2 on a dataset for reducing gender bias
+    only update subset of the components
+
+Different results on each bias benchmark    

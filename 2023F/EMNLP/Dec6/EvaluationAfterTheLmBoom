@@ -1,0 +1,98 @@
+Recent History
+    Used to be
+        Had one task
+
+    IID doesn't hold!
+
+    multinli
+    sentence to vector models on NLI abilities
+        asked if there is an architecture that is better for nli
+
+Note: a model generalizes TO something
+    it is incomplete without including what it generalizes to
+
+    Pretrain-Finetune Paradigm
+        Pretrain on NLI or MLM/LM etc. 
+        Finetune on Downstream Tasks
+
+Today
+
+    Training data is getting too large to investigate for test-set leakages
+    specific purpose test datasets are saturating -> null hypothesis has reversed
+    rise in open ended prompt based red-teaming eval
+    emphasis on "transfer" has morphed into emphasis on "general purpose"
+    "general purpose" models require broader eval than specifc purpose (but what eval?)
+    Evaluation framed as discovery of capabilities
+    numerous tests performed without    motivation or validation
+    evaluation marked by showmanship
+
+    IID assumption is increasingly untenable, so it just gets ignored
+    assuption of held out gets ignored
+    axis of transfer is increasingly implicit/hard to describe (we cant distinguish rote memorization from generalization)
+        what is it generalizing too
+    Transition to car-salesman mode of evaluation
+
+Epistemelogical basis of evaluation is being replaced by showmanship
+
+
+Fallacies in Benchmarking
+
+    eval preliminaries
+        step 1 : come up with a "capability a" that we care about
+            usually commercially useful or cognitively important (i.e., humans need or want capability a)
+        step 2 : create a test A for capability A
+            argue it is contstruct valid
+                if humans pass test a, the test can be passed
+                iid assumptions indicate that test a is passable in pricnibaple
+                should argue that test set is high quality
+                should operationalize capability in a way that is theoretically sound
+        step 3 : test the model on test a
+            the test can only tell us that it lacks capability a
+            model x passes test a is compatible, but this is not proof
+                (either it has capability a, or the model cheated somehow) - spurious correlation
+    fallacies:
+        dataset saturation / cumulative improvement
+            "test a was saturated in 2018, so all 2018 models must have capability a, so all newer models must also have capability a"
+
+            -models passing test doesn't prove it has that capability
+            -we cant assume it is cumulative and strictly ordered
+            "How is ChatGPT 's Behavior Changing over time
+
+            (There are still reasons why we might want to deprecate datasets - data leakage, superseded by other test )
+                BUT NEED TO ARGUE FOR THIS
+        "All evaluations suck so anything goes"
+        "Ignore tricky tests"
+            "Models pass A-Y, not Z, but so what"
+            Can't assume test Z's accuracy will be similar to those of A-Y unless we can argue the ability is related to A-Y
+        "More Evaluation is always better"
+            "we don't know which are best, so we will just take as many as we have and average their results or something"
+            Gish gallop rhetorical technique of overwhelming your interlocutor without 
+
+Summary:
+    with increased pretraining, iid and held out untenable
+    test sets increasing - risk of gish gallop, increaising red teaming
+    movement from specific abilities+transfer learning -> general purpose
+    fallacious evaluation practicess
+
+
+THINGS WE CAN DO:
+    hard to evaluate general purpose models -> devise well motivated task taxonomy
+    dtasets are saturating -> more highquality, valid datasets
+    fallacies -> don't commit them, or point them out
+    training data is too big -> keep investigating anyway
+    too many evaluations what does it all mean? -> meta evaluation
+
+Standard test set lifecycle:
+    define capability
+    develop test for capability
+    test model 
+    issues found with test, or test begins to saturate
+    determine what is wrong with the test and find what it tells you abut the capability and or the models
+
+Despite best effots no test is perfect
+
+
+github.com/huggingface/that_is_good_data
+
+    some model errors come from dataset issues
+    

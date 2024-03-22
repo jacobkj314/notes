@@ -1,0 +1,159 @@
+From Mechanistic Interpretability to Mechanistic Reasoning
+    Antoine Bosselut
+
+Can we design models that represent and reason about knowledge as humans do?
+
+Machines that understand humans
+    It's going to snow.
+    It was on TV.
+    I'll have to wake up 30 minutes earlier
+
+    Humans can understnad these
+        must infill missing context
+        rely on shared inferernces 
+        reason about commonsense knowledge
+
+How do humans represent knowledge?
+    we don't really know
+
+    semantic memory
+        -encodes knowledge and facts
+        -different from episodic memory (events/experiences)
+        -both are declarative memory in hippocampus
+
+    reconstructive
+        -no single location where its stored
+        -retrieveing memory depends on constructive process across many modules
+
+        Henry molaison
+
+    !Knowledge should not be an access action, rather a constructive process
+        retrieve and reformulate a memory from before
+
+This is not how we've formulated it until now
+
+Expressions of Knowledge
+    Petroni etal 2019
+    treat LM as KB
+
+    probing models also treat LM as encoding knowledge in one "place"
+
+Shortcomings:
+    Prompting - can the model directly express knowledge
+    Probing - can the knowledge be extracted from the modle
+    Causal interventions and model edits - can we modify the models . . . 
+
+
+How do humans reason about knowledge?
+    we don't know
+
+    Idea that reasoning is coupled with explanation and justification
+        i.e. to justify our intuitive inferences or evaluate others' arguments
+
+    Piagets theory of cognitive development
+        Assimiliation - fit observations into existing world model
+        Accomodation - alter world model to accomodate experiences
+
+        Reason requires assimilation and accomodation
+
+How do lms reason?
+    we don't know
+
+    chain of thought?
+        PURELY ASSIMILATIVE
+            fixed world model is encoded by parameters
+
+CRoW: 
+    Benchmarking    Commonsense Reasoning in REal-world taska
+
+
+Discovering Knowledge-critical subnetworks in pretraind lms
+    how dowe . . . .
+
+    shortcomings 
+
+    Knowledge Critical subnewtwrok
+        subnetwork is critical for representing target knowledge if
+            when the subnetwork is removed
+                the knowledge is removed
+                the model maintains other behaviors (maintenance)
+
+    How to find a subnetwork?
+
+        Differentiable weight masking
+
+        mask value associated with each weight, that is multiplied by the weight in the forward pass
+        end up removing from the system all the weights that are masked
+            Bengio etal 2013
+
+        freeze actual parameters at training time
+
+        loss:
+            1. suppression lam_1 * KL(uniform distribution || remaining model distribution)
+            2. maintentance lam_2,3 * KL(original model distribution, remaining model distrubtion)
+            3. sparsity regularization lam_4     * sum of m_,
+
+Datasets:
+    TargetKG    
+
+
+Can we discovere knowledge critical subnetworks
+    yes, even across various model sizes
+        extends to paraphrases of expressions of knowledge
+    
+
+DeltaPPL - difference of perplexity after removing subnetwork
+
+Suppression - DeltaPPL should be very high
+Maintentacne - DeltaPPL should be very low
+
+compare against random subnetwork
+
+
+Does removing critical subnetworks affect downstream transfer?
+    yes
+
+models struggle with examples requiring knowledge supressed by removing the critical subnetwork
+
+
+
+Using this to explain Reasoning  . .  
+RECKONING: Reasoning through dynamic knowlege decoding
+    should inlcude assimilation and accomodation
+
+Incontext reasoning is still purely assimilative
+
+How do we design reasoning systems that alter internal model mechanisms?
+
+real-world exrpessions of knowledge contina noise
+llms are sensitive to irrelevant information
+contextual information may disagree with parametric knowledge
+
+RECKONING approach:
+    when argumentsare provided to the system, encode them in the model
+
+
+Model-agnostic metal learning (maml)
+
+    adapted this
+
+
+Evaluation:
+    CLUTTR-SG family tree, Proofwriter datasets
+
+Can we reason by dynamically inputting knowledge?
+    yes
+
+    reckoning perfomrs comparably with finetuning on proofwriter and outperforms it on CLUTRR-SG
+    perfomracne gain is higher in longer hops
+    more robust against more distractors
+
+
+Correlation between number of inner loop steps and # of hops
+
+Takeawys:
+    to create reobust systems, tie the mechanics back to cognitive preocesses: update teh world model to add more informationS
+
+
+
+Breaking th elanguage barirer: improving cross .  . .

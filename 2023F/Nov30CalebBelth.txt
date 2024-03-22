@@ -1,0 +1,137 @@
+A Learning-Based Perspective on Abstract Representations (Caleb Belth):
+
+
+TODO:
+	read Belth 2023 SCiL paper 
+
+
+
+Rules and Representations
+
+[b3d] 'bed' [b3d^n] 'beds'
+but
+[p3t] 'cap' [p3t^n] 'caps
+
+so underlying category, with phonological rule for word-final devoicing
+
+How to learn this meaning when /d/ can be [d] or [t]
+
+
+
+ex
+
+[dal lar], [jer ler], [buz lar], [s|oe|z ler]
+could say AR of plural is /lar/
+
+
+underlying Representations have been criticized as being wrong, redundant, indeterminate, ,insufficient, uninteresting (Hyman 2018 - trying to do justice to arguments against URs)
+ex metal/medal BUT meTallic and meDallion (could mean underlying d/t)
+
+resign re=sign but resignation, compare sign/signal
+"As part of the abstractness debate of the 60s 70s, the question posed by lightner 1971 was where to stop
+Hyman (2018): abstract URs are justified IF:
+    -are not arbitrarily abstract
+    -allow for parsimonious characterization of phenomena
+    -do not lead to unintended side effects
+    -capture speakers productive knowledge of phenomena
+
+If acquisition is about discovering a target grammar, then
+    abstract represenations are hidden structures that present an acquisition challenge
+If acquisition is about becoming an effective language user, then   abstract represntations capture generalizations which can help a child deal with the sparsity of their input
+(Today we look at this second perspective)
+
+"How the input matters"
+the character of the input ought to influence learner's represntations, but we need a theory of How
+"Whence the underlying fofrms"
+    other models assume urs and need better justification for them 
+
+Some relevant empirical conditions of acquisition
+proposed model
+two case studies: systemic vowel harmony in turkish leads model to abstraction; generalization from surface faithful forms sufficient for dutch nouns
+
+
+Children know much of their morphophonology by 3
+They know a few hundred to a thousand words at this age
+Most roots will only have a subset of forms attested in the input (Zipfian distribution)
+
+
+
+The Learning Algorithm
+InputL Morphologically Analyzed Surface Forms
+Output: Uncerlying forms of each morpheme, Morphological rules, listed exceptional word forms, any phonological rules needed to map non-surface-faithful
+
+Learning algorithm pseudocode::
+While surface form in input do
+	For morpheme in surface form do
+		UR = morpheme most freqent form
+		if "too much" alternation
+			construct abstract UR
+			learn phonological process
+		else do
+			lexicalize exceptions
+
+"too much" alternation:
+	measure with tolerance principle (Yang 2016)
+	function of scope (n) #of things applied to and exceptions (e) 
+	r is productive iff e <= n/ln(n)
+		(derived from analytical zipfian distribution - grounded in same empirical conditions
+Belth et al (2021) recursively subdivides until rules are productive -- to build a decision tree
+
+WHy the tolerance principle?
+	predicts exact point at which surface-faithful generalization fails
+	derivation is cognitively motivated
+	zipfian distribution necessitates generalizeation and yields threshold
+	corpus, acquisition, computational and experimantal studies support it
+
+
+Ran on CHILDES and MorphoChallenge datasets
+	consistent results on both
+	some constructed URs by the model:
+		
+	accuracy at predicting novel surface forms:
+
+
+Turksihsh results:
+	productive vowel harmony by 1K words in turkish
+	consistent with Altan (2009)'s findings for kids (turkish paper)
+	as the vocabulary increases
+
+	
+Dutch
+	 traditional analysis would suggest that the devoicing rule would be treated as productive
+	but that is not observed in children
+	reversed wug
+		These are slaDan (surface root: slaD)
+		Point at the slaT
+		vs
+		These are keTen (keT)
+		point at the keT
+		
+		If they can productively devoice the T, they should perform equally well, but the perform MUCH better for non-alternating nonces
+
+Dutch has sg/pl and dim/non dim
+dim pl is more frequent than pl in Child directed speech, which means you will have minmal evidence of the alternation
+
+so
+only some nouns take -^n instead of s
+	only some of these nouns alternate
+		only alternate in non-dim pl
+Maybe Dutch learning children lack productive knowledge of voicing alternation because they lack evidence
+
+looking at decision tree, there are enough exceptions to this "rule" in the very slim section where it appliesthat it seems like the rule is an excption
+
+
+Result
+Systemic character of Turkish vowel harmony leads to abstraction for some morphemes, but dutch voicing alternation form small enough corner  that they can be lexicalized
+
+
+
+
+
+Future work:
+what about adults? (CELEX - larger corpus)
+alternation eventually prevalent enough? - under this model
+Orthography? - singular form matches 
+
+Comparative Study with German (Buckler & Fikkert 2016)
+	german makes voicing distinction over larger range of obstruents, with substantially higher number of nouns alternate in German

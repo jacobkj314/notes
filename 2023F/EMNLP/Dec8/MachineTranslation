@@ -1,0 +1,39 @@
+Multilingual Pixel Representations for Translation and Effective Cross Lingual Transfer
+    Elizabeth SSsalesky
+    https://arxiv.org/abs/2305.14280
+
+    Best effect for low-resource language on High Resource Scripts
+
+
+
+
+
+
+
+
+
+Non Autoregressive Streaming Transformer for Simultaneous Translation
+
+Read and Write simultaneously
+balance between quality and latency
+most existing models are autoregressive 
+
+non monotonicity problem    
+    some elements of the sentence can change order
+
+Source info leakage bias
+    due to teacher forcing
+
+Non-autoregressive decoder helps to avoid anticipation and encourage the generation of monotonic generatin
+
+
+
+
+
+
+
+
+
+
+
+IMTLab An Open Source Platform for . . .. . Interactive MT systems

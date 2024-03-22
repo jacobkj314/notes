@@ -1,0 +1,84 @@
+Evaluating Neural Language Models as Cognitive Models of Language Acquisition
+    Do LLMs induce human like syntactic represntations
+    (more recently) Are LMs Human like models for language acquiestion
+
+Behavioral Probes, templat-based eval
+    generate from templates to get around sparsity
+    but these can introduce datashortcutes
+
+BLIMP Benchmark of Lingusitic minimal pairs
+ZORRO - explicitly acquisition focused
+    restricted child directed speech 
+    released with BabyBerta
+
+Observation:
+    many test pairs are semantically odd or do not test grammaticallity at all
+
+    infelicty, some patterns are BOTH grammatical, some dont actually test (eg. some anaphora is just memorization of associations between names and most common gender associated with it)
+
+Solved ZORRO and BLIMP with 80-90% with linear-structure-based handcrafted rules
+beat babyberta on 21/23 in zorro  and blimp
+    Demonstrates that there aer shortcuts and syntactic representation is not needed for these
+
+also 5-gram models
+
+Proof of concept alternative:
+    collection of sentences from "Lingusitic inquiry" and "core syntax" books
+
+        comprehensive coverage of linguistic phenomena
+        . . .
+
+
+Trigram Model matches performance of models trained on a "developmentally plausible " amount of data
+
+conclustion:
+    template-based behavioral benchmarks have serious weaknesses
+    success on these benchmarks tells us little about 
+
+
+
+
+
+
+
+
+
+
+
+Cross-Lingual Data Augmentation for Thai Question Answering (Parinthapat Pengpun)
+
+Motivation:
+    develop a high performance robust qa model on thai (low-resource)
+
+    mBERT has 30% lower on thai than english on XQUad
+
+framework:
+    generate more diverse data to improve robustness
+    leverage machine translateion
+    no augmentation pipetline requierd
+
+monolinguiaal augmentations, plus use MT to translate and back, perform augmentations in high-resource lnaguage
+Use LLM to perform grammar error correction on backtranslations
+
+
+harmonic mean of og, augment !!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Robust Code Summarization

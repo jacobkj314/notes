@@ -1,0 +1,116 @@
+Understanding Genralization For Instruction following and black box language models
+
+Impresive performance on a range of benchmarks
+
+But how can we know if/how these models generalize
+
+
+Part 1:
+    Does LLM Generalization come from data? RL?
+Part 2:
+    How much does the format shape our evals?
+Part 3:
+    Are these models just memorizing test data?
+
+
+Understanding generalization of LLMs requires deeper understanding
+requries replication - we use synthetic/simulated data
+
+open-ended focus changes the meaning of generalization
+
+
+Awadalla etal 2022
+    models that do better on zero-shot in-domain are more robust out-of-domain
+
+
+Goal : simulate instructGPT training process
+    Challenges:
+        how to get diverse large sets of instructions
+        how to get replicable set of pairwise preferece feedback
+        what rlhf implementation should we actually use?
+
+    1 : alpaca
+    2 : alpacafarm
+    3 : alpacaeval
+
+Controversial use of GPT4 as annotator
+    allows to test quicklys
+
+    Simulating rlhf
+
+    many gpt4 prompts have similar agreements to held-out annotators
+    but much less noise
+
+Qualitative changes from RLHF:
+    tunes the model to be more verbose, sometimes improves readability
+
+Tools (gpt plugins)
+    enables powerful new applications
+    and higher-stakes failures
+
+    Evaluating in a sandbox
+        rm -rf 
+    broad failure rates, even for most advanced models
+
+
+
+
+Why are language models sometimes so brittle?
+    What is 7+8 -> 15
+    7+8=15, True or False? -> False
+
+Generator->Discriminator Consistency 
+    Reasoning
+    Savety
+    QA
+
+    PROBLEM ACROSS A HUGE RANGE OF TASKS
+
+    60-80% consistency!!!
+
+    Can GD consistency be improved
+        filter and fine tune
+
+        look at examples that are consistent, fine tune on those
+        label free because
+        this consistency approach brings from 60% -86% with label free
+
+        REAL downstram benefits
+
+LM consistency 
+
+
+3. auditing the training dataset:
+    how do we know hight-performance closed source llms havent' seen the test set
+
+    we need third party audits of contamination
+        gpt4 completed 10/10 pre-2021 Codeforces problems, 0/10 recent ones
+
+    Goal: provably detecting test-set contamination (without needing to see the trainset)
+
+    setup:
+        given a test set and access to log-probabilities from an LM
+        want a statistical test for contamination with false positive rate at least \alpha
+
+    appraoch: exploit the exchangability of datasets;
+        language model preference for 'canonical' orderings must come from contamination
+
+
+    if the model has higher log probabilites for the dataset in canonical order than for any shuffle of the order, then it is contaminated
+
+    This worked for duplication counts more than 1
+    dup count = 4 -> 50% of catching it
+
+
+    takeaways:
+        verbatim contamination is maybe less pervasive than expected
+
+        provable testing is for contamination is in principle possible
+        ?can we move beyond verbatim contamination?
+        are there provable tests for generalization
+
+
+Takeaways:
+    we can replicate complex dtat pimpelines in rlhf using llms
+    Lms are not good at generator-v constristency
+    new, provable quarangtees for test set contramination
