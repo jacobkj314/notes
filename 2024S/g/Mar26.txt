@@ -1,0 +1,82 @@
+
+Announcements
+  NLP seminar Fall semester
+  complain to Chris Coleman about temperature
+
+Ana Presentation:
+  Barbados presentation practice
+  Excalidraw (Michael's setup)
+
+"Contemporary, Foreseeable, and Catastrophic Risks of LLMs"
+
+Risks LLMs Present
+  heavily based on "Evaluating Frontier Models for Dangerous Capabilities" arxiv.org/abs/2403.13793
+  
+  LLMs decision-making is hindered by biases (Jurafsky + students)
+    dialect
+  LLMs persuade people to 
+    give money
+    run suspicious code
+    believe in false information
+      Vivek: if you focus on "Generative AI" instead of just LLMs, this includes deepfakes, voice cloning, etc
+  LLMs exploit cybersecurity vulnerabilities in
+    web apps
+    databases
+  LLMs assist carrying out an attack with chemical bio radiological, nuclear materials
+    least concrete or least likely
+  LLMs self-prliferate ?
+    by installing another LM on google cloud
+    implementing a paper
+
+  LLMs self-reason (situational awareness)
+    change its own context length in the config file to handle longer texts
+    turn off safety filters
+
+  We're unable to supervise LLMs that outperform us on most skills relevant to the task at hand (scalable oversight)
+    so we need to find ways to address this
+
+
+
+  Sociology: 
+    Risk: An undesirable event that can possibly - but not certainly - occur as a result of interacting
+    Contractual trust: someone has a belief that someone else will stick to a specific contract
+    Why trust exists: Anticipate the impact of B's actions on A; Make social life and collaboration predictable, . . . 
+
+    Human-AI trust is contractual
+      To discuss human-AI trust, the contract must be explicitly defined
+      A model or system is trustworthy if it is able to abide the contract
+
+  Create a contract item to mitigate each aspect of risk
+    "LLM decision making is hindered by bias" -> Prejudiced associations won't amplify historical biaas"
+    "LLMs persuade people to give money" -> ?
+      If we allow a model to request money for charity, this is good, how do we ensure that charity bots aren't used for cscams
+
+  What factors enable people to trust or distrust trustworthy/untrustworthy
+    Extrinsic: based on observing external behavior
+      e.g. Doctor has a long history of making correct diagnosis or has graduated from a rigorous program
+      Extrinsic human trust in AI is gained when the evaluaation can only be passed if the AI can maintain the contract
+        Before: build benchmarks that measure the degree to which models perform some specific task in a slice of a domain
+        requires: comprehensive coverage of varied task inputs
+        test cases isolating all necessary task skills
+        moedel cannot be correct for wrong reasons ( no data shortcuts or artifacts, test set is not actually held out)
+
+    Intrinsic: based on observing inner workings/reasoning
+      e.g. Doctor citing various respectable studies to justify their claims when you know and trust these studies
+      intrsinsic human trust in AI is gained when user comprehends model reasoning, user has priors on what behavior is trustworthy
+
+  Other interpretability
+    Bottom-up (mechanistic interpretability)
+      circuits neurons, attention heads
+    Top-down
+      tryigng to locate inforation in a model without ullunderstaning of how it is processed
+      eg locatinging editing knowledge, gradient based explanations
+    Translateing faithfully
+      natural language explanation of neurons
+      faithful chain of thought
+      signaling uncertainty
+
+  Now: build benchmarks that measure the degree to which models work alongside humans in realworld settings
+  
+
+Vivek Presentation:
+  
