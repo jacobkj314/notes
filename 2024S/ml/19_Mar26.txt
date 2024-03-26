@@ -1,0 +1,80 @@
+SUPPORT VECTOR MACHINES!!
+
+  (mid-90s to mid-to-late-2000s)
+
+Big Picture:
+  Linear models -- how good is a learning algorithm
+    Online learning leads to algorithms Perceptron, Winnow
+    PAC/Agnostic learning framework leads to Support Vector machines
+    Bayesian view - Logistic regression
+
+Outline:
+  training by maximizing margin
+  SVM objective
+  Solving SVM optimization problem
+  Support vectors, duals, and kernels
+
+TRAINING BY MAXIMIZING MARGIN:
+  1. if we have m examples, then with probability 1-delta, the true error of a hypothesis h with training error err_S(h) is bounded by
+      err_D(h) <= err_S(h) + sqrt( ( VC(h)(ln(2m / VC(H) ) + 1) + ln(4/delta)  ) / m )
+      that is, lower VC dimension gives tighter bound -- this is the training objective
+  VC dimension of a linear classifier with d dimensions = d+1
+    ? How can we find a hypothesis that minimizes the VC dimension
+      choose a smaller H, an H with smaller VC(H)
+
+Intuitively, larger margins are better
+  Consider linear separators with margins gamma_1 and gamma_2
+    H1 = linear separator with margin gamma_1
+    H2 = linear separator with margin gamma_2
+    and gamma_1 > gamma_2
+    Claim: the entire set H1 is better
+
+Vapnik theoryem
+  Let H be the set of linear classifers that separate the training set by a margin at least y
+  Then VC(H) <= min(R^2 / gamma^2, d) + 1
+    (R is the radius of the smallest sphere contining all the data, gamma is the margin)
+
+  Larger margin -> Lower VC dimension
+  Lower VD dimension -> better generalization bound
+
+SVM objective
+  Lower VC dimension -> Better generalization
+
+  Recall: geometry of a linear classifier
+    y = W dot X + b
+
+    distance of line from point is |W dot X| / ||W|| = y(W dot X) / ||W||
+
+
+    can scale W dot X because we only care about the sign
+      choose this number carefully to make next step easier
+
+Margin of a hypoerplane = distance of the closest point from the hypoerplane
+  min_{i} (y_i(w dot x_i +b) )/||w||
+
+  we can scale the weights by c to make the optimization easier:
+    we can scale c so that the numerator is 1 for points that define the margin
+
+    so margin = 1 / sqrt(w/c dot w/c) 
+
+    so this means that max_{w} gamma = max_{w} 1/||w|| if the margin of the closest point is 1
+
+    so we can minimize ||w|| to maximize 1/ ||w||
+    so we can minimize w dot w to maximize ||w||
+    so we can minimize 1/2 w dot w to minimiize w dot w
+
+
+max-margin classifiers:
+  min_{w} 1/2 w dot w
+  s.t. forall i y_i w dot x_i >= 1
+
+  If your data is sparable:
+    among all linear classifiers that separte the data, find the one that maximizes the margin (Hard SVM)
+
+BUT what if the data is not linearly separable? (infeasible optimization problem
+
+
+Key idea: allow some examples to "break into the margin"
+  trying to just ignore noise
+
+  BUT THIS lowers m!!
