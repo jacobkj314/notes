@@ -1,0 +1,111 @@
+Finding Common Ground: Cooperation, Communication, Embodiment
+
+Story: flight booking AI hallucinates that you can get a discount for flights to funerals by applying within 90 days
+Story: starting an AI therapist
+Story: filming self-driving cars on youtube
+AI interacts/collaborates with users
+
+
+
+Are machines socially intelligent enough to take real-life social roles?
+  NO
+  AIs need to:
+    interact with humans Strategically and Savety
+    understand humans' Intention and Mental model
+    and have the knowledge and capacity for Grounded Interaction
+
+Simulation with 40 artificiional characters
+  name, occupation, personalities, etc
+  example:
+    Zane:
+      friends with Donovan
+      hates his co-worker and is willing to take the risk to hurt them
+      Human crowdworker, playing Donovan, tasked to convince Zane to not hurt co-worker
+      GPT4 response: "youre right, causing harm doesn't help. But what if we sabotage their work subtly"?
+        Violating intention in a covert way
+  :: covertly dangerous - not safe
+  :: did not understand the true intention of human interlocutor - not theory of mind
+
+  example:
+    Will sharing a blanket make 2 people warmer than using it alone?
+      GPT4: yes, sharing it can make two people warmer, body heat, reduced heat loss, . . .
+    But ask GPT-4 to roleplay as a camper and ask it to deny requests to share the blanket with friends
+      "sorry but if I share the blanket there will be more airspace to need warmed up"
+    :: So it has acts according to different beliefs when roleplaying as an agent - not grounded
+
+
+3 papers:
+
+SOTOPIA ICLR 2024
+  From intrinsic collaborators to strategic social participants
+    from a young age, humans want to be helpful -> leads to strategic interaction for negotiation , exchange, competition, collaboration, accommodation, etc
+
+  Social intelligence: manage one's social role to achieve desired social goal
+
+  Social tasks: take place in social contaxt with N characters, each with social role and social goal
+
+  exchange task: seller role with task to sell tv for 500$, buyer role with task to buy TV for 450$
+
+  how to create social tasks?
+    environment challenges: creating and evaluation
+    agent task: modeling agent
+
+    Prompt LLM to generate new social tasks that is similar to two hand-crafted tasks
+    metrics: has the goal been completed? how has the relationship changed? is the interaction believable? does it follow social norms? . . . etc
+      compared against human measure: 74% of GPT4 evals are within one stdev of human ratings
+SOTOPIA-pi - improving agents
+  behavior cloning: a character mimics an expert
+  self-reinforcement: a characters policy is improved with examples that are rated positive
+
+
+Theory of Mind few-shot coordination ICML 2021
+
+  environtment challenges: on which tasks can we evaluate ToM in agents
+  agent challenges: how can we improve ToM in agents
+
+  how ToM enables efficient communication:
+    task: instruct a robot to pick up and cool a winebottle an put it on the table
+
+    needs to understand and act upon others' mental states
+    then it can realize when the model does not understand and give a clarifying instruction
+    
+
+
+Excalibur embodied exploration CVPR 2023
+
+  Babies already actively explore the world before using language
+
+  have agent work in virtual 3d environment
+  training based on answering Qs about environment improves # of objects explored
+
+  task in browser environment
+
+  Embodied exploration is a huge challenge for language agents
+
+
+Future Directions to bring together these three angles towards real-world AI
+
+  can apply methodology to multimodal LMs
+    Q1: is the collaboation successful?
+    Q2: is the interaction fluent?
+
+  What are the emerging challenges of grounding social interaction into the physical world?
+
+    If a car cuts infront of you:
+      response depends on :
+        do they see me 
+        are they paying attentionw
+        what is their intiontion
+      implicit cooperation-- no clear common goal
+      nono-verbal communication -eyes action
+      embodied decision making
+
+  How to use Gooperative AI for Games?
+    GenAI for Assets
+    AI for Game players
+    AI for NPCs
+
+    but it can be more:
+      AI coaching for chess (cooperation)
+      Socially  Intelligent AI Teammates (Communication)
+      AI Generated Games (Embodiment)
