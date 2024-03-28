@@ -1,0 +1,116 @@
+SUPPORT VECTOR MACHINES
+
+Hard SVM
+  min_{w} 1/2 w dot w s.t. forall i, y_i w dot x_i >= 1
+    this maximizes the margin
+
+  but if the dataset is not linearly separable, this is an infeasible problem with NO SOLUTION!!!
+
+Key Idea: allow some examples to "break into the margin"
+  so when computing margin, ignore the examples that make the margin smaller or make the data inseparable
+
+  allow examples to break into the margin a certain distance, called the "slack" written psi
+  introduce psi_i >= 0 for each i (if example is outside of the margin, slack is still 0, not negative)
+  ! require y_i w dot x_i >= 1 - psi_i 
+
+    but if w = 00 and psi >= 1, this trivially minimizes w dot w while satisfying constraints
+      this means future examples will all be labeled as positive
+    we need some constraint on psi
+
+
+
+  min_{w, PSI} 1\2 w dot 2 + C sum(PSI) s.t. forall i psi_i >= 0, y_i w dot x_i >= 1 - psi_i
+    [w dot w] maximize margin, [sum(PSI)] minimize slack, [C] tradeoff between two terms
+
+
+  can rewrite this as psi_i >= 1 - y_i w dot x_i
+  so min_w 1/2 w dot w + c sum([max(0, 1-y_i w dot x_i) foreach i])
+    this lets you remove the constraints!!!
+    first term maximizes margin, second term minimizes loss
+
+  consider one example, three cases:
+    example is correctly classified and is outside the margin (penalty: 0)
+      y_i w dot x_i >=1
+      0 >= 1 - y_i x dot x_i
+    example is incorrectly classified (penalty 1 - y_i w dot x_i)
+      1 - y_i w dot x_i > 0
+    example is correctly classified BUT is within the margin (penalty (1 - y_i w dot x_i)
+      1 > y_i w dot x_i
+      1 - y_i x dot x_i > 0
+
+  this is called HINGE LOSS FUNCTION:
+    L_hinge(y, x, w) = max(0, 1-y w dot x)
+
+    improves over 0,1-Loss
+
+RISK MINIMIZATION
+  Geneeral learning principle
+  Define the notion of "loss" over the training data as a function of a hypothesis
+  then learning = find the hypothesis that has lowest loss on training data
+
+REGULARIZED RISK MINIMIZATION
+  above+:
+  
+  Define a regularization function that penalizes over-complex hypothesis
+  capacity control gives better generalization
+  Learning = find the hypothesis that has the lowest [regularizer + loss on the training data]
+
+SVM in this view
+  regularization term 1/2 w dot w
+    maximize the margin
+    imposes a preference over the hypothesis space and pushes for better generalization
+    can be replaced with other regularisation terms which impose other preferencess
+  empirical loss
+    hinge loss
+    penalizes weight vectors that make mistakes
+    can be replaced with other loss functions which impose other preferences
+  tradeoff hyperparameter
+
+
+HOW TO SOLVE AN OPTIMIZATION PROBLEM
+
+Training SVM with Stochastic Gradient Descent
+
+  Convex Functions and gradient descent
+    a function f is convex if for every u, v, in the domain and for every lambda \in [0,1], we have:
+      f(lambda u + (1/lambda)v) <= lambda f(u) + (1/lambda)f(v)
+    OR: every tangent plane is below the function
+
+    show a function's second derivative is positive semi-definite
+
+    some functions are concave (just convex + upside down)
+    hyperplanes are convex and concave
+    some functions are neither
+
+  In general: for x to be a minimum for the function f, it is necessary that nabla f (x) = 0
+  For convex functions, this is both necessary AND sufficient
+
+  SVM optimization is quadratic, so it is convex!
+  Older methods in Quadratic Programming are very slow.
+
+  But, since there are no constraints, we can use gradient descent (still slow though)
+  But STOCHASTIC gradient descent works well enough
+
+
+GRADIENT DESCENT
+  General strategy for minimizing a function J(w)
+
+  start with an initial guess for w, w_0
+  until convergence:
+    compute the gradient of J(w_t): nabla J(w_t)
+    update the weights: w_(t+1) = w_t - r nabla J(w_t)
+
+  STOCHASTIC GRADIENT DESCENT
+    computing the gradient of the SVM ovjective requires summing over the ENTIRE trainset. (slow, does not scale)
+
+    Given training set S={(x_i, y_1)}, x \in R^d, y \in {-1,1}
+    For epoch 1 . . . T:
+      Pick a random example (x_i, y_i) from the training set S
+      treat (x_i, y_i) as full dataset and take the derivative of the SVM objective J at the current w_t, call it nabla J(w_t)
+      update w_(t+1) = w_t - gamma_t nabla J(w_t)
+    Return final w
+
+
+
+
+  
