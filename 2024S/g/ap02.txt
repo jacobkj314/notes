@@ -1,0 +1,56 @@
+Mamba: Linear-time Sequence Modeling with Selective State Spaces
+Zhichao presenting
+
+Structured State Space Sequence Models (S4)
+  defined with four parameters (Delta, A, B, C) and maps a 1-dimensional function x(T) \in Real -> y(t) \in Real
+    A \in Real ^(N x N), B \in Real^(N x 1), C \in Real ^(1 x N)
+
+    continuous case:
+    h'(t) = Ah(t) + Bx(t)
+    y(t) = Ch(t)
+    discrete:
+    h_t = A\bar h_{t-1} + B\bar x_t
+    y_t = C h_t
+
+    K \bar = (C B\bar C A\bar B\bar, . . ., C A\bar ^ k B\bar, . . . )
+    y = x * K\bar
+
+    The first stage transforms the continuas parameters (Delta, A, B) into discrete paramebers (A\bar B\bar) using fixed formulas A\bar = f_A(Delta, A) and B\bar = f_B(Delta A, B), where the pair (f_A, f_B) is called a discretization rule.
+    Various rules can be used such as the zero-order hold (ZOH) defined as : A\bar = exp(Delta A), B\bar = (Delta A)^-1)(exp( . . . 
+
+  This allows you to train in a CNN mode with the huge convolution kernel K\bar and run inference in RNN mode (discrete case)
+
+  Extended to language modeling:
+    map a D-dimensional function x(t) \in Real^D -> y(t) \in Real^D
+      the same transformation is applied to all D channels individually
+
+  Because the model's dynamics are constant over time (Linear Time Invariance)
+    O(1) time complexity for inference
+    the model's parameterization is input-independent, cannot capture input-specific information
+    the context is compressed in h_{t-1} and A\bar decides what/how much information i s carried to the next state
+
+    Instead, make Delta, B, C indput dependent to break
+
+      Look at Algorithm 1 vs Algorithm 2 to see change from S4 to Mamba
+        note that step 6 SSM referrs to equations 2a/2b, it is not a recurrent calls
+
+  Vivek: why does this work when vanilla RNN works?
+    No vanishing gradient problem because it is all linear.
+
+  Hardware-aware Optimization
+    kernel fusion: to materialize h only in more efficient levels of the memory hierarachy, load the SSM parameters directly from slow High bandwidth memory (HBM) to SRAM . . . 
+    parallel scan: to avoid sequential recurrence, the computation of RNN mode can still be parallelized with work-efficient parallel scan algorithm
+    recomputation: avoid saving the intermediate states, but recompute them in the backward pass when inputs are loading from HBM to SRAM
+
+  Delta controls the balance between how much to focus or ignore the current input x
+  A affects . . . 
+  B affects . . . 
+  C affects . . .
+
+  Mamba Block:
+    denote model dimension D, controllable expansion factor E = 2
+    2ED^2 for input projections, ED^2 for output projection
+    Each Mamba block consists of 6D^2 parameters
+    SiLU/Swish activation function
+    Pre LayerNorm
+    Conv1D(stride=4) by default
