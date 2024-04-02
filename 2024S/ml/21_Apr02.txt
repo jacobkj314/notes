@@ -1,0 +1,127 @@
+SUPPORT VECTOR MACHINES
+
+Sub-derivatives of the hinge loss
+
+  Hinge loss is not a differentiable function!!!
+
+  Subgradient is a generalization of gradients to non-differentiable functions which are continuous everywhere and non-differentiable at finitely many points
+
+  Generalize "tangent" line to sub-tangent: any hyperplane that lies below the function at that point
+  sub-gradient is slope of sub tangent
+
+  Formally, a vector g is a subgradient to f at point x if:
+    f(y) >= f(x) + g dot (y-x) for all y
+
+
+
+  Subgradient of SVM objective
+
+    J(w) = 1/2 w dot w + C max(0, 1 - y_i w dot x_i)
+
+    subgradient of g(x) max(g1(x), g2(x))
+      g'(x) = g1'(x) if g1(x) > g2(x) else g2'(x) if g2(x) > g1(x) else 9either one)
+
+      all this means, just treat hinge as part of the flat part
+
+
+    So nabla J = w if J(w) = 0 else w - C y_i x_i
+
+Stochastic sub-gradient descent for SVM
+  Given a training set S = {(x_i,y_i)}, x \in Real^d, y \i {-1, 1}
+  1. Initialize w = 0 \in Real^d
+  2. For epoch 1 . . . T:
+    Shuffle S
+    For each training example (x_i, y_i) \in S:
+      update w = w - y_t nabla J 
+      that is,:
+        if max(0, 1 - y_i w dot x_i) > 0
+          w = w - gamma_t ( w - y_i x_i)
+            = w (1 - gamma_t) + gamma_t C y_i x_i
+        else:
+          w = w - gamma_t w
+            = w (1 - gamma_t)
+      but "if max(0, 1 - y_i w dot x_i) > 0" === "if y_i w dot x_i <= 1"
+
+      so step size is gamma_t C
+      
+  3. Return w
+
+
+Convergence and learning rates
+
+  with enough iterations, it will converge in expectation
+    ! provided the step sizes are "square summable but not summable"
+
+    Step sizes gamma_t are positive
+    Sum of squares of step sizes is not infinite
+    Sum of step sizes is infinity
+
+
+    Some examples:
+      gamma_t = gamma_0 / (1 + (gamma_0 t)/(C))
+      ...
+
+
+
+  Number of iterations to get to accuracy within epsilon
+    
+    For strongly conves functions, N examples, d dimensional:
+      -gradient descent: O(N d ln(1/epsilon))
+      -stochastic gradient descent: O(d / epsilon) !notice this does not depend on the size of the examples! Just this many steps!  
+
+      SGD is generally preferable when the data size is huge
+
+  Recently, many variants based on this general strategy: Adagrad, momentum, Nesterov's accelerated gradient, Adam, RMSProp
+
+
+
+
+COMPARING SVM+SGD TO PERCEPTRON
+
+These algorithms are very similarly structured, except for the update rules
+
+
+! Perceptron is just Stochastic sub-gradient descent for Perceptron Loss, without regularization!
+  L_perceptron = max(0, -y w dot x)
+
+
+Conclusion:
+  Minimize regularized hinge loss
+  Solve using sgd (other optimization algorithms exist 
+
+
+
+
+
+
+LEARNING AS LOSS MINIMIZATION
+
+
+  The setup
+    Examples x drawn from a fixed, unknown distribution D
+    Hidden oracle classifier f labels examples
+    We wish to find a hypothesis h that mimics f
+
+  The ideal situation:
+    Define a function L that penalizes bad hypotheses
+  Learning: Pick a function h \in H to minimize expected loss:
+    min_{h \in H} E_{x ~ D}[ L(h(x), f(x)) ]
+    (but distribution D is still unknown, instance space might be infinite, etc)
+      just keep sampling from distribution and minimize empirical loss
+
+  Empirical Loss Minimization:
+    learning = minimize empirical loss on the training set
+
+    min_{h \in H} (1/m) \sum_{i=1}^{m}{L(h(x_i), f(x_i))}
+
+    however this is easy to overfit: just memorize the training data
+    Need something that penalizes complexity (regularizer)
+
+  Regularized loss minimization
+    min_{h \in H} regularizer(h) + C/m sum{L(h(x), y)}
+
+  What is the ideal loss function for classifiation? 
+    "is the label wrong?" (0-1 loss)
+
+  
+  
