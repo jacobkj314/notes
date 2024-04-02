@@ -1,0 +1,69 @@
+BitNet b1.58: ERA of LLMs in 1 bit
+https://arxiv.org/abs/2402.17764
+
+Purbid Bambroo presenting
+
+
+  A transformer-based LLM, where every weight is {-1, 0, 1}
+
+  previous quantization efforts have only applied POST-training
+    however, this means it is deployed in a differet setting, leads to decreased performance
+
+    BitNet matches performance with FP16 models
+    Improves latency memory and thoroughput
+    Makes improvements over Pitnet
+
+BITNET
+  Created by Microsoft, Tsinghua University, University of Chinese Academy of Science
+  First work in LLM quantization
+  use Low precision for weights, and quantized activations; high precision for optimizer state and training grads
+  Implement BitLinear (analogue of nn.Linear)
+
+  BitLinear:
+    1. Weights are 1 bit, activations are 8 bits
+    2. For weights, zero-mean first, binarize using signum, scalinb factor beta after signum (reduces L2 error between W_before and W_after)
+    W~ = sgn(W - alpha)
+      sgn(W_ij) = 1 if W_ij > 0 else -1
+      alpha = 1/(nm) sum(W_ij)
+
+    3. For activations,
+      bind to [-Q_b, Q_b], Q_b = 2^b - 1 using absmax, then scale
+
+      x~ = Quant(x) = Clip(x * Q_b / gamma, - Q_b+epsilon, Q_b - epsilon)
+      where
+      Clib(x,a,b) = max(a, min(b,x)), gamma = ||x||_inf
+
+      additionally, layer norm is used before quantization
+
+  Training for BitNet
+    1. Interesting, while training weights abd actuvatuibs are qyabtuzed ti kiwer butsm gradsm abd optimizers are kept hight precision
+      Strait-through estimator facilitates backprop
+    2. Learnable params accumulate the param updates. The latent weights are binarized on the fly during the forward pass. (They have an estimator of backprop)
+
+  BitNet Results:
+
+    1. Matches FP16 on hellaswag, storycloze, winograd, winogrande
+    All models are 6.7B
+    Achieves better results than all post-training quantized models
+
+BITNET 1.58
+  1. Created by GeneralAI, improves over BitNet
+  2. Changes weights from {-1,1} to {-1, 0, 1}
+  3. Same energy consumption, but better
+
+  Changes to weights:
+    1. ABSmean quantization (scale by avg abs val)
+      W~ = RoundClip(W / (gamma + epsilon), -1, 1)
+      where 
+      RoundClip(x,a,b) = max(a, min(b, round(x)))
+      gamma = 1/nm sum W_ij
+    2. changes to adctivations
+      1. Scaling is not limited to [0, Q_b] instead [-!_b, Q_b)
+      based on LLama: rotary embeddings and SwiGLU (fancy activation)
+
+  Results:
+    Comparison with LLamMa of various sizes (pretrained on all RedPajama dataset 100b tokens)
+    Bitnet b1.58 starts to match LLaMa at 3 billion becomes better at 9B
+    2.71x faster and 3.55 less GPU memory
+
+    
