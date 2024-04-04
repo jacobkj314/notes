@@ -1,0 +1,155 @@
+What we have seen so far:
+  What does it mean to learn?
+    Mistake-driven learning: learning by counting and bounding number of possible mistakes
+    PAC learnability: sample complexity and bounds on errors on unseen examples
+
+BAYESIAN LEARNING: another way of thinking about "what does it mean to learn"?
+
+  two named criteria:
+    maximum a posteriori
+    maximum likelihood estimation
+      (binomial distribution, normal distribtution)
+
+
+PROBABILISTIC LEARNING:
+  Two different notions of probabilistic learning:
+    Learning a probabilistic concept:
+      learned concept is a function c: X -> [0,1]
+      c(x) may be interpreted as the probability that the label 1 is assigned to x
+      The learning theory that we have studied before is applicable (with some extensions)
+    BAYESIAN LEARNING
+      Use of a probabilistic criterion in selecting a hypothesis
+        The hypothesis can be deterministic, such as any Boolean function
+        The criterion for selecting the hypothesis is probabilistic
+
+BAYESIAN LEARNING:
+  GOAL: to find the best hypothesis from some space H of hypotheses, using the observed data D
+  Best = most probable
+
+  WE MUST ASSUME A PROBABILITY DISTRIBUTION OVER THE CLASS H
+
+  We also need to know something about the relation between the data observed and the hypotheses
+    as we will se, we can "be bayesian" about other things, e.g. the parameters of the model
+
+Bayesian methods have multiple roles:
+  provide practical learning algorithms
+  combine prior knowledge with observed data
+  provide a
+
+P(Y|X) = P(X|Y) * (P(Y)/P(X))
+
+P(Y)  : "prior" : what is our belief in Y before we see X
+P(X|Y): "likelihood": what is the likelihood of observing X given a specific Y?
+P(Y|X): "posterior": what is the probability of Y given that X is observed
+P(X)  : ignored, just use P(Y|X) \proportional P(X|Y) P(Y)
+
+PROABILITIES REFERESRER
+P(A and B) = P(A,B) = P(A|B)P(B) = P(B|A)P(A)
+. . . 
+
+
+BAYESIAN LEARNING
+  Bayesian learning uses P(h|D), the conditional probability of a hypothesis given the data, to define best
+
+
+Key Insight: Both h and D are events
+  D: The event that we observed this particular dataset
+  h: The event that the hypothesis h is the true hypothesis
+
+  so P(h|D) = P(D|h)P(h)
+
+  Prior (P(h)): background knowledge. What do we expect the hypothesis to be even before we see any data? For example, in the absence of any information, maybe we expect the uniform distribution
+  Likelihood: What is the probability that this data point (an example or an entire datset) is observed, given that the hypothesis is h?
+  P(D) - what is the probability that the data D is observed, independent of any knowlegde about the hypothesis (ignored)
+  Posterior (P(h|D)): What is the probability that h is the hypothesis, given that the Ddaata D is obsreved
+
+
+
+MAXIMUM A POSTERIORI
+  Given some dataset, find the most probable hypothesis
+  h_MAP = argmax_{h \in H} P(h|D)
+        = argmax_{h \in H} P(D|H) P(h) / P(D) (by the definition of Bayes rule)
+        = argmax_{h \in H} P(D|h) P(h) (because argmax is preserved over proportional transformations)
+
+
+How to know what is P(h)?
+If we assume that the prior is uniform (all h are equally likely), this simplifies to maximum likelihood hypothesis:
+  h_ML = argmax_{h \in H} P(D|h)
+
+
+Brute Force MAP learner:
+  Input Data D and hypothesis set H
+  1. Calculate the posterior probability for each h \in H (! difficult to compute except for the simplest of hypothesis spaces)
+  2. Output the hypothesis h with the highest posterior probability
+
+
+Two examples of maximum likelihood estimation:
+  Bernoulli trials
+    Maximum likelihood estimation (MLE)
+      h_ML = argmax_{h\in H} P(D|h)
+
+    What we need in order to define learning:
+      1. A hypothesis space H
+      2. A model that says how D is generated from H
+
+    Example 1: 
+      The CEO of a startup hires you
+      CEO: my company makes light bulbs. What is the probability they are faulty?
+      You: Are they all identical
+      CEO: yes
+      You need an experiment
+
+      The experiment: test 100 lightbulbs, 80 work 20 don't
+      You: probability of failure is .2
+      CEO: How do you know?
+
+        P(failure) = p; P(success) = 1-p
+        Each trial is iid
+
+        So probability of observing k failures in n experiments is 
+        (n choose k) p^k (1-p)^(n-k)
+
+        Given this observation, the most likely value of p for this observation is k/n :
+
+        For n = a+b and k = a, we have:
+          p_best  = argmax_p P(D|h)
+                  = argmax (a+b choose a) p^a (1-p)^b
+                  = argmax_p log P(D|h)
+                  = alogp + blog(1-p)
+                  derivative is:
+                  a/p - b/(1-p) = 0
+                  a/p = b/(1-p)
+                  (1-p)a = pb
+                  a -ap = bp
+                  a = ap+bp
+                  a = (a+b)p
+                  p = a/(a+b)
+
+    This assumed a bernoulli. You could have assumed a different model, or assumed a prior and you will end up with something different than p = k/n
+
+  Example 2: Normal distribution
+    Suppose H consists of real-valued functions
+    inputs are vectors x \in Real^d and the output is a real number y \in Real
+
+    Suppose thaat the training data is generated as follows:
+      An input x_i is drawn randomly (uniformly at random)
+      The true function f is applied to get f(x_i)
+      This value is the perturbed by noise e_i, drawn independently according to an unkown gaussian with zero mean
+      y_i = f(x_i) + e_i
+
+      Say we have m training examples (x_i, y_i) generated by this process
+
+    Maximum Likelihood and least squares
+      Suppose we have a hypothesis h. We want to know what is the probability that a particular label y_i was generated by this hypothesis as h(x_i)?
+      The error for this example is y_i - h(x_i)
+
+      Suppose we assume that this error is froma Gaussian distribution with zero mean and standard deviation sigma
+      We can compute the probability of observing one data point (x_i, y_i) if it were generated using the function h:
+        p(y_i | h, x_i) = 1/(sigma sqrt(2pi)) exp( - ( ( y_i - h(x_i)  )^2 )/(2 sigma^2) )
+
+      Each example (x_i, y_i) in D is generated INDEPENDNETLY by this process, so 
+        p(D|h) = PRODUCT_{i=1}^{m}{p(y_i | h, x_i)}
+
+      Our goal is to find the most likely hypothesis:
+        h_ML = argmax_{h \in H}{ PRODUCT_{i=1}^{m} 1/(sigma sqrt(2pi)) exp( - ( ( y_i - h(x_i)  )^2 )/(2 sigma^2) ) }
+ 
