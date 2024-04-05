@@ -1,0 +1,204 @@
+Knowledge as the Key to Embodied Artificial Intelligence
+
+What is the goal of AI?
+  Embodied agent
+    eg 
+      Home assistance for the eldery
+But intelligence is really really hard, since there are too many things you need to learn.
+We need the right knowledge
+
+What do I mean by knowledge?
+  Knowledge in human history: cave paintings convey and record the seasonal patterns of prey animals
+  As history has gone on, we have developed better ways to record knowledge
+  ARPANET and then internet, wikipedia, etc
+
+WHAT IS KNOWLEDGE?
+  Not JUST experience/data
+  prior to learning (?)
+  A concise representation
+  core idea: if you have it before learning, you can learn faster.
+    e.g., if I know where mammoths are, I can hunt them sooner
+          avoid being burned by stove
+
+  Exampels:
+    knowledge graphs concept-relation-concept
+    Relevant text (eg wikipedia article)
+    Large-scale models contain world knowledge from training on internet data
+
+What problems do we need to solve for knowledge- enabled embodied ai
+
+  Category of things I need to hide from the dog, things I need to pack for a trip, etc
+  
+Part 1: Using knowledge - how to use in different forms in vision and embodied settings
+
+  How do we use knowledge in different ways?
+    Two categories:
+      How do we use structured knowledge? (eg knowledge graphs)
+      How do we use unstructured knowledge (models)
+
+    KRISP: Integrating implicit and symbolic knowledge for open domain knowledge-based VQA
+      USE MMBERT with question tokens plus image features
+      Use Graph NN (GRCGN) to extract structured knowledge.
+        Use the edges of the graph to update the hidden representation at each node. 
+        end up with a symbolic representation for every node in the graph, use relevant ones for final prediction
+        combining: make predictions based on each and take the max (most confident)
+          just lets you let one do the work if symbolic side has more knowledge
+
+       SOTA at the time of publication
+       Influentiela in sowing ways to combine graph-structured data 
+        useful when knowledge is not encoded in VLM weights
+    
+
+
+Part 2 How do we evaluate use of knowledge in multimodal/embodied settings
+
+  To answer "what is funny about image"
+    Need "affordance" knowledge (this is a scale)
+    Need physical commonsense (weight puts pressure)
+    Need social commonsense (joke)
+
+  YOU CNA"T JUST LOOK AT SINGLE EXAMPLES TO EVALUATE
+
+
+  Key is to make good datasets
+  What datasets do we have for knowledge evaluation? Specifically for mm/embodied?
+
+    OK_VQA outside knowledge visual QA
+      Collection process:
+        ask crowdworkers to come up with questions that require knowledge to answers (images from ms-coco)
+       have turkers answer the question
+
+      Problems:
+        "what's in the image" - doesn't require knowledge
+        "what's the capital of uk" - doesn't require image
+          so manually filtered out images
+
+        A lot of questions had the same answer
+          prune
+
+        Some had ambiguougs answers
+          remove
+
+      OK_VQA became a standard VML benchmark
+        Improved Evaluations lead to improved methodolgoy
+
+    A-OKVQA
+      updated version 
+      
+      added more types of knowledge
+      added rationales
+      focus on model-in the loop 
+      use LM to enforce question diversity
+      use a pipeline to eliminate easy questions
+
+Part 3 Acquiring knowledge - is there a way we can think about interactively gathering knowledge from the enternet
+
+  What if the knowledge isn't there? How to get AI systems to interactively acquire knowledge
+
+    "Large Language Models struggle . . . long-tail knowledge"
+
+    An interactive view of knowledge:
+      web as an environment
+      agent can search, click, scroll, back, (etc)
+      observse text, images, html from page
+
+    "Navigating the internet in a text-based environment"
+      search is not enough: some questions are still hard for curie
+
+      "LEARNING TO NAVIGATE WIKIPEDIA BY TAKING RANDOM WALKS"
+
+        High knowledge to noise ratio
+          high knowledge-to-noise ratio
+
+        Information-seeking agents navigate on the wikipedia graph
+
+        policy for agents to learn information
+
+        pretraining task:
+          random navigation just choose a start and target node and pretrain a policy
+
+        policy network for navigation:
+          observation - embedded text of current article
+          goal: embedded text of target article
+          actions: embed text of linked articles
+          train decision based embeddings
+
+        Option 2: behavior cloning:
+          use random start-end trajectories from start-> target
+
+      Navigation results on small graph
+      
+        shortest path is slightly better
+        90% accurate
+
+      Fine-tuing: embed question as goal embedding and finetune to answer the question
+        incredibly large just using pretraining
+
+      Fact Verification task:
+        fine tuning on navigation is really effective
+        competitive against other methods
+
+      Ashim: how does this compare to RAG:
+        Kenneth: you could use this as the Retrieval pipeline
+
+      This approach of nonparametric knowledge is better for e.g. wikipedia updates
+        
+
+Part 4 towards Neverending Knowledge Learning    
+
+  embodied agent
+  learns over time
+
+
+  Where do we start?
+    rich envirnmonet with a lot to learn
+    simpler dynamics than robotics  
+
+  Use web as environment:
+
+  Goal: build a topic-specific wikiL
+    need to navigate and use the web to find the information
+
+    WebARENA
+
+  What are some problems left to solve 
+    using nowlege, 
+    combining LM / other knowledge with non-parametric knowledge e.g. expert knowledge
+
+    what to do if expert knowledge disagrees with parametric knowledge
+
+    how to generate hypothesis about the world to then test?
+
+    knowledge that tchanges over time
+
+    how to make our knowledge
+      more correct
+      self-consistent
+      staying up to date
+
+    how to de evaluate whether the knowledge we've built is good?
+      human in the loop, try to put ininfformation we want it to collect
+
+      LLM/VLM aided dataset collection
+      datasets for expert knowledge
+      recognition and evaluation of Millions of digital concepts
+
+
+
+What is the goal of AI
+  Embodied agent
+
+  problems to solve:
+    how to use knowlege 
+    how to evaluate use of knowledge
+    how to interactively find information on the interntet
+
+
+
+QUESTIONS:
+  some cooperation earleir in joint parametric/symbolic (earlier connections)
+
+  how can we make sure a model knows that it doesn't have the knowlege so it knows to look it up instead of just hallucinating
+      look it up anyway, even if it does have the einternal knowlaegeded
+
+  
