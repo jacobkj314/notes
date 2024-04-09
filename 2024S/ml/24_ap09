@@ -94,4 +94,11 @@ LOGISTIC REGRESSION
       
       Return 1 if probability of y=+1 is half or greater, otherwise predict -1
       
-      this rearranges to predict sgn(w dot x)   
+      this rearranges to predict sgn(w dot x)
+      
+
+
+
+Training a logistic regression classifier
+
+  On Maximum Likelihood estimator   
