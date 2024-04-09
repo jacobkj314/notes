@@ -109,4 +109,23 @@ Training a logistic regression classifier
       argmax_{w} P(S|w) = argmax_{w} PRODUCT_{i=1}^{m}{P(y_i | x_i, w)}
 
       equivalent to 
-      argmax_{w} \sum_{i}^{m} log P(y_i | x_i, w)}   
+      argmax_{w} \sum_{i}^{m} log P(y_i | x_i, w)
+
+      since P(y_i | x_i, w) = 1 / (1 + exp(-y_i w dot x_i))   
+
+      max_w log P(y_i | x_i, w) = max_w -log(1 + exp(-y_i w dot x_i)
+                                = min_w sum_i^m log(1 + exp(- y_i w dot x_i)) # this is the logistic loss
+
+  (On Maximum a posteriori)
+
+    We can add a prior on the weights.
+
+    Suppose each weight in the weight vector is drawn independently from the normal distribution with zero mean and standard deviation sigma
+
+      argmax_w P(w|S) = argmax_w P(S|w) P(w)
+                      = argmax_w log P(S|w) + log P(w) #the first turn we just calculated, so lets focus on argmax_w log P(w)
+
+                      *** see lecture slides!
+
+                      *** this is equivalent to L_2 regularization  
+                      
