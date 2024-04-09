@@ -101,4 +101,9 @@ LOGISTIC REGRESSION
 
 Training a logistic regression classifier
 
-  On Maximum Likelihood estimator   
+  On Maximum Likelihood estimator
+  
+    training data
+      S = {(x_i, y_i)}, m examples
+    what we want:
+      argmax_{w} P(S|w) = argmax_{w} PRODUCT_{i=1}^{m}{P(y_i | x_i, w)}}   
