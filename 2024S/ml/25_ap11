@@ -1,0 +1,42 @@
+Precision/Recall/F-score guide
+  (hw6 is unbalanced!)
+
+
+NEURAL NETWORKS
+
+Introduction:
+
+What if we want to train non-linear classifiers? Where do the features come from?
+
+
+  Linear Threshold units:
+    sgn(w dot x + b)
+
+    what if each feature were the output from another classifier?
+
+
+"Neurons":
+  accepts a collection of inputs (a vector x) and produces output by:
+    1 apply a dot product with weights w and adding a bias b
+    2 applyl a (possibly non-linear) transformation called an activation
+
+
+
+A function that converts inputs to outputs defined by a directed acyclic graph
+  Nodes are organized in layers corresponding to "neurons"
+  Edges carry output of one nuerone to another, associated with weights
+
+To define a neural network, we need to specify:
+  the structure of the graph, how many nodes, connectivity (the architecture of the network)
+  the activation fuction and the weights for each node/edge
+
+Any continuous function can be approximated to arbitrary accuracy using one hidden layer of sigmoid units
+Two layer threshold network can express any Boolean function
+
+VC dimension of threhshold network with E edges = O(|E| log |E|)
+VC dimension of sigmoid networks with V nodes and E edges O(|V|^2 |E|^2) Omega(|E|^2)
+
+
+NEURAL NETWORKS: PREDICTION (FORWARD PASS)
+
+  
