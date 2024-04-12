@@ -1,0 +1,34 @@
+Dating Greek Documents with Vision Transformers
+
+Intro:
+  lingua franca of the mediterannean
+  date/time impormation can be lost if the document has been moved, damages, etc
+  handwriting+spelling analysis can be used for some 
+
+Previous work
+  Ithaca (Assael) march 2022 - a tool for recovering greek texts
+  takes regularized greek characters
+  trained on 180K samples
+
+  Pavlopoulus 2023 - 
+   also based on character inputs
+
+  NONE DATED GREEK DOCUMENTS USING IMAGE INPUTS
+
+Dataset:
+  Collected from Berliner Papyrusdatenbank berlpap.smb.museum
+  contains examples of texts written on papyrus, ostracon (pottery fragments) and wood
+  300BC to 800 AD
+  labeled each image with a century based on the midpoint of the range on the item
+
+  multimodal distribution, most documents written around 100AD
+
+Vision Transformer (2020)
+  pretrained on IMageNet21K
+
+Results:
+  Trained for 10 Epocs
+  most common baseline has accuracy of 39%
+
+  After tuning for 10 epochs, accuracy went to 51%, Fscore went from 5% to 43%s
+  Began to overfit training data after about 4 epochs

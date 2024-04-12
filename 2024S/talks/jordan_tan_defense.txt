@@ -1,0 +1,44 @@
+Evaluauting Compositional Behavior in Large Language Models
+
+Does prompting with subtasks improve a mdoels's performacne on a compositional tasks
+
+e.g. bultiplication: need to subtaksks
+  1 digit multiplication
+  carry
+  addition
+  concatenation
+
+arxiv.org/abs/2203.11171 "self-consistency . . . "
+arxiv.org/abs/2305.18654
+
+We'll consider compositional task to be any that requires multiple hops of reasoning
+
+Press etal arxiv 2210.03350 Performance gap between single-hop and multi-hop tasks doesn't decrease as model sizes increase
+
+
+METHODS
+
+Tasks: multiplication and word list ()
+Use Flan-T5 and Llama 2-Chat
+
+Found the baseline accuracy for each subtask
+  can a mdodel learn the require sills?
+Found accuracies on main task
+  Does prompting with relevant skills improve performance?
+
+
+WORD LIST:
+  given two word lists:
+    uppercase all of the words in the first word list
+    remove the first word in the second word list
+    concatenate the two word lists
+
+RESULTS
+  MULTIPLICATION
+  Smaller models could not perform the tasks well, so adding skills made minimal improvment
+  Large models also did not imporove much
+
+  WORD LIST
+  even with in-context examples, it would sometimes do the wrong task
+
+  it's unclear whether adding in-context examples of subtasks helped
