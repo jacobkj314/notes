@@ -1,0 +1,62 @@
+BACKPROPAGATION
+
+Training a Neural Network:
+  Given a network architecture (layout, connectivity, activations)
+  A dataset S of examples (x_i, y_i)
+
+  The goal: learn the weights of the neural network
+
+  Remember: for a fixed architecture, a neural network is a function parameterized by its weights
+    Prediction: y = NN(x, w)
+
+  min_w \sum_{i}^{m} {L(NN(x_i, w), y_i)}
+    we have seen that this works for linear models, how to adapt for non-linear models?
+
+  Want to use Stochastic Gradient Descent
+
+STOCHASTIC GRADIENT DESCENT
+  Given a training set S = {...}
+  1. Initialize parameters w to random small values (try this several times and pick the best -- because it is not convex)
+  2. For epoch = 1 ... T
+    1. shuffle the training set
+    2. for each training example
+      Treat this as the entire dataset, 
+      Compute the gradient of the loss
+      Update w -= learning_rate * gradient (learning rate should be square summable)
+
+  BUT WE STILL DON'T HAVE THE GRADIENT!!!!
+
+  If the NN is a differentiable function, we can find the gradients
+
+Checkpoint: If we have a nn (structure, activations, weights), we can make a prediction for an input.
+If we have the true label fo the input, we can define the loss
+If we can take the derivative of the loss wrt each of the weights, we can take a gradient step in SGD !!!!
+
+Lets look at some simple expressions:
+  f(x,y)  = x + y
+    df/dx = 1
+    df/dy = 1
+  f(x, y) = xy
+    df/dx = y
+    df/dy = x
+  f(x,y)  = max(x,y)
+    df/dx = 1 if (x >= y) else 0
+    df/dy = 1 if (y >= x) else 0
+
+  in general df/dx represents the partial derivative of f with respect to x
+
+  f(x,y,z) = xy^2 + xz
+    df/dx = y^2 + z
+    df/dy = 2xy
+    df/dz = x
+  OR
+  g = y^2 + z
+  f = xg
+  SO
+  dg/dy = 2y
+  dg/dz = 1
+  df/dx = g
+  df/dg = x
+  SO
+  df/dy = df/dg * dg/dy = x * 2y = 2xy
+  df/dz = df/dg * dg/dz = x * 1  = x
