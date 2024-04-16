@@ -1,0 +1,102 @@
+New Grad Student Orientation
+
+Professor Mary Hall:
+    -Catmull Graphics
+        *look up Hand vido on Youtube
+    -make a welcoming and inclusive environment
+    -Jill (advisor) and Alex Lex (Program Director)
+
+Breakout Rooms
+    "Selected Faculty Presentations":
+        Luis Garcia: Cyber-physical systems and IoT security
+            i.e. water treatment, power, factory
+            https://lagarcia.us
+            Trustworthy IoT-in-the-loop Neurosciene (a sensor suite that allows us to decode how humans ground episodic memories)
+        Tom Henderson: Lane-Based Drone Traffic Management
+            FAA reqires you to know trajectories of other aircraft to avoid collisions (computationally inefficient)
+            Goal:   lane-based airways, UAS configuration space becomes 1D instead of 4D, allowing low-cost strategic deconfliction;
+                    "air-roundabouts"
+            Reuse existing traffic infrastructure for power/network and avoid flying over private spaces
+            Crazyflie Drones
+        Pratik Soni:
+            Cryptography
+            Zero-Knowledge Proofs
+            "Can mutually distrustful parties meaningfully collaborate?"
+    "Grad School Survival" (Vivek Srikumar):
+        Thriving in grad school
+        Here to be a computer scientist in training (not to take advanced classes)
+        Matt Might "The Illustrated Guide to a PhD"
+        Computer Scientists around the world are your peers
+        Phases: "I know everything", "Maybe I don't know everything", "I know nothing", "I am an expert on some things. I may be wrong, but I'm willing to learn"
+                Uninformed Excitement -> Under-informed depression -> Enlightenment
+        Research must: 1. advance understanding, 2. have a chance of failure, 3. be more than writing code
+        How do I do research? By trying and failing
+        What is a paper? A problem, a solution strategy, or a question SUPPORTED BY EVIDENCE
+        What is a thesis?   "X is novel, feasible, or useful", "X is impossible",
+                       NOT: "I ran so many experiments", "I wrote so much code"...
+        What could go wrong in grad school?:
+            Misconduct - be consciencious, don't cheat. Cite, don't copy. Don't Ever Fabricate.
+            Too much focus on grades and courses - grade_optimal = grade_minimum + epsilon (for some small value of epsilon)
+                where grade_minimum is determined by program requirements, personal pride, professor advice
+            Wanting to solve all the worlds problems OR Wanting to solve an unimportant problem - learn to identify what is an important problem
+                Richard Hamming "You and your research" talk
+            Only caring about a job at the end - you will end up learning less if this is your only focus
+            Waiting for inspiration before starting to work - Read around your problem, talk to people, simplify your problem, give a talk describing where you are, write - write more - write even more
+            Learning too much - focus focus focus, moderation is a virtue, don't be an eternal student
+            Perfectionism - you are not perfect, nobody is - find the sweet spot in terms of effort / quality
+            Not communicating - with your advisor, committee, peers
+            Procastination
+            Treat PhD school like school or work - it is a monastic, jealous hobby needing perseverance and tenacity
+            Ignoring your committee
+        You and your advisor
+            You aim to produce Hard Work + Research and publications
+            You will get Mentorship and Funding
+        How to be a good PhD student:
+            Persevere, Be tenacious, Be audacious
+            Read
+            Write and write and write and write and write and write and write and write and write . . .
+            Learn to speak
+            Capture your ideas
+            Apply for fellowships***
+            Master the tools of the trade (LaTeX, git, pytorch, etc . . .)
+            Be healthy! Be safe! Be happy!
+            Don't forget to enjoy the ride, make a small dent in the universe of knowledge, meet interesting people and make lifelong friends, watch yourself grow
+    "Introducing GradSAC" (Jakob Johnson):
+        goal to make grad students' life easier and better
+        social events, mentorship, etc.
+        undistinguished lecture series
+        First meeting August 31st 5pm
+    "Program Overview" (Alex Lex):
+        largest cohort ever (100 MS, 60 PhD) + already 200 PhD and 133 MS, also >1600 undergrads
+        Computer Scinece vs Computing degree
+            Computer Science focuses on theory, systems, and hardware, governed by program director (Haitao Wang)
+            Computing Program made up of distinct tracks
+        What is the program like
+            First, a mix of cousework and research THEN a very deep dive into research
+            Try to create knowledge in papers and artifacts (programs)
+            Read the handbook+faq
+            Teaching Requirement of 1 semester TAing
+        Timeline:
+            Y1-2: identify advisor, research topic, publish first paper, complete courses and teaching requirement
+            Y3: identify commitee. Do written qualifying exam. Work on second paper
+            Y4:  Propose your dissertation to your committee. Then work on final paper
+            Y5 Write dissertation based on ~3 papers. Defend dissertation in front of committee
+            Also: make friends, attend conferences, give talks, engage in organizations, meet new people, learn to research write and present
+        How to succeed:
+            follow progress milestones (from handbook)
+            become involved in research immediately
+            work with advisors and be patient
+            attend research seminars for credit or informally (you can just walk up)
+   "Computer Support Info":
+        support.cs.utah.edu support@cs.utah.edu
+        in case of email issues use a non-KSOC
+        shell.cs.utah.edu (light use)
+        Email forwarding ~/.forward or ~/.procmailrc
+        vpn.cs.utah.edu or vpn.utah.edu
+        NAS - /home and /uusoc/res
+            use csuote -h
+            /uusoc/scratch is NOT BACKED UP!
+        choose a secure password, do not share passwords between accounts, they will never ask for your password
+        if it's not cs.utah.edu it is beyond cs IT control
+        lmgtfy.com
+        use port 5522 to ssh into custom network services

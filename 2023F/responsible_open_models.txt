@@ -1,0 +1,53 @@
+Joelle Pineau
+    AGI vs AI population hypothesis
+    Openness pushes to higher bar for exellence, leads to collaboration, better and faster solutions, transparency builds trust
+
+Mitchell Baker
+    difference in open in software vs in models/data
+    focus on building the company/group culture around open source
+
+William
+    Open source for "predictive policing"
+    try to think which point along the steerability/community knowedge gain tradeoff gradient
+
+Rumman Chowdhury
+    building a trustworthy system is not about trusting the system its trusting how you use the system
+
+Peter Henderson
+    green default - more tools to the toolkit
+    put the model in a place in the optimization space that makes it harder to repurpose
+
+Misinformation:
+
+    more noise
+    disaggregated
+
+
+
+Yacine Jernite (huggingface)
+    operationalize open
+    new dataset
+
+Stella Biderman (eleuther ai)
+
+Melanie Kambadur
+    LLama 2 safety
+    Model - based evaluation
+
+Zico Kolter
+    adversarial attacks
+    closed source is no guarantee that the systems will be more secure, but we don't know how to patch the bugs after we find them in open models
+
+Don't start by using lots of data, and then try to fileter as an after thought, start from better management
+
+Stefano Maffulli
+    Software as new format of human creativity, it took some time to solidify the policies
+    
+Peter Cihon
+    Large foundation models, increasing expectation of developers, not only deployers
+    EU AI act
+
+Cori Zarek
+    Open Source in US government
+Dan Ho
+    Bias, alginment (issue covered by researchers) VS catastrophic failure (issue discussed by people who want closed models, and by policymakers
