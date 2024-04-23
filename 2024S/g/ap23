@@ -1,0 +1,161 @@
+RLHF replacements 
+Vivek Presenting
+
+Work with Kyle Richardson at AI2 on DPO
+
+Can be derived from first principles without all the usual heavy lifting
+Many proposed ones can be shown to be identical (in the same way svm/perceptron/logistic regression)
+
+1. Languages
+
+  formal language theory
+    Alphabet Sigma
+    language L \subseteq Sigma* 
+
+  LM : given alphabet Sigma, create a probability for any string s \in Sigma*
+    a good LM assigns high probabilities to good sequences, low probabilities to illegal or implausible sequences
+
+    To go from a distribution LM(.) to a Language L \subset Sigma*:
+      epsilon-truncated language
+
+      for some epsilon, string s \in L iff LM(s) >= epsilon
+
+
+    Given a Language L, define the following predicate
+      Contains(x, L): 1[x \in L] for string x
+
+      can use this to write rules: if some sequence x is in the language, sequence y must be in the language
+
+      Dataset: D={x1, x2, x3, . . . xn}
+      just a large conjuction:
+      AND_{i \in [1,n]} Contains(x_i, L)
+
+2. Logic
+
+  Standard connectors AND, OR, NOT, IMPLIES
+
+  input-output-discrete function
+
+  replace with continuous functions (t-norms):
+
+  AND(x, y)    = xy
+  OR(x, y)     = a+b-ab # # # 1 - 1/(1/(1-x) + 1/(1-y))# # # my idea
+  NOT(x)       = 1-x
+  IMPLIES(x,y) = min(1, b/a)
+
+  Weighted Model Counting 
+    for relaxing logic
+  
+
+3. Losses
+
+  SVM Loss: max(0, 1 - score(x,y))
+  Perceptron Loss: max(0, -score(x,y))
+  Logistic Regression Loss : log(1 + exp(score(x,y)))
+
+  These all look about the same when you zoom out far enough
+
+
+4. Logic+Language -> Losses
+  
+SFT-loss can be derived from t-norms
+
+  x_i: prompt
+  y_i: answer
+  task: given x_i, generate y_i
+  in terms of languages, we want x_i y_i \in L
+  Equivalent to Contains(x_i y_i, L)
+  M_theta(x_i, y_i)
+
+  A complete dataset:
+  AND_{(x, y) \in D} M_theta(x_i, y_i)
+
+  A specification for sequences the model should contain
+
+
+  USE THE STANDARD THING OF RELAXING Discrete classes to probabiliteies:
+
+  PRODUCT_{(x,y) \in D} P(x,y | theta) we want this to equal 1, or at least maximize the quantity
+  min - SUM log P(x,y | theta)
+
+  So supervised finetuning is equivalent to a relaxation of saying "I need my Language to contain all the fine-tuning data"
+
+
+Unlikelihood TRAINING:
+
+  Have a dataset U of bad strings
+
+  U = {x1, x2, ... x_n}
+
+  Want AND_{x_i \in U} NOT(M(x_i)) = True
+  Relax to max PRODUCT_{i} [1 - policy(x_i)]
+  Equivalent to min - SUM_{i} log[1 - policy(x_i)]
+
+  This is Wellect 2019
+  It can also be derived from "weighted model counting"
+
+Calibration Loss (Zhao etal 2023):
+  y_p should be preferred over y_o given input x
+
+  max(0, B - log pi_M(x, y_p) + log pi_m(x, y_o)) is the expression they derived
+
+  but it can be more easily derived:
+
+
+  Suppose you have the distribution pi over Sigma*
+
+  sequences y_p and y_o, want pi(y_p) > pi(y_o)
+
+  or, in terms of an epsilon-truncated model, we can set epsilon anywhere between y_o < epsilon < y_p
+
+  if y_o \in L, then y_p should be \in L
+  M(x, y_o) IMPLIES M(x, y_p) as an exact predicate
+    THIS IS THE BIG DEAL FOR THIS IDEA
+      Preferences as implications
+
+  (Can also add annotator as an in put to this predicate)
+
+
+#DPO
+
+  pi(x,y_o) IMPLIES pi(x, y_p)
+  is equivalent to saying (R-norm)
+  maximize_{pi} min(1, pi(x, y_p) / pi(x, y_o)
+  = maximize_{pi} min[0, log pi(y_p) - log pi(y_o)]
+  = minimize_{pi} max[0, -[log pi(y_p) - log pi(y_o)]
+
+  so loss(x, y_p, y_o) = max[0, -[log pi(y_p) - log pi(y_o)] (like perceptron)
+  or, to be svm like: loss = max[0, 1 - log pi(y_p) + log pi(y_o)]
+  !!! Exactly like CALIBRATION LOSS!!
+  you can extend this to svm, logistic regression, etc.
+  
+  Just as we could show that svm, logistic regression, etc are identical, We can show that these are identical!!  
+
+
+  DPO loss
+  - log[ sigma [log (pi_M(x, y_p) / pi_REF(x, y_p)) - log (pi_M(x, y_o)/pi_REF(x, y_o))]]
+
+  want y_p >> y_o
+
+  C_1 : REF(x, y_p) AND NOT Ref(x, y_o) IMPLIES M(x, y_p)
+  "prefer y_p if the reference likes it more than the alternate"
+
+  C_2 : REF(x, y_o) AND NOT M(x, y_p) IMPLIES NOT REF(x, y_p)
+  "if the reference likes y_o and the model does not like . . . "
+
+  can take C_1 AND C_2, WHEN RELAXED USING WEIGHTED MODEL COUNTING, THIS TURNS INTO DPO
+
+
+
+
+WHAT ABOUT THAT MODELS CURRENTLY ACTUALLY GENERATE OVER NEXT TOKENS
+  next token: pi(y_{t+1} | y_1 ... y_t)
+  sequence probability: pi(y)
+
+  for SFT, need second percpective
+
+  The first can be split into a conjuction of predicates for each token:
+    AND_{i \in [1, t+i]} M(y_1 ... y_i)
+
+    so M(y) = AND_{i \in [1, t+i]} M(y_1 ... y_i)
+      which can be similarly relaxed
