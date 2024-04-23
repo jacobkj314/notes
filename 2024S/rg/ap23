@@ -1,0 +1,11 @@
+Reflexion: Language Agents with Verbal Reinforcement Learning
+  Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, Shunyu Yao
+
+If you reinforce langauge agents with linguistic feedback, it works better than by updataing weights
+
+Generating useful reflective feedback is challenging since it requires a good understanding of where the model made mistankes, and the ability to generate a summary containing actionable insights for improvement
+
+adding the whole chat: episodic memory
+
+
+Initialize Actor, Evaluator, Self-Reflection: M_a, M_e, M_sr
