@@ -1,0 +1,204 @@
+PRACTICAL NOTES FOR MAKING ML WORK IN THE REAL WORLD
+  (experiential advise and based on observations by other people, i.e. readings on class website)
+
+Diagnostics of your learning algorithm
+
+  Suppose you train an SVM or logistic regression classifier for spam detection
+  You obviously follow best practices for finding hyper parameters (such as cross-validation), but your classifier is only 75% accurate
+  What can you do to improve it? (assuming there are no bugs in the code)
+    Ensemble it
+
+    More training data (helps with overfitting)
+
+    Use more  features (helps with underfitting)
+    Use fewer features (helps with overfitting)
+    Use other features (could help with over- or under-fitting)
+
+    Run for more iterations
+    Use a different algorithm
+    Use a different classifier
+    Play with regularization (could help with over- or under-fitting)
+
+    THIS IS TEDIOUS
+    prone to errors, dependent on luck
+    Let us try to make this process more methodical
+
+    Some possible problems:
+      over-fitting (high variance)
+        The training accuracy is much higher than the test accuracy.
+        The model explains the training set very well, but poor generalization
+        Variance: describes how much the best classifier depends on the specific choice of the training set
+      under-fitting (high bias)
+        The model can not represent the convcept well enough
+        Bias is the ture error (loss) of the best predictor in the hypothesis set
+        Underfitting when bias is high
+
+      bias and variance
+        more expressive -> decrease bias, increase variance
+        
+        ensembels tend to reduce variance (bagging, boosting)
+        decision trees of a given depth
+          increasing decreases bias, increases variance
+        SVM
+          higher degree polynomial kernels decreases bias, increases variance
+          Stronger regularization increases bias, decreases variance
+        Neural networks
+          Deeper models increase variance, decrease bias
+        K nearest neighbors
+          increasing K generally increases bias, reduces variance
+
+
+        Detect high variance using learning curves:
+          large gap between training and generalization error, even as size of training set increases
+        Detect high bias
+          both train and generalization error are unacceptable, even after the model has converged
+        
+        
+      your learning does not converge
+        measure the loss, not just the metric
+        
+      Are you measuring the right thing?
+        Accuracy of prediction is the most common measurement for classifiers
+        Mean Suqared Error is the most common measurement for regression
+
+        But if your dataset is unbalanced, accuracy may be misleading
+        1000 positive examples, 1 negative example: a classifier that always predicts +1 will get 99% positive accuracy, but has it really learned anything?
+
+      1. Learning(labeled_examples, learner) -> model
+      2. Prediction(unlabeled_examples, model) -> label
+      3. Evaluation(labeled_examples, model) -> metrics
+      4. Hyperparameter_selection(labeled_examples, learner, hyperparameter_set) -> hyperparameter_selection
+
+
+checkpointing, etc
+
+In practice, ML code is just a small part of the issue:
+  Configuration, Data Collection, Feature Extraction, Data Verification, Process Management Tools, Analysis Tools, Machine Resource Management, Serving Infrastructure, Monitoring
+
+  Error Analysis:
+    generally machine learning plays a small but important role in a larger application
+      . . .
+      in a pipeline, track the error given gold data at each step, to see which step in the workflow is most responsible for the performance drop
+
+    Ablation study:
+      explaining difference between the performance of a strong model and a baseline
+      usually seen with features or neural network machines
+
+
+
+
+Injecting machine learning into a task
+
+  1 (slow approach): carefully identify features, get the best data, get the software architecture, design a new learning algorithm, then implement it and hope it works 
+      advantage: perhaps a better approach, maybe even a new algorithm. Research
+  2 (hacker approach): implement something, then improve it t
+      advantage: have something done sooner
+
+
+
+
+What to watch out for:
+  do you have the right evaluation metric, and does your loss function reflect it?
+
+  Beware of contamination: ensure that your training data is not contaminated with the test set
+  Learning = generalization to new examples:
+    do not even see your test set. You may inadvertently contaminate the model.
+    beware of contaminating your features with the label. Be suspicious of perfect predictions
+
+  Beware of bias vs variances
+
+  Be aware that intuitions may not work in high dimensions (no proof by picture, curse of dimensionality)
+  A thoeretical guarantee may only be thoeretical.
+    may make invalid assumtions (e.g. whether the data is linearly separable)
+    May only be true in the limit, so assumes infinite data
+    Expreiments on real data are equally important
+
+
+
+Big data is not enough
+  but more data is always better, clean data is even better
+  remember that learning is impossible without some bias that simpifies/guides the search over hypothesis. Otherwise no generalization
+
+  Learning requires knowledge to guide the learner.
+    not a magic want
+
+    what knowledge?
+      which model is right for this task?
+        linear models, decision trees, NNs, etc
+      which learning algorithm
+        does the data violate any crucial assumtions that were used to define the learning algorithm or the model
+
+
+Miscellaneous advise:
+  learn simpler models first: if nothing, at least they form a baseline to improve upon later
+  Ensembles seem to work better
+  Think about whether your prolem is learnable at all
+    Learning=generalization
+
+
+
+
+Making ML matter in the real world
+
+Challenges to the greater ML community:
+  1. A law passed or legal decision made that relies on the result ofan ML analysis
+  2. $100M saved through improved decision making provided by an ML system
+  3. A conflict between nations be averted thorough high quality translation provided by a ML system
+  4. A 50 % recution in cyberceburity breakins through ML defenses
+  5. A human life saved through a diagnosis or intervention recommended by an ML system
+  6. Improvement of 10% in one country's Human Development Index attributable to an ML system
+
+
+Data driven decision making is increasingly prevalent:
+  some breader concerns about algorithmic decision making emerge:
+    do classifiers exhibit biases? what about datasets?
+    how de we ensure that such systems are transparent in their decision -making?
+    When can you believe your model? Should you leave decision making to it?
+    What if satatistical models are used in ethically dubious ways?
+    These refer to auxiliary criteria, not to mathematical loss functions
+
+    What if someone is used to decide
+      how long someone should be sentenced for a crime?
+      whether someone's loan application should be approved?
+      whether someone should be fired?
+
+    How can we ensure that the classifiers do not exhibit illegal or unethical behavior, that the classifiers are fair?
+    Can we guarantee that a machine learning based system does not do harm in terms of its represntation of groups of people or in how it makes decisions about them?
+    How do we design algorithms and evaluation frameworks which avoid discrimintation?
+    What if the data itself (either knowing ly or un is unfair)?
+
+    Imagine you have a job and a classifier decides to fire you. 
+      maybe because it made an error on this instance (you), even though it is 99.9% accurate
+
+      Questions;
+        how do we dveplop statistical methods that not only make a prediction, but also are transparent in their decision making process?
+        How do we develop algorithms that can expalin their decisions
+
+     Are current legal systems robust?
+      perhaps there is room to rewrite or update laws to account for ml
+        what if evidence is faked by sampling from a generative model?
+        Who is to blame if a ML-based automatic car is involved in an accident?
+        What if an ML-based autonomous weapon kills someone
+
+Fairness, Accountability and Transparency:
+  we need to ensure that ...
+
+
+
+
+
+
+Learning=generalization
+"A coputer program is said to learn from experience . . . . . .
+We saw different models: what kind of function a model should learn
+Different learning protocols (but only focused on supervised learning)
+Different kinds of learning algorithms (online vs batch)
+Representing data: what is the best way to represent data for a particular task\
+  features, imensionality reduction
+Theory of machine learning:
+  mathematical definitions: online learning, PAC learning, Bayesian learning
+
+Representation, Optimization, Evaluation
+
+Machine Learning is too easy:
+  remarkably diverse collection of ideas, yet in practice, many of these approaches work roughly equally well
