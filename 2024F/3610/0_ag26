@@ -1,0 +1,54 @@
+COURSE/SYLLABUS OVERVIEW
+
+Labs: solo
+Final Project: can be solo (or 1-3)
+
+In-Lecture Participation
+paper-based class participation
+open book, open notes
+extra points
+
+
+
+
+
+CHAPTER 1 - Review of Logic Design Fundamentals
+
+
+And - D shape
+OR curved at input
+
+
+Sum of Products AB+BC
+(sum of minterms) ABC + ABC' + A'BC
+called "minterm" because when it is the expression there is ONLY 1 row in truth table whose result is 1
+
+Product of Sums         (A+C')(B'+C )
+(product of maxterms)   (A+B'+C)(...)
+called "maxterm" because when it is the expression there is ONLY 1 row in truth table whose result is 0
+
+\sum m(0,1,2) ... sum of midterm notation
+\product M(0,2,3) ... product of maxterm notation
+
+
+
+
+Boolean Algebra and Algebraic Simplification:
+
+DeMorgan's Law
+Z = XY -> Z' = X'+Y'
+Z = X+Y -> Z' = X'Y'
+
+F = ab+a'c
+F' = (ab+a'c)' = (ab)'(a'c)' = (a'+b')((a')'+(c')=(a'+b')(a+c')
+
+X+YZ = (X+Y)(X+Z) (duality - taking a true equation and replacing all + with *, 0 with 1,  and vice versa it is also true)
+
+
+
+KARNAUGH MAPS: a convenient way to simplify logic functions of 3-5 variables
+
+00 01 11 10 (gray code)
+
+fill out table with min/MAX- terms, don't cares, etc
+
