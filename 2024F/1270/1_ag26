@@ -1,0 +1,48 @@
+9th edition of textbook
+
+MultiSim is part of National Instruments LabSuite
+  LTSpice is open-source alternative
+
+Extra Credit for checking homework answers on Circuit Simulator
+
+*I should get a 3-ring binder for this class
+
+
+e.g.  (gravitational potential energy) U = mgh
+
+F_g = K_g (Mm)/(r^2), K_g is a constant to match units
+and you can mention a direction unit vector
+
+related: two charges, magnitude and direction of force exerted
+F_e = K_e (Qq) / (r^2) * (vector)
+
+Gravitational Field is value of F_g at each point in space
+
+F_g / m = K_g M/(r^2)
+
+so g has units of m/s/s because Newtons/kg = m/s/s
+
+
+
+Electric Field
+F_e / q = K_e Q/(r^2)
+Newtons/Coulomb
+
+
+VOLTAGE = \integral F_e dl
+  = (Newtons/Coulomb) * (meters)
+  =(Newton meters / Coulomb)
+  = Joules/coulomb
+
+CURRENT = Coulomb flow / second (charge/time)
+
+Volts * Coulombs = 
+(Newton*meter/coulomb)(coulomb/second) =
+Newton*meter/second =
+Joules / second
+= 1 Watt
+
+P=V*I
+p(t) = v(t) i(t)
+
+energy(t) = \integral p(t) dt
