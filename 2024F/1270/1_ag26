@@ -46,3 +46,7 @@ P=V*I
 p(t) = v(t) i(t)
 
 energy(t) = \integral p(t) dt
+
+
+
+
